@@ -1,0 +1,197 @@
+/*
+    This file is part of the DodoHand project. This project aims to create 
+    an open implementation of the DataHand keyboard, capable of being created
+    with commercial 3D printing services.
+
+    Copyright (C) 2013 Scott Fohey
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+The TODO list
+
+Circuit/PCB:
+
+The Easypoint switch is on Col5, but there is no pull-down on the
+finger PCB for Col5, as the intention was to put the Col5 pull-down
+on the Thumb PCB, along with the Col4 pulldown. This may have been
+an error, as now the Easypoint switch can't be evaluated without
+a kludge of soldering on a resistor somehow, at least until the
+thumb switches are in the mix. Consider changing this.
+
+Find a better layout for the solder-bridges in the reversible finger 
+5-switch footprint - I resorted to 0603 0-Ohm bridges because I couldn't
+get the solder to bridge across easily.
+
+The drills for the test points are not quite large enough for the chosen
+testpoints. Make the drill hits a few mil larger so that the testpoints fit
+better into the plated holes.
+
+DONE:
+PCA9306 circuit needs to be corrected. VREF2 (5.0v) needs to be connected
+through the 200kOhms resistor, not directly.
+
+DONE:
+SW1 footprint - correct soldermask on mechanical/mounting holes, add padring
+  to aid in soldering of the switch for mechanical stability.
+
+TRRS footprint has silkscreen only on one layer. Add to bottom layer.
+
+1206 component footprints have no silkscreen for outline of part. Either
+  reduce the soldermask size or move silkscreen away from pads so that it
+  actually exists on the real board.
+
+DONE:
+PCA9306 text needs to be move to the PCA9306, rather than on the PCA9655e.
+
+DONE:
+Add label for PCA9655e.
+
+Add outline of keystop/shroud on the bottom layer.
+
+Add a guide in silkscreen to the solder-bridges, like done on the reversible
+  finger 5-switch bridges.
+
+Improve the silkscreen for the status LEDs, on both top and bottom.
+
+Investigate convention for square v. round pads for LEDs... Ergodox diodes
+  have long leg through square pad, dodohand currently reverse...
+
+May be possible to tighten-up the pad <-> soldermask spacing so that less
+of the traces are exposed coming off of the ASICs...
+
+misc:
+
+Update the clip bending jig drawing to reflect the new, shorter length
+of one of the magnet-facing legs of the N/E/S/W clips.
+
+3D_models:
+
+Finger button issues:
+
+DONE:
+Orientation of parts when printed affect results.
+Arrange Printable Left Fingers SCAD model (3D_models/plf.scad) such that all of 
+the keys and the lower levers are arranged in the same orientation. Perhaps pick
+the orientation that is currently used for the larger N/big key, as that 
+resulted in a part which fit into the carrier without modification.
+
+DONE:
+The lower lever seems too narrow @ the retention pins. Side-to-Side slop is too
+great. Try orienting same as big key for next print.
+
+DONE:
+The printing orientation of the N key vs. the E/S/W keys caused the magnet-
+carrying portion of the key levers to be drastically different. Keep this in
+mind when selecting the final printing orientation.
+
+DONE:
+Add New center clip retention block to plf so that they get printed.
+
+DONE:
+Extend clip support wall down to bottom of 5-key carrier to prevent lowlev
+from getting out of place if pins get sloppy.
+
+DONE:
+The lower-lever retaining pins entry ramp ends in a point which doesn't
+print well. Fix this by adding some material to make the point into a chamfer.
+
+DONE:
+When printed in their current orientation, the E/S/W keys do not fit into the 
+carrier. The top of the retention pins are too high. Assembly required trimming.
+Verify that the model is correct. -- DONE -- model was correct --
+
+DONE:
+The LowLev cannot be properly inserted into carrier. There is an interference 
+between the pivot at the end of the lever and the clip support wall of the N (or
+is it S?) key. 
+
+DONE:
+The center button stem is way too sloppy. It allows significant and undesirable
+motion of the button. The supporting walls should be made into a longer guide to
+restrict motion, and the gap for 3D-printing tolerances should be reduced in 
+order to achieve a less-sloppy assembly. 
+*** at the moment, the short support walls (which work with the retention bumps 
+on the stem) have been lengthened slightly (lower edge lowered), and the gap has
+been removed between the stem and the support walls. Upper edge of support
+structure has been raised slightly as well. *** 
+
+DONE:
+The center button stem can jam on the corner of the anvil, trapping the key in
+the pressed-down state. This should be prevented simply by reducing the slop in
+the stem support. Additional measures should be taken to make this even less 
+possible. (now anvil overhangs a bit so that there is a much greater margin for
+error without jam)
+
+DONE:
+The magnets barely fit into the lower lever. (Now sidewalls moved out to
+allow more room in anvil area where structure is too stiff to give easily.)
+
+DONE:
+The E/S/W keys don't clear the top edge of the carrier when installed.
+(tweaked key_p_z slightly to raise keys)
+
+DONE:
+The actuation of the center button requires a bit more force than is perfectly
+desirable, and is a bit too snappy for my taste. The clip should be moved 
+inboard until it is against the center column to increase the leverage that the
+stem has upon the magnet. This will make actuation of the button less snappy and
+require less force.  Current build has the clips rounded so that less material
+is directly against the magnet, which also helps.  Current build has center 
+clips out of 0.015" stock.
+*** clip2 relocated, lowlev updated accordingly, new retention mechanism 
+created which should make assembly easier.
+
+DONE:
+The actuation of the N/E/S/W buttons is perhaps not snappy enough - feels a bit
+mushy. This could be improved by using K&J Magnetics' B221 magnet (1/8"x1/8"x
+1/16") instead of B4201 (1/4"x1/8"x1/32") as the B221 has a higher Surface 
+Field, and could be biased to the top of the lever. This could provide a greater
+holding force, and a steeper dropoff of pull as the lever is actuated.
+
+DONE:
+Now using a phototransistor which is less sensitive to ambient light (Everlight
+PT908-7B-F) and has shorter leads than the LTR-301 which was used earlier. There
+needs to be an new 3D model created for the PT908-7B-F which reflects the 
+shorter, and equal-length leads so that it can be obvious that they are barely
+long enough to work with the current pinkie riser.
+
+DONE:
+The pocket for the IR opto components was just a little too short. Some of the
+pockets required pliers to get the components to snap in. The hight of the 
+pocket should be slightly increased. (pocket now irlb_m_h_xtra = 0.1 taller.)
+
+Case:
+
+A model of a case should be developed. Ensure that the two units can be placed
+closer together than the original DataHand. Perhaps the outer case and the hand
+support will be part of a single model to reduce complexity and cost of 
+manufacture. 3D-printed ceramic is a potential solution. mkawa's 3D printer may
+also be a useful resource for a case.  laser-cut cardboard (or plywood/bamboo/acrylic/etc) may not be a bad option.
+
+Thumb switches
+
+Develop a model for the two-stage thumb switch and keycap.
+
+Develop a model for the 4-count normal thumb switch.
+
+Develop a model for the upper/inboard thumb switch lever.
+
+Develop a model for the main inboard thumb switch lever.
+
+Develop a model for the distal outboard thumb switch lever.
+
+Develop a model for the proximal outboard thumb switch lever.
+

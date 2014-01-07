@@ -1,0 +1,49 @@
+/*
+    This file is part of the DodoHand project. This project aims to create 
+    an open implementation of the DataHand keyboard, capable of being created
+    with commercial 3D printing services.
+
+    Copyright (C) 2013 Scott Fohey
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef __SCANRH_H__
+#define __SCANRH_H__
+
+#define KB_ROWS    (5u)
+#define KB_COLUMNS (12u)
+
+#ifndef FALSE
+#define FALSE ( 0 )
+#endif
+
+#ifndef TRUE
+#define TRUE ( !FALSE )
+#endif
+
+
+extern void init_matrices ( void );
+
+extern void scanrh ( void );
+
+typedef unsigned char bool;
+
+extern bool matrix_a[KB_ROWS][KB_COLUMNS];
+extern bool matrix_b[KB_ROWS][KB_COLUMNS];
+extern bool new_in_a;
+
+
+
+#endif // __SCANRH_H__

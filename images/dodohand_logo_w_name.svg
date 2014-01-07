@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="dodohand_logo_w_name.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="486.49973"
+     inkscape:cy="651.93064"
+     inkscape:document-units="px"
+     inkscape:current-layer="g3028"
+     showgrid="false"
+     inkscape:object-paths="false"
+     inkscape:window-width="1174"
+     inkscape:window-height="972"
+     inkscape:window-x="538"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3009">
+      <g
+         id="g3010"
+         inkscape:export-filename="/home/sfohey/prj/keyboard/images/logo.png"
+         inkscape:export-xdpi="150"
+         inkscape:export-ydpi="150">
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="301.6759"
+           y="502.33411"
+           id="text3878"
+           sodipodi:linespacing="125%"
+           transform="matrix(0.99999813,-0.00193283,0.00193283,0.99999813,0,0)"
+           inkscape:transform-center-x="2.1847467"
+           inkscape:transform-center-y="-15.498844"><tspan
+             sodipodi:role="line"
+             id="tspan3880"
+             x="301.6759"
+             y="502.33411"
+             style="font-size:48px;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">DodoHand</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="197.14287"
+           y="55.21933"
+           id="text3223"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="55.21933"
+             id="tspan3400">/*</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="67.71933"
+             id="tspan3521">    This file is part of the DodoHand project. This project aims to create </tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="80.21933"
+             id="tspan3523">    an open implementation of the DataHand keyboard, capable of being created</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="92.719337"
+             id="tspan3525">    with commercial 3D printing services.</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="105.21934"
+             id="tspan3527" /><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="117.71934"
+             id="tspan3529">    Copyright (C) 2013 Scott Fohey</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="130.21935"
+             id="tspan3531" /><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="142.71935"
+             id="tspan3533">    This program is free software: you can redistribute it and/or modify</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="155.21935"
+             id="tspan3535">    it under the terms of the GNU General Public License as published by</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="167.71935"
+             id="tspan3537">    the Free Software Foundation, either version 3 of the License, or</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="180.21935"
+             id="tspan3539">    (at your option) any later version.</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="192.71935"
+             id="tspan3541" /><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="205.21935"
+             id="tspan3543">    This program is distributed in the hope that it will be useful,</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="217.71935"
+             id="tspan3545">    but WITHOUT ANY WARRANTY; without even the implied warranty of</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="230.21935"
+             id="tspan3547">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="242.71935"
+             id="tspan3549">    GNU General Public License for more details.</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="255.21935"
+             id="tspan3551" /><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="267.71933"
+             id="tspan3553">    You should have received a copy of the GNU General Public License</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="280.21933"
+             id="tspan3555">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="292.71933"
+             id="tspan3557">*/</tspan><tspan
+             sodipodi:role="line"
+             x="197.14287"
+             y="305.21933"
+             id="tspan3559" /></text>
+        <g
+           id="g3044"
+           inkscape:export-filename="/home/sfohey/prj/keyboard/images/g3010.png"
+           inkscape:export-xdpi="955.63"
+           inkscape:export-ydpi="955.63">
+          <g
+             id="g3028">
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 509.92763,366.98148 -25.6455,38.98857"
+               id="path2996"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cc"
+               inkscape:transform-center-x="-31.143198"
+               inkscape:transform-center-y="-114.19847" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="M 489.06152,373.16357 471.1373,400.09775"
+               id="path2996-3"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cc"
+               inkscape:transform-center-x="-14.137728"
+               inkscape:transform-center-y="-114.04359" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 516.09021,382.41219 -18.87226,28.41012"
+               id="path2996-3-4"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cc"
+               inkscape:transform-center-x="-40.692398"
+               inkscape:transform-center-y="-104.05698"
+               transform="translate(0.53571429,0.26785714)" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 462.98307,385.94677 c 0,0 0.27475,0.17959 -19.06432,29.46364 -18.76667,28.4173 30.92643,54.38996 47.21911,30.70869 16.94244,-24.62565 17.00075,-24.71729 17.00075,-24.71729"
+               id="path2996-3-4-4"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cssc"
+               inkscape:transform-center-x="-7.9812077"
+               inkscape:transform-center-y="-80.014457" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="M 488.76164,423.23653 462.98932,412.17108"
+               id="path2996-3-1"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cc"
+               inkscape:transform-center-x="-9.9137976"
+               inkscape:transform-center-y="-82.970431" />
+            <path
+               style="fill:#000000;fill-opacity:1;stroke:none"
+               d="m 506.17332,434.70744 12.58439,-17.88059 c 0,0 -1.72602,-0.99099 -2.66084,-1.31484 -0.96767,-0.33525 -1.98999,-0.50641 -3.00602,-0.63456 -1.29452,-0.16327 -2.60884,-0.25446 -3.91074,-0.16783 -0.96799,0.0644 -1.95953,0.16208 -2.86552,0.50895 -0.52331,0.20037 -1.00256,0.52223 -1.42829,0.88659 -0.52937,0.45307 -1.36344,1.5845 -1.36344,1.5845 z"
+               id="path3838"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccssssscc"
+               inkscape:transform-center-x="-45.178603"
+               inkscape:transform-center-y="-75.982394" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 419.45566,390.66698 c 21.03666,43.12726 4.65982,9.55312 21.10182,43.26082"
+               id="path2996-3-9"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="cc"
+               inkscape:transform-center-x="35.955112"
+               inkscape:transform-center-y="-88.376846" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 370.64996,420.76253 c -16.39137,-8.58122 -9.83621,-29.01986 -9.83621,-29.01986 0,0 36.0327,-3.29636 35.99914,-26.69533 -0.0483,-33.64273 -93.22821,-37.31297 -95.32305,-2.83971 -1.72786,28.4341 36.76804,30.3544 36.76804,30.3544 0,0 0.0536,0.0214 11.87598,14.80852 14.49645,18.13165 20.5161,13.39198 20.5161,13.39198 z"
+               id="path3862"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccsscsc"
+               inkscape:transform-center-x="115.05283"
+               inkscape:transform-center-y="-138.50076" />
+            <text
+               xml:space="preserve"
+               style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+               x="294.9053"
+               y="390.80884"
+               id="text3864"
+               sodipodi:linespacing="125%"
+               inkscape:transform-center-x="-115.67979"
+               inkscape:transform-center-y="-153.89073"
+               transform="matrix(0.99908038,-0.0428765,0.0428765,0.99908038,0,0)"><tspan
+                 sodipodi:role="line"
+                 id="tspan3866"
+                 x="294.9053"
+                 y="390.80884"
+                 style="font-size:36px;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">Caw!</tspan></text>
+            <path
+               style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m 416.28934,385.12614 c -9.55797,-0.1591 -17.6694,20.61644 3.82699,19.11024 11.71497,-0.82084 7.13931,-18.9277 -3.82699,-19.11024 z"
+               id="path3868"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="sss"
+               inkscape:transform-center-x="49.849426"
+               inkscape:transform-center-y="-106.23048" />
+            <path
+               style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               d="m 406.18569,394.00639 c -9.6264,9.15936 -20.16211,10.67722 -20.16211,10.67722 -3.27281,-0.58174 -7.08934,2.03548 -8.03572,6.33929 -0.36382,1.65454 0.625,4.64286 0.625,4.64286 0.26779,-1.06545 0.94874,-2.13886 2.94643,-3.39286 0.73821,-0.73433 22.68814,-10.02489 28.81997,-8.97447 -5.33783,1.47446 -21.67711,12.18876 -23.73069,13.34947 -2.44073,1.37953 -4.7016,2.51228 -4.73214,5.08928 1.75517,1.14843 3.56364,1.42246 8.125,0.17857 4.2929,-1.17068 6.88182,-6.47784 9.57012,-8.52311 2.49936,-1.90151 16.09953,-7.9501 17.75131,-8.17332 z"
+               id="path3011"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="csscccscsscc" />
+          </g>
+          <rect
+             y="335.1539"
+             x="298.75262"
+             height="127.78428"
+             width="225.01147"
+             id="rect3042"
+             style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
