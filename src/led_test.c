@@ -30,6 +30,7 @@
 #include "usb_debug_only.h"
 
 #include "scanrh.h"
+#include "scanlh.h"
 
 extern void pca9655e_init ( void );
 extern void dh_twi_init ( void );
@@ -53,6 +54,44 @@ extern void dh_twi_init ( void );
 extern uint8 pca9655e_init_stat;
 
 extern void dh_twi_isr(void);
+
+#define LHLED_0_ON  (0)
+#define LHLED_0_OFF (1)
+#define LHLED_1_ON  (0)
+#define LHLED_1_OFF (1)
+#define LHLED_2_ON  (0)
+#define LHLED_2_OFF (1)
+#define LHLED_3_ON  (1)
+#define LHLED_3_OFF (0)
+
+#define SET_LHLED_0(state) ( PORTB = (PORTB & (~0x40)) | (LHLED_0_##state << 6))
+#define SET_LHLED_1(state) ( PORTB = (PORTB & (~0x20)) | (LHLED_1_##state << 5))
+#define SET_LHLED_2(state) ( PORTB = (PORTB & (~0x80)) | (LHLED_2_##state << 7))
+#define SET_LHLED_3(state) ( PORTD = (PORTD & (~0x40)) | (LHLED_3_##state << 6))
+
+void show_key_state ( void )
+{
+  if ( lh_matrix[2][2] )
+    {
+      SET_LHLED_0(ON);
+    }
+  else
+    {
+      SET_LHLED_0(OFF);
+    }
+  if ( lh_matrix[2][3] )
+    {
+      SET_LHLED_1(ON);
+    }
+  else
+    {
+      SET_LHLED_1(OFF);
+    }
+
+  return;
+}
+
+extern uint8 save_PORTB;
 
 void main ( void )
 {
@@ -78,6 +117,13 @@ void main ( void )
   DDRB = DDRB | 0xE0; // configure B5, B6, and B7 as outputs.
 
   DDRD = DDRD | 0x40; // configure D6 as output
+
+  DDRF = DDRF | PORTF_ROW_MASK; // configure LH matrix rows as outputs.
+
+  SET_LHLED_0(OFF);
+  SET_LHLED_1(OFF);
+  SET_LHLED_2(OFF);
+  SET_LHLED_3(OFF);
 
   SET_RHLED_0(OFF);
   SET_RHLED_1(OFF);
@@ -107,33 +153,41 @@ void main ( void )
 
   pca9655e_trig_scanrh();
 
-  // turn on only LED0
-  PORTB = (PORTB & 0xBF) | 0xB0;
-  PORTD = (PORTD & 0xBF);
+  SET_LHLED_2(ON);
+  SET_LHLED_3(OFF);
+
+  scanlh();
+
+  show_key_state();
 
   //pca9655e_wait_for_scanrh();
-  _delay_ms ( 5 );
+  _delay_ms ( 3 );
   scanrh();
 
-  // turn on only LED1
-  PORTB = (PORTB & 0xDF) | 0xC0;
+  SET_LHLED_2(OFF);
+  SET_LHLED_3(ON);
 
   pca9655e_trig_scanrh();
 
-  _delay_ms ( 5 );
+  scanlh();
+  show_key_state();
+
+  _delay_ms ( 3 );
   scanrh();
 
-  // turn on only LED2
-  PORTB = (PORTB & 0x7F) | 0x60;
+  SET_LHLED_2(ON);
+  SET_LHLED_3(OFF);
 
   pca9655e_trig_scanrh();
 
-  _delay_ms ( 5 );
+  scanlh();
+  show_key_state();
+
+  _delay_ms ( 3 );
   scanrh();
 
-  // turn on only LED3
-  PORTB = PORTB | 0xE0;
-  PORTD = (PORTD & 0xBF) | 0x40;
+  SET_LHLED_2(OFF);
+  SET_LHLED_3(ON);
 
   pca9655e_trig_scanrh();
 
@@ -151,7 +205,10 @@ void main ( void )
   phex ( matrix_a[2][3] );
   print ("\n");
 
-  _delay_ms ( 5 );
+  scanlh();
+  show_key_state();
+
+  _delay_ms ( 3 );
   scanrh();
 
   goto top;

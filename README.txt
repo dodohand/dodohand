@@ -21,8 +21,14 @@ project - an attempt to resurrect the now-extinct DataHand.
 
 So you want to create a DodoHand
 
-First step is to get all the parts headed your way. There is a 
-BOM.ods (Bill of Materials) in the documentation folder which 
+Current status: The finger switch design is usable. The thumb cluster 
+is not yet designed. A case has been designed by Turbinia, but has 
+never been built. There are provisions in hardware for supporting an 
+EasyPoint or another joystick but these have not been implemented in
+software.
+
+The first step is to get all the parts headed your way. There is 
+a BOM.ods (Bill of Materials) in the documentation folder which 
 contains a list of the parts needed. That should be your guide.
 
 - Electronics:
@@ -62,13 +68,14 @@ in the component_lib directory.
 
 These you'll need to fabricate on your own until/unless I (or you!) 
 can find a shop to make them. There is a drawing: tooling/clip_bending_jig.dxf
-which I used to create a bending jig. I substituted 1mm pins for 
-all positions since that is what I was able to find from McMaster-Carr,
-and have been satisfied with the results. I used 7075 aluminum IIRC
-for the body of the jig. Be certain to order several drill bits of
-these small sizes - they're very fragile. Also, find a drill press
-or mill - you aren't likely to be successful trying to drill these
-holes by hand.
+which I used to create a bending jig. LibreCAD was used to create 
+this drawing (turn various layers on/off to help see what's going on).
+I substituted 1mm pins for all positions since that is what I was 
+able to find from McMaster-Carr, and have been satisfied with the 
+results. I used 7075 aluminum IIRC for the body of the jig. Be 
+certain to order several drill bits of these small sizes - they're 
+very fragile. Also, find a drill press or mill - you aren't likely 
+to be successful trying to drill these holes by hand.
 
 Assembly
 
@@ -104,7 +111,7 @@ Tools used for Assembly:
 Here is the list of tools that I recall using so-far in this process:
 
 - a file for cleaning up the little tabs left on the edge of the PCB
-  which of course are placed right in front of the TRRS connector 
+  which inevitably get placed right in front of the TRRS connector 
   which is the one spot that they cannot be tolerated.
 - no-clean flux
 - no-clean wire solder (leaded)

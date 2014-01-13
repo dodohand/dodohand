@@ -49,8 +49,8 @@ ttwi.sym: ttwi.elf
 clean:
 	rm -f *.o *.h~ *.c~ Makefile~ ttwi.elf ttwi.lss ttwi.sym ttwi.eep ttwi.hex *.o.d *.lst ttwi.map led_test.sym led_test.map led_test.lss led_test.hex led_test.elf led_test.eep
 
-led_test.elf: scanrh.o led_test.o pca9655e.o dh_twi.o print.o usb_debug_only.o
-	$(CC) $(LOPTS)  -Wa,-adhlns=./led_test.lst scanrh.o led_test.o pca9655e.o dh_twi.o print.o usb_debug_only.o -o led_test.elf -Wl,-Map=led_test.map,--cref 
+led_test.elf: scanlh.o scanrh.o led_test.o pca9655e.o dh_twi.o print.o usb_debug_only.o
+	$(CC) $(LOPTS)  -Wa,-adhlns=./led_test.lst scanlh.o scanrh.o led_test.o pca9655e.o dh_twi.o print.o usb_debug_only.o -o led_test.elf -Wl,-Map=led_test.map,--cref 
 
 led_test.hex: led_test.elf
 	avr-objcopy -O ihex -R .eeprom -R .fuse -R .lock -R .signature led_test.elf led_test.hex

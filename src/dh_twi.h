@@ -22,6 +22,8 @@
 #ifndef __DH_TWI_H__
 #define __DH_TWI_H__
 
+#include "dh_types.h"
+
 // defines
 
 // will likely try out 200kHz and 400kHz
@@ -45,8 +47,6 @@
 #define DH_TWI_CMD_READ  ( 0x08u )
 
 // typedefs
-
-typedef unsigned char uint8;
 
 typedef struct dh_twi_cmd_s
 {

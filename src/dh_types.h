@@ -3,7 +3,7 @@
     an open implementation of the DataHand keyboard, capable of being created
     with commercial 3D printing services.
 
-    Copyright (C) 2013 Scott Fohey
+    Copyright (C) 2014 Scott Fohey
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,32 +18,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#ifndef __DH_TYPES_H__
+#define __DH_TYPES_H__
 
-#ifndef __SCANRH_H__
-#define __SCANRH_H__
-
-#include "dh_types.h"
-
-#define KB_ROWS    (5u)
-#define KB_COLUMNS (12u)
-
-#ifndef FALSE
-#define FALSE ( 0 )
-#endif
-
-#ifndef TRUE
-#define TRUE ( !FALSE )
-#endif
+typedef unsigned char bool;
+typedef unsigned char uint8;
 
 
-extern void init_matrices ( void );
-
-extern void scanrh ( void );
-
-extern bool matrix_a[KB_ROWS][KB_COLUMNS];
-extern bool matrix_b[KB_ROWS][KB_COLUMNS];
-extern bool new_in_a;
-
-
-
-#endif // __SCANRH_H__
+#endif // __DH_TYPES_H__
