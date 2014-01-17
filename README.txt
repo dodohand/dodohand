@@ -75,7 +75,17 @@ able to find from McMaster-Carr, and have been satisfied with the
 results. I used 7075 aluminum IIRC for the body of the jig. Be 
 certain to order several drill bits of these small sizes - they're 
 very fragile. Also, find a drill press or mill - you aren't likely 
-to be successful trying to drill these holes by hand.
+to be successful trying to drill these holes by hand. I think that
+0.045"x0.015" strips of mild steel will generate about the right 
+force. Some experimentation will likely be needed to get that perfect.
+This material can be sourced as a roll of 0.015" shim stock. Please be 
+careful when releasing the coiled shim-stock from the strap that
+holds it. It will jump out and try to cut your face off if you give
+it half a chance to do so.
+
+I am working towards getting a manufacturer lined up for the metal
+clips. The first step is a clear mechanical drawing and I hope that
+tooling/clip_1_mech.dxf fits that description.
 
 Assembly
 
@@ -123,6 +133,7 @@ Here is the list of tools that I recall using so-far in this process:
 - various curved and straight tweezers
 - bench shear for cutting metal clips
 - dial calipers for measuring and setting metal clip dimensions
+- diagonal cutters for trimming metal clips to length.
 - digital multimeter for testing solder joints
 - dental pick
 - hobby knife
@@ -130,12 +141,24 @@ Here is the list of tools that I recall using so-far in this process:
 - tiny drill bits for holes for 1mm pins in bending jig
 - pin vise and assorted pin vise drill bits for opening IR lead passages
 
+Software Tools used in project:
+- OpenSCAD (build from recent sources) [3D models of switch mechanicals]
+- KiCAD (build from recent sources - November, 2013 or later) [schematic, PCB]
+- LibreCAD (version 1.0.1) [2D mechanical drawings]
+- Blender [case design, .stl file validation]
+- Inkscape [documentation, logo]
+- avr-gcc [compiling software for ATMega32U4 micro]
+- GNU make [controlling build process]
+- teensy_loader_cli [flashing ATMega32U4 through USB via teensy bootloader]
+- simavr (optional) [extreme AVR debugging]
+- git [distributed version control]
+
 Programming the keyboard
 
 Yeah, about that... I don't have the actual keyboard firmware written
 quite yet. src/led_test.c scans the matrix of the right-hand side of
-the keyboard via I2C and recognizes switch presses, but that is as
-far as I have currently taken it. Soon...
+the keyboard via I2C and recognizes switch presses, and also scans the
+left-hand side, but that is as far as I have currently taken it. Soon...
 
 In any case, the Teensy 2.0 comes with a nice bootloader, and the
 tactile switch SW1 is hooked to the teensy reset switch which starts
