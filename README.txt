@@ -133,6 +133,7 @@ Here is the list of tools that I recall using so-far in this process:
 - various curved and straight tweezers
 - bench shear for cutting metal clips
 - dial calipers for measuring and setting metal clip dimensions
+- combination square for controlling cuts on bench shear
 - diagonal cutters for trimming metal clips to length.
 - digital multimeter for testing solder joints
 - dental pick
@@ -145,6 +146,7 @@ Software Tools used in project:
 - OpenSCAD (build from recent sources) [3D models of switch mechanicals]
 - KiCAD (build from recent sources - November, 2013 or later) [schematic, PCB]
 - LibreCAD (version 1.0.1) [2D mechanical drawings]
+- LibreOffice [Bill of Materials]
 - Blender [case design, .stl file validation]
 - Inkscape [documentation, logo]
 - avr-gcc [compiling software for ATMega32U4 micro]

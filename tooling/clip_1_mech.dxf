@@ -915,7 +915,7 @@ AcDbLayerTableRecord
   2
 0
  70
-1
+0
  62
 7
   6
@@ -1309,9 +1309,117 @@ SECTION
   2
 ENTITIES
   0
-LINE
+HATCH
   5
 46
+  8
+part_layer
+ 62
+256
+370
+-1
+  6
+ByLayer
+100
+AcDbEntity
+100
+AcDbHatch
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+210
+0.0
+220
+0.0
+230
+1.0
+  2
+ANSI31
+ 70
+0
+ 71
+0
+ 91
+1
+ 92
+1
+ 93
+4
+ 72
+1
+ 10
+-39.9999999999999787
+ 20
+-10.0000000000002824
+ 11
+-52.9999999999999787
+ 21
+-10.0000000000002824
+ 72
+1
+ 10
+-52.9999999999999787
+ 20
+-10.0000000000002824
+ 11
+-52.9999999999999787
+ 21
+-4.9999999999999982
+ 72
+1
+ 10
+-52.9999999999999787
+ 20
+-4.9999999999999982
+ 11
+-39.9999999999999787
+ 21
+-4.9999999999999982
+ 72
+1
+ 10
+-39.9999999999999787
+ 20
+-4.9999999999999982
+ 11
+-39.9999999999999787
+ 21
+-10.0000000000002824
+ 97
+0
+ 75
+0
+ 76
+1
+ 52
+0.0
+ 41
+2.0
+ 77
+0
+ 78
+1
+ 53
+45.0
+ 43
+0.0
+ 44
+0.0
+ 45
+-0.0883883476483184
+ 46
+0.0883883476483185
+ 79
+0
+ 98
+0
+  0
+LINE
+  5
+47
 100
 AcDbEntity
 100
@@ -1334,34 +1442,6 @@ ByLayer
 70.0
  21
 50.0
- 31
-0.0
-  0
-LINE
-  5
-47
-100
-AcDbEntity
-100
-AcDbLine
-  8
-TitleBlock
- 62
-256
-370
--1
-  6
-ByLayer
- 10
-70.0
- 20
-50.0
- 30
-0.0
- 11
-70.0
- 21
--50.0
  31
 0.0
   0
@@ -1383,11 +1463,11 @@ ByLayer
  10
 70.0
  20
--50.0
+50.0
  30
 0.0
  11
--80.0
+70.0
  21
 -50.0
  31
@@ -1415,7 +1495,7 @@ ByLayer
  30
 0.0
  11
-20.0
+-80.0
  21
 -50.0
  31
@@ -1424,6 +1504,34 @@ ByLayer
 LINE
   5
 4A
+100
+AcDbEntity
+100
+AcDbLine
+  8
+TitleBlock
+ 62
+256
+370
+-1
+  6
+ByLayer
+ 10
+70.0
+ 20
+-50.0
+ 30
+0.0
+ 11
+20.0
+ 21
+-50.0
+ 31
+0.0
+  0
+LINE
+  5
+4B
 100
 AcDbEntity
 100
@@ -1451,7 +1559,7 @@ ByLayer
   0
 LINE
   5
-4B
+4C
 100
 AcDbEntity
 100
@@ -1479,7 +1587,7 @@ ByLayer
   0
 ARC
   5
-4C
+4D
 100
 AcDbEntity
   8
@@ -1509,7 +1617,7 @@ AcDbArc
   0
 ARC
   5
-4D
+4E
 100
 AcDbEntity
   8
@@ -1539,7 +1647,7 @@ AcDbArc
   0
 LINE
   5
-4E
+4F
 100
 AcDbEntity
 100
@@ -1567,7 +1675,7 @@ ByLayer
   0
 LINE
   5
-4F
+50
 100
 AcDbEntity
 100
@@ -1595,7 +1703,7 @@ ByLayer
   0
 LINE
   5
-50
+51
 100
 AcDbEntity
 100
@@ -1623,7 +1731,7 @@ ByLayer
   0
 ARC
   5
-51
+52
 100
 AcDbEntity
   8
@@ -1653,7 +1761,7 @@ AcDbArc
   0
 ARC
   5
-52
+53
 100
 AcDbEntity
   8
@@ -1683,7 +1791,7 @@ AcDbArc
   0
 DIMENSION
   5
-53
+54
 100
 AcDbEntity
   8
@@ -1713,7 +1821,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -1743,7 +1851,7 @@ AcDbRotatedDimension
   0
 DIMENSION
   5
-54
+55
 100
 AcDbEntity
   8
@@ -1773,7 +1881,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -1811,7 +1919,7 @@ AcDb2LineAngularDimension
   0
 DIMENSION
   5
-55
+56
 100
 AcDbEntity
   8
@@ -1841,7 +1949,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -1871,7 +1979,7 @@ AcDbRotatedDimension
   0
 LINE
   5
-56
+57
 100
 AcDbEntity
 100
@@ -1899,7 +2007,7 @@ ByLayer
   0
 LINE
   5
-57
+58
 100
 AcDbEntity
 100
@@ -1927,7 +2035,7 @@ ByLayer
   0
 DIMENSION
   5
-58
+59
 100
 AcDbEntity
   8
@@ -1957,7 +2065,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -1987,7 +2095,7 @@ AcDbRotatedDimension
   0
 DIMENSION
   5
-59
+5A
 100
 AcDbEntity
   8
@@ -2017,7 +2125,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -2044,46 +2152,6 @@ AcDbAlignedDimension
 90.0
 100
 AcDbRotatedDimension
-  0
-MTEXT
-  5
-5A
-100
-AcDbEntity
-100
-AcDbMText
-  8
-dimensions
- 62
-256
-370
--1
-  6
-ByLayer
- 10
--60.0
- 20
--29.0
- 30
-0.0
- 40
-1.0
- 41
-100.0
- 71
-1
- 72
-2
-  1
-Note: Starting material must meet \P1.13mm x 0.38mm cross section \Pdimensions.  Deformation in bends \Pis expected and acceptable. Bend \Pradius is intentionally not specified.
-  7
-iso
- 50
-0.0
- 73
-0
- 44
-1.0
   0
 LINE
   5
@@ -2201,7 +2269,7 @@ AcDbDimension
  71
 5
  72
-0
+1
  41
 1.0
  42
@@ -2573,7 +2641,7 @@ iso
  50
 0.0
  73
-1
+0
  44
 1.0
   0
@@ -2609,7 +2677,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -2813,7 +2881,7 @@ iso
  50
 0.0
  73
-1
+0
  44
 1.0
   0
@@ -2849,7 +2917,7 @@ AcDbDimension
  71
 5
  72
-0
+1
  41
 1.0
  42
@@ -3501,7 +3569,7 @@ iso
  50
 0.0
  73
-1
+0
  44
 1.0
   0
@@ -3569,7 +3637,7 @@ iso
  50
 0.0
  73
-1
+0
  44
 1.0
   0
@@ -3701,7 +3769,7 @@ iso
  50
 0.0
  73
-1
+0
  44
 1.0
   0
@@ -3737,7 +3805,7 @@ AcDbDimension
  71
 5
  72
-1
+0
  41
 1.0
  42
@@ -3801,7 +3869,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -3897,7 +3965,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -3937,7 +4005,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4033,7 +4101,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4073,7 +4141,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4197,7 +4265,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4237,7 +4305,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4277,7 +4345,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4317,7 +4385,7 @@ iso
  50
 0.0
  73
-0
+1
  44
 1.0
   0
@@ -4489,6 +4557,46 @@ ByLayer
  31
 0.0
   0
+MTEXT
+  5
+A5
+100
+AcDbEntity
+100
+AcDbMText
+  8
+dimensions
+ 62
+256
+370
+-1
+  6
+ByLayer
+ 10
+-60.0
+ 20
+-29.0
+ 30
+0.0
+ 40
+1.5
+ 41
+100.0
+ 71
+1
+ 72
+2
+  1
+Note: Starting material must meet \P1.13mm x 0.38mm cross section \Pdimensions.  Deformation in bends \Pis expected and acceptable. Bend \Pradius is intentionally not specified.
+  7
+iso
+ 50
+0.0
+ 73
+1
+ 44
+1.0
+  0
 ENDSEC
   0
 SECTION
@@ -4527,7 +4635,7 @@ E
   3
 AcDbVariableDictionary
 350
-A5
+A6
   0
 DICTIONARY
   5
@@ -4991,7 +5099,7 @@ Layout2
   0
 DICTIONARY
   5
-A5
+A6
 100
 AcDbDictionary
 281
@@ -4999,15 +5107,15 @@ AcDbDictionary
   3
 DIMASSOC
 350
-A7
+A8
   3
 HIDETEXT
 350
-A6
+A7
   0
 DICTIONARYVAR
   5
-A6
+A7
 100
 DictionaryVariables
 280
@@ -5017,7 +5125,7 @@ DictionaryVariables
   0
 DICTIONARYVAR
   5
-A7
+A8
 100
 DictionaryVariables
 280
