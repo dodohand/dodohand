@@ -3,7 +3,7 @@
     an open implementation of the DataHand keyboard, capable of being created
     with commercial 3D printing services.
 
-    Copyright (C) 2013 Scott Fohey
+    Copyright (C) 2013, 2014 Scott Fohey
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -864,4 +864,151 @@ ks_m3ms_p_t_y = lh_p_y + (ks_out_r + 4)*sin(ks_m3ms_p_t_a);
 ks_m3ms_p_b_a = -125;
 ks_m3ms_p_b_x = lh_p_x + (ks_out_r + 4)*cos(ks_m3ms_p_b_a);
 ks_m3ms_p_b_y = lh_p_y + (ks_out_r + 4)*sin(ks_m3ms_p_b_a);
+
+
+
+
+
+/* This is the start of dimensioning for the thumb switches */
+
+/* Begin with dimensions of the moving part of the thumb switch
+   The prefix for dimensions of this part will be trp (thumb rotating part)
+
+                             +++
+          Attachment post -> +++
+          for "key cap"      +++
+          a.k.a. spline      |||\__ The '0' here is a travel stop bar
+                             |    0\__ Also constrains motion/limits friction
+       The 'O' is the hole   |        \_  
+       through which the --> | O        \_<-- not stepped. just bad ascii art
+       IR beam can pass      ----|        \
+                             ----|_________0 <-- the pivot
+       The metal clip gets ^          
+       attached at this __/                    
+       corner                         
+
+   The pivot should be stepped - with the shoulder locating the blade within
+   the switch frame and the ends locking the blade into position. 
+              
+   Dimensions of the thumb switch frame need to be defined at the same time
+   as the dimensions of the trp, as they are interrelated.
+   The prefix for dimensions of the fram will be tf (thumb frame)
+
+   the "key cap" will be printed separately as it will allow a significant
+   reduction in bounding box volume for 3D printing.
+
+*/
+
+// big enough to hold up to thumb forces, small enough to avoid rotational
+//   friction adding up to meaningful torque 
+// the diameter of the pivot
+trp_pivot_dia = 2.5;
+// the radius of the pivot cylinder
+trp_pivot_r = trp_pivot_dia/2.0;
+
+// thickness of the material in the body of the blade of the Thumb Rotating Part
+trp_blade_t = 2.0;
+// constructed in plan view, so material thickness is depth
+trp_blade_d = trp_blade_t;
+trp_blade_w = 15.0;
+trp_blade_h = 20.0;
+trp_blade_top_w = 5.0;
+
+// 0,0,0 is at the near side of the lower-left corner of the view above
+// locate the pivot (center of pivot)
+trp_pivot_x = 20.0; // start with 2 centimeters
+trp_pivot_y = trp_pivot_r;
+
+// the travel stop is the tstop
+trp_tstop_r = trp_pivot_r;
+
+// gap between trp and switch frame
+trp_air_gap = 0.8;
+
+// material thickness in thumb frame walls
+tf_mat_t = 2.0;
+
+// total pivot height accounts for the extensions through the air gap and frame
+// thickness on both sides of the trp blade
+trp_pivot_total_h = 2.0 * ( tf_mat_t + trp_air_gap ) + trp_blade_t; 
+
+// z-position of the pivot cylinder - centered on blade
+trp_pivot_z = ( trp_blade_t / 2.0 ) - ( trp_pivot_total_h / 2.0 );
+
+// shoulder of pivot must be partial - just where it is within the plan of the
+// blade. Should be able to do an intersection, then a linear extrusion to get
+// correct shape. pivot shoulder prefix is trp_ps_
+trp_ps_r = trp_pivot_r + 1.0;
+// will be located at the same position as the pivot.
+// shoulder will mostly fill the air gap:
+trp_ps_h = trp_blade_t + ( 2.0 * trp_air_gap ) - proc_tol;
+trp_ps_x = trp_pivot_x;
+trp_ps_y = trp_pivot_y;
+trp_ps_z = ( trp_blade_t / 2.0 ) - ( trp_ps_h / 2.0 );
+
+// blade shape will be triangular (sortof), with two corners removed. One 
+// corner cut needs to match the funny angle between the two points where 
+// the side and bottom edges meet the pivot. The other is square and on the
+// top where the spline for "keycap" attachment will be.
+//
+// coordinates of the points below, clockwise around face, then back:
+// for the moment, just wimp out and avoid calculating the point tangent...
+trp_spline_h = 8.0;
+trp_spline_w = 6.0;
+trp_spline_t = trp_blade_t;
+trp_spline_x = 0.0;
+trp_spline_y = trp_blade_h;
+trp_spline_z = 0.0;
+trp_blade_ph_p3_x = trp_blade_w-trp_pivot_r;
+trp_blade_ph_p3_y = trp_pivot_dia;
+
+trp_blade_pointarr = [[0, 0, 0], 
+		      [0, trp_blade_h, 0], 
+		      [trp_spline_w, trp_blade_h, 0],
+		      [trp_blade_ph_p3_x, trp_blade_ph_p3_y, 0],
+		      [trp_blade_w-trp_pivot_r, 0, 0],
+		      [0, 0, trp_blade_d], 
+		      [0, trp_blade_h, trp_blade_d], 
+		      [trp_spline_w, trp_blade_h, trp_blade_d],
+		      [trp_blade_ph_p3_x, trp_blade_ph_p3_y, trp_blade_d],
+		      [trp_blade_w-trp_pivot_r, 0, trp_blade_d]];
+
+trp_blade_facetarr = [[0, 1, 2], // front 3 facets
+		      [0, 2, 3],
+		      [0, 3, 4],
+		      [0, 4, 5], // bottom 2 facets
+		      [5, 4, 9],
+		      [0, 5, 6], // left facets
+		      [0, 6, 1],
+		      [1, 6, 7], // top faces
+		      [1, 7, 2],
+		      [2, 7, 8], // angle-right facets
+		      [2, 8, 3],
+		      [3, 8, 9], // right facets
+		      [3, 9, 4],
+		      [5, 9, 8], // back 3 facets
+		      [5, 8, 7],
+		      [5, 7, 6]];
+
+// travel stop for the blade needs to be towards the top of the blade to 
+// maximize the length of the lever, and thus minimize the forces upon it.
+
+trp_tstop_y = 0.85 * trp_blade_h;
+trp_angleface_angle = asin( trp_blade_h / trp_blade_ph_p3_x );
+
+// now calculate horizontal location of the travel stop:
+// line equation for angled side: y=mx+b, x = (y - b)/m
+trp_angleside_m = ( trp_blade_h - trp_blade_ph_p3_y ) / trp_blade_ph_p3_x ;
+trp_angleside_b = trp_blade_h - ( trp_angleside_m * trp_spline_w ) ;
+
+// x position at trp_tstop_y height on edge line (intersection of horizontal):
+trp_tstop_x_int = ( trp_tstop_y - trp-angleside_b ) / trp_angleside_m;
+
+// position of tstop, x component
+trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / cos( trp_angleface_angle ) );
+
+trp_tstop_h = trp_blade_t + ( 2 * trp_air_gap ) - proc_tol;
+
+trp_tstop_z = trp_blade_t/2.0 - (trp_tstop_h/2.0);
+
 
