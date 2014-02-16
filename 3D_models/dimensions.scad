@@ -916,7 +916,7 @@ trp_blade_top_w = 5.0;
 
 // 0,0,0 is at the near side of the lower-left corner of the view above
 // locate the pivot (center of pivot)
-trp_pivot_x = 20.0; // start with 2 centimeters
+trp_pivot_x = trp_blade_w - trp_pivot_r; // start with 2 centimeters
 trp_pivot_y = trp_pivot_r;
 
 // the travel stop is the tstop
@@ -930,10 +930,10 @@ tf_mat_t = 2.0;
 
 // total pivot height accounts for the extensions through the air gap and frame
 // thickness on both sides of the trp blade
-trp_pivot_total_h = 2.0 * ( tf_mat_t + trp_air_gap ) + trp_blade_t; 
+trp_pivot_h = 2.0 * ( tf_mat_t + trp_air_gap ) + trp_blade_t; 
 
 // z-position of the pivot cylinder - centered on blade
-trp_pivot_z = ( trp_blade_t / 2.0 ) - ( trp_pivot_total_h / 2.0 );
+trp_pivot_z = trp_blade_t / 2.0;
 
 // shoulder of pivot must be partial - just where it is within the plan of the
 // blade. Should be able to do an intersection, then a linear extrusion to get
@@ -994,21 +994,23 @@ trp_blade_facetarr = [[0, 1, 2], // front 3 facets
 // maximize the length of the lever, and thus minimize the forces upon it.
 
 trp_tstop_y = 0.85 * trp_blade_h;
-trp_angleface_angle = asin( trp_blade_h / trp_blade_ph_p3_x );
+trp_angleface_angle = atan( ( trp_blade_h - trp_blade_ph_p3_y ) / 
+                            ( trp_blade_ph_p3_x - trp_spline_w ) );
 
 // now calculate horizontal location of the travel stop:
 // line equation for angled side: y=mx+b, x = (y - b)/m
-trp_angleside_m = ( trp_blade_h - trp_blade_ph_p3_y ) / trp_blade_ph_p3_x ;
+trp_angleside_m = ( trp_blade_ph_p3_y - trp_blade_h ) / 
+                  ( trp_blade_ph_p3_x - trp_spline_w ) ;
 trp_angleside_b = trp_blade_h - ( trp_angleside_m * trp_spline_w ) ;
 
 // x position at trp_tstop_y height on edge line (intersection of horizontal):
-trp_tstop_x_int = ( trp_tstop_y - trp-angleside_b ) / trp_angleside_m;
+trp_tstop_x_int = ( trp_tstop_y - trp_angleside_b ) / trp_angleside_m;
 
 // position of tstop, x component
 trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / cos( trp_angleface_angle ) );
 
 trp_tstop_h = trp_blade_t + ( 2 * trp_air_gap ) - proc_tol;
 
-trp_tstop_z = trp_blade_t/2.0 - (trp_tstop_h/2.0);
+trp_tstop_z = trp_blade_t/2.0;
 
 

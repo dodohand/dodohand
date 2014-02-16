@@ -24,3 +24,14 @@ use <trp.scad>
 include <dimensions.scad>;
 
 trp(0, 0, 0);
+
+echo("trp_tstop_x: ", trp_tstop_x);
+echo("trp_tstop_y: ", trp_tstop_y);
+echo("trp_tstop_z: ", trp_tstop_z);
+echo("trp_tstop_r: ", trp_tstop_r);
+echo("trp_tstop_h: ", trp_tstop_h);
+echo("trp_tstop_x_int: ", trp_tstop_x_int);
+echo("trp_angleside_b: ", trp_angleside_b);
+echo("trp_angleside_m: ", trp_angleside_m);
+echo("trp_angleface_angle: ", trp_angleface_angle);
+
