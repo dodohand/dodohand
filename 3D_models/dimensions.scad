@@ -877,12 +877,12 @@ ks_m3ms_p_b_y = lh_p_y + (ks_out_r + 4)*sin(ks_m3ms_p_b_a);
                              +++
           Attachment post -> +++
           for "key cap"      +++
-          a.k.a. spline      |||\__ The '0' here is a travel stop bar
-                             |    0\__ Also constrains motion/limits friction
-       The 'O' is the hole   |        \_  
-       through which the --> | O        \_<-- not stepped. just bad ascii art
-       IR beam can pass      ----|        \
-                             ----|_________0 <-- the pivot
+          a.k.a. spline      |||___ These two '0' limit motion/friction 
+                             |    0\ 
+       The 'O' is the hole   |0     \  
+       through which the --> | O     \
+       IR beam can pass      ----|    \
+                             ----|____0 <-- the pivot
        The metal clip gets ^          
        attached at this __/                    
        corner                         
@@ -906,19 +906,55 @@ trp_pivot_dia = 2.5;
 // the radius of the pivot cylinder
 trp_pivot_r = trp_pivot_dia/2.0;
 
+trp_blade_x = 0.0;
+trp_blade_y = 0.0;
 // thickness of the material in the body of the blade of the Thumb Rotating Part
 trp_blade_t = 2.0;
+
+// the angle of rotation which can be achieved must be such that the IR eye
+// is more than covered and then goes to completely visible to the sensor.
+// let's call it over-closed by 25% the eye diameter, then open 25% more.
+// So, at the distance of the eye from the trp pivot axis, we need to see
+// 125% eye diameter displacement given the target angle across a 150% window.
+// use the max dimensions radius of the eye: irle_m_r
+// position eye such that it is centered one eye diameter from blade edge
+// giving a 0.5 diameter safety margin
+// eye sits irle_z above base of irled body
+
+// trp_irle == thumb rotating part infrared led eye
+trp_irle_pos_x = trp_blade_x + ( 2.0 * irle_m_r );
+trp_irle_pos_y = trp_blade_y + irle_z;
+
+// trp_irleh == hole through which beam passes when switch pressed
+trp_irleh_w = 1.1 * 2.0 * irle_m_r; // 10% bigger, just for fun
+trp_irleh_h = 1.5 * 2.0 * irle_m_r;
+trp_irleh_d = trp_blade_t + ( 2.0 * proc_tol );
+trp_irleh_x = trp_irle_pos_x;
+trp_irleh_y = trp_irle_pos_y - ( trp_irleh_h / 2.0 ) - ( 0.25 * irle_m_r );
+trp_irleh_z = 0.0;
+
 // constructed in plan view, so material thickness is depth
 trp_blade_d = trp_blade_t;
-trp_blade_w = 15.0;
-trp_blade_h = 20.0;
+trp_blade_w = 12.0;
+trp_blade_h = 15.0;
 // blade gets centered vertically around 0 so all other centers match.
-trp_blade_z = ( - trp_blade_t / 2.0 );
+trp_blade_z = ( -trp_blade_t / 2.0 );
 
 // 0,0,0 is at the lower-left corner of the view above, mid-thickness
 // locate the pivot (center of pivot)
 trp_pivot_x = trp_blade_w - trp_pivot_r; // start with 2 centimeters
 trp_pivot_y = trp_pivot_r;
+
+trp_irleh_pivot_r = trp_pivot_x - trp_irleh_x;
+trp_irleh_travel_d = 1.25 * 2.0 * irle_m_r;
+// sin(ang) = _d/_r
+// ang = asin (_d/_r)
+trp_rotate_ang = asin ( trp_irleh_travel_d / trp_irleh_pivot_r );
+// room to move at top of blade to achieve ang rotation:
+// r * sin(ang)
+trp_blade_rotate_gap = ( trp_blade_h - trp_pivot_r ) * sin( trp_rotate_ang );
+
+trp_blade_top_w = trp_blade_w - trp_blade_rotate_gap;
 
 // the travel stop is the tstop
 trp_tstop_r = trp_pivot_r;
@@ -954,24 +990,35 @@ trp_ps_z = 0;
 // top where the spline for "keycap" attachment will be.
 //
 // coordinates of the points below, clockwise around face, then back:
-// for the moment, just wimp out and avoid calculating the point tangent...
+// calculating the point tangent for point [3]...
+
+// point tanget to pivot cylinder calculations:
+trp_tp_dx = trp_pivot_x - trp_blade_top_w;
+trp_tp_dy = trp_pivot_y - trp_blade_h;
+trp_tp_hyp = sqrt( ( trp_tp_dx * trp_tp_dx ) + ( trp_tp_dy * trp_tp_dy ) );
+trp_tp_alpha = acos( trp_tp_dx / trp_tp_hyp );
+trp_tp_beta = acos( trp_pivot_r / trp_tp_hyp );
+trp_tp_ohmega = 180 - trp_tp_alpha - trp_tp_beta;
+trp_blade_ph_p3_x = trp_pivot_x + trp_pivot_r * cos( trp_tp_ohmega );
+trp_blade_ph_p3_y = trp_pivot_y + trp_pivot_r * sin( trp_tp_ohmega );
+
 trp_spline_h = 8.0;
 trp_spline_w = 6.0;
 trp_spline_t = trp_blade_t;
 trp_spline_x = 0.0;
 trp_spline_y = trp_blade_h;
 trp_spline_z = trp_blade_z;
-trp_blade_ph_p3_x = trp_blade_w-trp_pivot_r;
-trp_blade_ph_p3_y = trp_pivot_dia;
+//trp_blade_ph_p3_x = trp_blade_w-trp_pivot_r;
+//trp_blade_ph_p3_y = trp_pivot_dia;
 
 trp_blade_pointarr = [[0, 0, 0], 
 		      [0, trp_blade_h, 0], 
-		      [trp_spline_w, trp_blade_h, 0],
+		      [trp_blade_top_w, trp_blade_h, 0],
 		      [trp_blade_ph_p3_x, trp_blade_ph_p3_y, 0],
 		      [trp_blade_w-trp_pivot_r, 0, 0],
 		      [0, 0, trp_blade_d], 
 		      [0, trp_blade_h, trp_blade_d], 
-		      [trp_spline_w, trp_blade_h, trp_blade_d],
+		      [trp_blade_top_w, trp_blade_h, trp_blade_d],
 		      [trp_blade_ph_p3_x, trp_blade_ph_p3_y, trp_blade_d],
 		      [trp_blade_w-trp_pivot_r, 0, trp_blade_d]];
 
@@ -997,22 +1044,30 @@ trp_blade_facetarr = [[0, 2, 1], // back 3 facets
 
 trp_tstop_y = 0.85 * trp_blade_h;
 trp_angleface_angle = atan( ( trp_blade_h - trp_blade_ph_p3_y ) / 
-                            ( trp_blade_ph_p3_x - trp_spline_w ) );
+                            ( trp_blade_ph_p3_x - trp_blade_top_w ) );
 
 // now calculate horizontal location of the travel stop:
 // line equation for angled side: y=mx+b, x = (y - b)/m
 trp_angleside_m = ( trp_blade_ph_p3_y - trp_blade_h ) / 
-                  ( trp_blade_ph_p3_x - trp_spline_w ) ;
-trp_angleside_b = trp_blade_h - ( trp_angleside_m * trp_spline_w ) ;
+                  ( trp_blade_ph_p3_x - trp_blade_top_w ) ;
+trp_angleside_b = trp_blade_h - ( trp_angleside_m * trp_blade_top_w ) ;
 
 // x position at trp_tstop_y height on edge line (intersection of horizontal):
 trp_tstop_x_int = ( trp_tstop_y - trp_angleside_b ) / trp_angleside_m;
 
 // position of tstop, x component
-trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / sin( trp_angleface_angle ) );
+// this would be tangent with right edge:
+// trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / sin( trp_angleface_angle ) );
+// back away from that to avoid catching on slot for pivot insertion
+trp_tstop_x = trp_tstop_x_int - 
+            ( trp_tstop_r / sin( trp_angleface_angle ) ) - trp_tstop_r;
 
 trp_tstop_h = trp_blade_t + ( 2 * trp_air_gap ) - proc_tol;
 
 trp_tstop_z = 0;
 
-
+trp_ts2_r = trp_tstop_r;
+trp_ts2_x = 2.0 * trp_tstop_r;
+trp_ts2_y = trp_tstop_y;
+trp_ts2_z = 0.0;
+trp_ts2_h = trp_tstop_h;
