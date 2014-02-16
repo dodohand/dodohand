@@ -975,22 +975,22 @@ trp_blade_pointarr = [[0, 0, 0],
 		      [trp_blade_ph_p3_x, trp_blade_ph_p3_y, trp_blade_d],
 		      [trp_blade_w-trp_pivot_r, 0, trp_blade_d]];
 
-trp_blade_facetarr = [[0, 1, 2], // front 3 facets
-		      [0, 2, 3],
-		      [0, 3, 4],
-		      [0, 4, 5], // bottom 2 facets
-		      [5, 4, 9],
-		      [0, 5, 6], // left facets
-		      [0, 6, 1],
-		      [1, 6, 7], // top faces
-		      [1, 7, 2],
-		      [2, 7, 8], // angle-right facets
-		      [2, 8, 3],
-		      [3, 8, 9], // right facets
-		      [3, 9, 4],
-		      [5, 9, 8], // back 3 facets
-		      [5, 8, 7],
-		      [5, 7, 6]];
+trp_blade_facetarr = [[0, 2, 1], // back 3 facets
+		      [0, 3, 2],
+		      [0, 4, 3],
+		      [0, 5, 4], // bottom 2 facets
+		      [5, 9, 4],
+		      [0, 6, 5], // left facets
+		      [0, 1, 6],
+		      [1, 7, 6], // top faces
+		      [1, 2, 7],
+		      [2, 8, 7], // angle-right facets
+		      [2, 3, 8],
+		      [3, 9, 8], // right facets
+		      [3, 4, 9],
+		      [5, 8, 9], // front 3 facets
+		      [5, 7, 8],
+		      [5, 6, 7]];
 
 // travel stop for the blade needs to be towards the top of the blade to 
 // maximize the length of the lever, and thus minimize the forces upon it.
