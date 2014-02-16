@@ -912,9 +912,10 @@ trp_blade_t = 2.0;
 trp_blade_d = trp_blade_t;
 trp_blade_w = 15.0;
 trp_blade_h = 20.0;
-trp_blade_top_w = 5.0;
+// blade gets centered vertically around 0 so all other centers match.
+trp_blade_z = ( - trp_blade_t / 2.0 );
 
-// 0,0,0 is at the near side of the lower-left corner of the view above
+// 0,0,0 is at the lower-left corner of the view above, mid-thickness
 // locate the pivot (center of pivot)
 trp_pivot_x = trp_blade_w - trp_pivot_r; // start with 2 centimeters
 trp_pivot_y = trp_pivot_r;
@@ -933,7 +934,7 @@ tf_mat_t = 2.0;
 trp_pivot_h = 2.0 * ( tf_mat_t + trp_air_gap ) + trp_blade_t; 
 
 // z-position of the pivot cylinder - centered on blade
-trp_pivot_z = trp_blade_t / 2.0;
+trp_pivot_z = 0;
 
 // shoulder of pivot must be partial - just where it is within the plan of the
 // blade. Should be able to do an intersection, then a linear extrusion to get
@@ -942,9 +943,10 @@ trp_ps_r = trp_pivot_r + 1.0;
 // will be located at the same position as the pivot.
 // shoulder will mostly fill the air gap:
 trp_ps_h = trp_blade_t + ( 2.0 * trp_air_gap ) - proc_tol;
+trp_ps_scale = trp_ps_h / trp_blade_t;
 trp_ps_x = trp_pivot_x;
 trp_ps_y = trp_pivot_y;
-trp_ps_z = ( trp_blade_t / 2.0 ) - ( trp_ps_h / 2.0 );
+trp_ps_z = 0;
 
 // blade shape will be triangular (sortof), with two corners removed. One 
 // corner cut needs to match the funny angle between the two points where 
@@ -958,7 +960,7 @@ trp_spline_w = 6.0;
 trp_spline_t = trp_blade_t;
 trp_spline_x = 0.0;
 trp_spline_y = trp_blade_h;
-trp_spline_z = 0.0;
+trp_spline_z = trp_blade_z;
 trp_blade_ph_p3_x = trp_blade_w-trp_pivot_r;
 trp_blade_ph_p3_y = trp_pivot_dia;
 
@@ -1007,10 +1009,10 @@ trp_angleside_b = trp_blade_h - ( trp_angleside_m * trp_spline_w ) ;
 trp_tstop_x_int = ( trp_tstop_y - trp_angleside_b ) / trp_angleside_m;
 
 // position of tstop, x component
-trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / cos( trp_angleface_angle ) );
+trp_tstop_x = trp_tstop_x_int - ( trp_tstop_r / sin( trp_angleface_angle ) );
 
 trp_tstop_h = trp_blade_t + ( 2 * trp_air_gap ) - proc_tol;
 
-trp_tstop_z = trp_blade_t/2.0;
+trp_tstop_z = 0;
 
 

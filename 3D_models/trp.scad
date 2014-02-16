@@ -21,11 +21,18 @@
 
 include <dimensions.scad>;
 
+module trp_blade(x, y, z) {
+  translate([x, y, z]) {
+    polyhedron(trp_blade_pointarr, trp_blade_facetarr);
+  }
+}
+
 module trp(x, y, z) {
   translate([x, y, z]) {
     union() {
       // the main part of the blade of the trp
-      polyhedron(trp_blade_pointarr, trp_blade_facetarr);
+      trp_blade(0, 0, trp_blade_z);
+      //polyhedron(trp_blade_pointarr, trp_blade_facetarr);
       // the spline part of the top of the blade
       translate([trp_spline_x, trp_spline_y, trp_spline_z]) {
         cube([trp_spline_w, trp_spline_h, trp_spline_t]);
@@ -38,6 +45,20 @@ module trp(x, y, z) {
       translate([trp_pivot_x, trp_pivot_y, trp_pivot_z]) {
         cylinder(r=trp_pivot_r, h=trp_pivot_h, center=true, $fn=gfn);
       } // end translate of pivot
+      // now add the shoulder to the pivot
+      // begin by getting the intersection of the positioned pivot
+      // and the blade. Then stretch and center that shape.
+      translate([0, 0, 0]) {
+        scale([1.0, 1.0, trp_ps_scale]) {
+          intersection() {
+            trp_blade(0, 0, trp_blade_z);
+            //polyhedron(trp_blade_pointarr, trp_blade_facetarr);
+            translate([trp_ps_x, trp_ps_y, trp_ps_z]) {
+              cylinder(r=trp_ps_r, h=trp_ps_h, center=true, $fn=gfn);
+            } // end translate
+          } // end intersection
+        } // end scale
+      } // end translate to center extrusion
     } // end union
   } // end translate
 } // end module trp
