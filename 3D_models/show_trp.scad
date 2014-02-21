@@ -20,6 +20,7 @@
 */
 
 use <trp.scad>
+use <carrier.scad>
 
 include <dimensions.scad>;
 
@@ -35,3 +36,4 @@ echo("trp_angleside_b: ", trp_angleside_b);
 echo("trp_angleside_m: ", trp_angleside_m);
 echo("trp_angleface_angle: ", trp_angleface_angle);
 
+translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);

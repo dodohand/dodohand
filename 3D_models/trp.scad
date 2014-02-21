@@ -63,8 +63,20 @@ module trp(x, y, z) {
             } // end intersection
           } // end scale
         } // end translate to center extrusion
+        // now add in the support mass for the clip lock
+        translate([trp_clw_x, trp_clw_y, trp_clw_z]) {
+           cube([trp_clw_w, trp_clw_h, trp_clw_d], center=true);
+        } // end translate clip lock support mass
       } // end union
 
+      // now subtract out the clip lock void
+      translate([trp_clv_x, trp_clv_y, trp_clv_z]) {
+        cube([trp_clv_w + csg_tol, trp_clv_h, trp_clv_d], center=true);
+      } // end translate clip lock support mass
+      // now subtract out the clip lock cleanout void
+      translate([trp_clcv_x, trp_clcv_y, trp_clcv_z]) {
+        cube([trp_clcv_w, trp_clcv_h, trp_clcv_d], center=true);
+      } // end translate clcv
       // now subtract out the hole through which the beam shines
       translate([trp_irleh_x, trp_irleh_y, trp_irleh_z]) {
         cube([trp_irleh_w, trp_irleh_h, trp_irleh_d], center=true);

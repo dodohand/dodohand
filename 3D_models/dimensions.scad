@@ -911,6 +911,34 @@ trp_blade_y = 0.0;
 // thickness of the material in the body of the blade of the Thumb Rotating Part
 trp_blade_t = 2.0;
 
+// thumb rotating part clip lock void
+trp_clv_d = clv_w;
+trp_clv_h = clv_d;
+trp_clv_w = clip_B + ( 2.0 * clip_mat_t );
+
+trp_clv_x = trp_blade_x + ( trp_clv_w / 2.0 );
+trp_clv_y = trp_blade_y + clip_D_inner + ( trp_clv_h / 2.0 );
+trp_clv_z = 0.0;
+
+// thumb rotating part clip lock walls (a solid from which the void is removed)
+trp_clw_d = trp_clv_d + ( 2.0 * min_wall );
+trp_clw_h = trp_clv_h + ( 2.0 * min_wall );
+trp_clw_w = trp_clv_w;
+
+trp_clw_x = trp_clv_x;
+trp_clw_y = trp_clv_y;
+trp_clw_z = trp_clv_z;
+
+// trp clip lock cleanout void - opens bottom of lock void
+trp_clcv_w = 2.0 * min_sep;
+trp_clcv_h = trp_clv_h;
+trp_clcv_d = trp_blade_t + csg_tol;
+
+trp_clcv_x = trp_blade_x + trp_clw_w + ( trp_clcv_w / 2.0 );
+trp_clcv_y = trp_clw_y;
+trp_clcv_z = 0.0;
+
+
 // the angle of rotation which can be achieved must be such that the IR eye
 // is more than covered and then goes to completely visible to the sensor.
 // let's call it over-closed by 25% the eye diameter, then open 25% more.
@@ -919,14 +947,21 @@ trp_blade_t = 2.0;
 // use the max dimensions radius of the eye: irle_m_r
 // position eye such that it is centered one eye diameter from blade edge
 // giving a 0.5 diameter safety margin
-// eye sits irle_z above base of irled body
-
-// trp_irle == thumb rotating part infrared led eye
-trp_irle_pos_x = trp_blade_x + ( 2.0 * irle_m_r );
-trp_irle_pos_y = trp_blade_y + irle_z;
+// eye sits irle_z plus minwall above base of irled body
 
 // trp_irleh == hole through which beam passes when switch pressed
 trp_irleh_w = 1.1 * 2.0 * irle_m_r; // 10% bigger, just for fun
+
+// trp_irle == thumb rotating part infrared led eye
+// make certain that the left side of the hole exceeds min_wall
+// by ensuring that trp_irle_pos_x is sufficiently large
+trp_irle_pos_xtgt = trp_blade_x + ( 2.0 * irle_m_r );
+trp_irleh_lwall_tgt = trp_irle_pos_xtgt - ( trp_irleh_w / 2.0 );
+trp_irle_pos_x = (trp_irleh_lwall_tgt > min_wall) ? trp_irle_pos_xtgt : trp_irle_pos_xtgt + ( min_wall - trp_irleh_lwall_tgt );
+
+trp_irle_pos_y = trp_blade_y + ( 2.0 * irle_z );
+
+// trp_irleh == hole through which beam passes when switch pressed
 trp_irleh_h = 1.5 * 2.0 * irle_m_r;
 trp_irleh_d = trp_blade_t + ( 2.0 * proc_tol );
 trp_irleh_x = trp_irle_pos_x;
@@ -1008,8 +1043,6 @@ trp_spline_t = trp_blade_t;
 trp_spline_x = 0.0;
 trp_spline_y = trp_blade_h;
 trp_spline_z = trp_blade_z;
-//trp_blade_ph_p3_x = trp_blade_w-trp_pivot_r;
-//trp_blade_ph_p3_y = trp_pivot_dia;
 
 trp_blade_pointarr = [[0, 0, 0], 
 		      [0, trp_blade_h, 0], 
@@ -1066,6 +1099,7 @@ trp_tstop_h = trp_blade_t + ( 2 * trp_air_gap ) - proc_tol;
 
 trp_tstop_z = 0;
 
+// travel stop #2 (also, not actually a travel stop, just a stabilizer)
 trp_ts2_r = trp_tstop_r;
 trp_ts2_x = 2.0 * trp_tstop_r;
 trp_ts2_y = trp_tstop_y;
