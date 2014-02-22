@@ -19,6 +19,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+use <carrier.scad>;
+
 include <dimensions.scad>;
 
 module trp_blade(x, y, z) {
@@ -81,6 +83,33 @@ module trp(x, y, z) {
       translate([trp_irleh_x, trp_irleh_y, trp_irleh_z]) {
         cube([trp_irleh_w, trp_irleh_h, trp_irleh_d], center=true);
       } // end translate for trp_irleh
+
+      // now round off the area where the clip will attach so that
+      // the profile matches the radius of the clip.
+
+      difference() {
+        union() {
+          translate([0, clip_inn_r, 0]) 
+            scale([1, 1, (trp_blade_t+csg_tol)/clip_w]) 
+              rotate(a=-90,v=[1,0,0]) 
+                c_r_bend_4(0, -clip_w/2, 0);
+          cube([clip_mat_t, 2.0 * clip_inn_r, trp_blade_t+csg_tol], center=true);       } // end union
+
+        // now subtract out the support mass for the clip lock
+        translate([trp_clw_x, trp_clw_y, trp_clw_z]) {
+           cube([trp_clw_w, trp_clw_h, trp_clw_d], center=true);
+        } // end translate clip lock support mass
+      } // end difference for corner removal
+
+      scale([1, 1, clip_m_w/clip_w]) {
+        translate([clip_mat_t, -clip_mat_t, -clip_w/2]) {
+          rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
+        } // end tranlate for whole clip
+      } // end scale for clip
+
+      translate([-csg_tol/2+clip_mat_t/2, clip_bend_h, 0]) 
+        cube([clip_mat_t + csg_tol, 2.0 * clip_bend_h, clip_m_w], center=true);
+      
     } // end difference
   } // end translate
 } // end module trp
