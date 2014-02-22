@@ -25,8 +25,8 @@ show_mag = 0;
 show_lr_angle = 0;
 
 // global face number set here
-gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
-//gfn=25;
+//gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
+gfn=25;
 
 // units are in mm
 
@@ -938,36 +938,6 @@ trp_clcv_x = trp_blade_x + trp_clw_w + ( trp_clcv_w / 2.0 );
 trp_clcv_y = trp_clw_y;
 trp_clcv_z = 0.0;
 
-
-// the angle of rotation which can be achieved must be such that the IR eye
-// is more than covered and then goes to completely visible to the sensor.
-// let's call it over-closed by 25% the eye diameter, then open 25% more.
-// So, at the distance of the eye from the trp pivot axis, we need to see
-// 125% eye diameter displacement given the target angle across a 150% window.
-// use the max dimensions radius of the eye: irle_m_r
-// position eye such that it is centered one eye diameter from blade edge
-// giving a 0.5 diameter safety margin
-// eye sits irle_z plus minwall above base of irled body
-
-// trp_irleh == hole through which beam passes when switch pressed
-trp_irleh_w = 1.1 * 2.0 * irle_m_r; // 10% bigger, just for fun
-
-// trp_irle == thumb rotating part infrared led eye
-// make certain that the left side of the hole exceeds min_wall
-// by ensuring that trp_irle_pos_x is sufficiently large
-trp_irle_pos_xtgt = trp_blade_x + ( 2.0 * irle_m_r );
-trp_irleh_lwall_tgt = trp_irle_pos_xtgt - ( trp_irleh_w / 2.0 );
-trp_irle_pos_x = (trp_irleh_lwall_tgt > min_wall) ? trp_irle_pos_xtgt : trp_irle_pos_xtgt + ( min_wall - trp_irleh_lwall_tgt );
-
-trp_irle_pos_y = trp_blade_y + ( 2.0 * irle_z );
-
-// trp_irleh == hole through which beam passes when switch pressed
-trp_irleh_h = 1.5 * 2.0 * irle_m_r;
-trp_irleh_d = trp_blade_t + ( 2.0 * proc_tol );
-trp_irleh_x = trp_irle_pos_x;
-trp_irleh_y = trp_irle_pos_y - ( trp_irleh_h / 2.0 ) - ( 0.25 * irle_m_r );
-trp_irleh_z = 0.0;
-
 // constructed in plan view, so material thickness is depth
 trp_blade_d = trp_blade_t;
 trp_blade_w = 12.0;
@@ -980,14 +950,34 @@ trp_blade_z = ( -trp_blade_t / 2.0 );
 trp_pivot_x = trp_blade_w - trp_pivot_r; // start with 2 centimeters
 trp_pivot_y = trp_pivot_r;
 
-trp_irleh_pivot_r = trp_pivot_x - trp_irleh_x;
-trp_irleh_travel_d = 1.25 * 2.0 * irle_m_r;
-// sin(ang) = _d/_r
-// ang = asin (_d/_r)
-trp_rotate_ang = asin ( trp_irleh_travel_d / trp_irleh_pivot_r );
+// the angle of rotation which can be achieved must be such that the IR eye
+// is more than covered and then goes to completely visible to the sensor.
+// make it over-closed by one eye radius, then open to centered on hole.
+// So, at the distance of the eye from the trp pivot axis, we need to see
+// 150% eye diameter displacement given the target angle across a 110% window.
+// use the max dimensions radius of the eye: irle_m_r
+// eye sits irle_z plus minwall above base of irled body, minimum
+
+// trp_irleh is hole through which beam passes when switch pressed
+trp_irleh_r = 1.1 * irle_m_r;
+
+// position of the hole through which the IR beam passes when switch pressed
+trp_irleh_x = trp_blade_x + min_wall + trp_irleh_r;
+trp_irleh_y = trp_clw_y + ( trp_clw_h / 2.0 ) + trp_irleh_r;
+
+// IR LED Eye Position relate radius (radius of rotation pivot to eye)
+trp_irlep_r = sqrt( (trp_pivot_x - trp_irleh_x) * (trp_pivot_x - trp_irleh_x) +
+                    (trp_pivot_y - trp_irleh_y) * (trp_pivot_y - trp_irleh_y) );
+
+// separation between resting position of eye, and resting position of hole
+trp_irlehe_sep = trp_irleh_r + ( 2 * irle_m_r );
+
+// angle between hole and resting position - rotating on pivot
+trp_irler_a = 2.0 * asin( ( trp_irlehe_sep / 2.0 ) / trp_irlep_r );
+
 // room to move at top of blade to achieve ang rotation:
 // r * sin(ang)
-trp_blade_rotate_gap = ( trp_blade_h - trp_pivot_r ) * sin( trp_rotate_ang );
+trp_blade_rotate_gap = ( trp_blade_h - trp_pivot_r ) * sin( trp_irler_a );
 
 trp_blade_top_w = trp_blade_w - trp_blade_rotate_gap;
 

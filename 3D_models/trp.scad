@@ -79,10 +79,11 @@ module trp(x, y, z) {
       translate([trp_clcv_x, trp_clcv_y, trp_clcv_z]) {
         cube([trp_clcv_w, trp_clcv_h, trp_clcv_d], center=true);
       } // end translate clcv
+
       // now subtract out the hole through which the beam shines
-      translate([trp_irleh_x, trp_irleh_y, trp_irleh_z]) {
-        cube([trp_irleh_w, trp_irleh_h, trp_irleh_d], center=true);
-      } // end translate for trp_irleh
+      translate([trp_irleh_x, trp_irleh_y, 0.0]) {
+        cylinder( r=trp_irleh_r, h=trp_blade_t+csg_tol, center=true, $fn=gfn);
+      }
 
       // now round off the area where the clip will attach so that
       // the profile matches the radius of the clip.
@@ -101,12 +102,13 @@ module trp(x, y, z) {
         } // end translate clip lock support mass
       } // end difference for corner removal
 
+      // subtract out the upper part of the bend for the clip
       scale([1, 1, clip_m_w/clip_w]) {
         translate([clip_mat_t, -clip_mat_t, -clip_w/2]) {
           rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
         } // end tranlate for whole clip
       } // end scale for clip
-
+      // cleanup of remainder that clip didn't remove
       translate([-csg_tol/2+clip_mat_t/2, clip_bend_h, 0]) 
         cube([clip_mat_t + csg_tol, 2.0 * clip_bend_h, clip_m_w], center=true);
       
