@@ -19,12 +19,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-use <trp.scad>
-use <carrier.scad>
+use <trp.scad>;
+use <carrier.scad>;
+use <LiteOn_P_100_E302.scad>;
+use <tf.scad>;
 
 include <dimensions.scad>;
 
-trp(0, 0, 0);
+rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
 
 echo("trp_tstop_x: ", trp_tstop_x);
 echo("trp_tstop_y: ", trp_tstop_y);
@@ -36,5 +38,11 @@ echo("trp_angleside_b: ", trp_angleside_b);
 echo("trp_angleside_m: ", trp_angleside_m);
 echo("trp_angleface_angle: ", trp_angleface_angle);
 
-translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
+//translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
+
+//translate([-irle_m_x + tf_irle_x, -irle_m_y-2, -irle_m_z+tf_irle_z]) rotate( a=-90, v=[0,0,1]) Max_LiteOn_P_100_E302(0, 0, 0, 0);
+
+//#eye_centered_m_irled(0, 0, 0, -5);
+
+tf(0, 0, 0);
 

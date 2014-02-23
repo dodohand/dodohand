@@ -973,7 +973,11 @@ trp_irlep_r = sqrt( (trp_pivot_x - trp_irleh_x) * (trp_pivot_x - trp_irleh_x) +
 trp_irlehe_sep = trp_irleh_r + ( 2 * irle_m_r );
 
 // angle between hole and resting position - rotating on pivot
+// aka required angle of rotation for correct travel wrt eye
 trp_irler_a = 2.0 * asin( ( trp_irlehe_sep / 2.0 ) / trp_irlep_r );
+
+// angle from horizontal up to eye hole center
+trp_irleh_a = asin( ( trp_irleh_y - trp_pivot_y ) / trp_irlep_r );
 
 // room to move at top of blade to achieve ang rotation:
 // r * sin(ang)
@@ -989,6 +993,13 @@ trp_air_gap = 0.8;
 
 // material thickness in thumb frame walls
 tf_mat_t = 2.0;
+
+// calculate positions of ir eyes. Thumb Frame (tf) will be done with z as
+// up rather than the way I did the blade. The way I did the blade in making
+// me just a little nuts.
+tf_irle_x = trp_pivot_x - trp_irlep_r * cos( trp_irleh_a + trp_irler_a );
+tf_irle_z = trp_pivot_y + trp_irlep_r * sin( trp_irleh_a + trp_irler_a );
+tf_irle_y = trp_blade_t/2.0 + trp_air_gap + sw_eye_wall_w;
 
 // total pivot height accounts for the extensions through the air gap and frame
 // thickness on both sides of the trp blade
@@ -1095,3 +1106,45 @@ trp_ts2_x = 2.0 * trp_tstop_r;
 trp_ts2_y = trp_tstop_y;
 trp_ts2_z = 0.0;
 trp_ts2_h = trp_tstop_h;
+
+// all about the frame for the 4-per-side thumb switch
+
+// thumb frame irled holder box
+tf_irlhb_d = min_wall + irlb_m_d + sw_eye_wall_w;
+tf_irlhb_w = irlb_m_w + ( 2.0 * min_wall );
+tf_irlhb_h = irlb_m_h + min_wall;
+
+// make the thing line up with the eye at the origin
+tf_irlhb_x = ( -tf_irlhb_w / 2.0 );
+//tf_irlhb_y = ( -tf_irlhb_d / 2.0 ) + ( irlb_m_d / 2.0 ) - sw_eye_wall_w;
+tf_irlhb_y = -sw_eye_wall_w;
+tf_irlhb_z = -irle_m_z - min_wall;
+
+// the half-cap for on top of the holder box - shield front of device from light
+tf_irlhbc_w = tf_irlhb_w;
+tf_irlhbc_d = sw_eye_wall_w + ( irlb_m_d / 2.0 );
+tf_irlhbc_h = min_wall;
+
+tf_irlhbc_x = tf_irlhb_x;
+tf_irlhbc_y = tf_irlhb_y;
+tf_irlhbc_z = tf_irlhb_z + tf_irlhb_h;
+
+// the lever cutout - applies to each side of back of holder to make lever
+tf_lc_w = min_sep;
+tf_lc_d = min_wall;
+tf_lc_h = irlb_m_h;
+
+tf_lc_x = tf_irlhb_x + min_wall;
+tf_lc_y = tf_irlhb_y + tf_irlhb_d - min_wall;
+tf_lc_z = tf_irlhb_z + min_wall;
+// position of the second lever cutout
+tf_lc2_x = tf_irlhb_x + tf_irlhb_w - min_wall - tf_lc_w;
+tf_lc2_y = tf_lc_y;
+tf_lc2_z = tf_lc_z;
+
+// bump on inside of lever for retaining irled:
+tf_irlrb_r = irltol*1.5;
+tf_irlrb_x = 0;
+tf_irlrb_y = irlb_m_d;
+tf_irlrb_z = 0;
+
