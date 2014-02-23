@@ -999,7 +999,7 @@ tf_mat_t = 2.0;
 // me just a little nuts.
 tf_irle_x = trp_pivot_x - trp_irlep_r * cos( trp_irleh_a + trp_irler_a );
 tf_irle_z = trp_pivot_y + trp_irlep_r * sin( trp_irleh_a + trp_irler_a );
-tf_irle_y = trp_blade_t/2.0 + trp_air_gap + sw_eye_wall_w;
+tf_irle_y = trp_blade_t/2.0 + trp_air_gap + sw_eye_wall_w + ( proc_tol / 2.0 );
 
 // total pivot height accounts for the extensions through the air gap and frame
 // thickness on both sides of the trp blade
@@ -1129,10 +1129,12 @@ tf_irlhbc_x = tf_irlhb_x;
 tf_irlhbc_y = tf_irlhb_y;
 tf_irlhbc_z = tf_irlhb_z + tf_irlhb_h;
 
+tf_irlhb_outer_edge_x = tf_irle_x - ( tf_irlhb_w / 2.0 );
+
 // the lever cutout - applies to each side of back of holder to make lever
 tf_lc_w = min_sep;
 tf_lc_d = min_wall;
-tf_lc_h = irlb_m_h;
+tf_lc_h = irlb_m_h + csg_tol;
 
 tf_lc_x = tf_irlhb_x + min_wall;
 tf_lc_y = tf_irlhb_y + tf_irlhb_d - min_wall;
@@ -1147,4 +1149,31 @@ tf_irlrb_r = irltol*1.5;
 tf_irlrb_x = 0;
 tf_irlrb_y = irlb_m_d;
 tf_irlrb_z = 0;
+
+// thumb frame backstop
+tf_bs_w = tf_mat_t;
+tf_bs_d = trp_blade_t + ( 2.0 * ( trp_air_gap + tf_mat_t )) + proc_tol;
+tf_bs_h = trp_blade_h;
+
+tf_bs_x = trp_blade_w + proc_tol;
+tf_bs_y = -tf_bs_d / 2.0;
+tf_bs_z = 0;
+
+// thumb frame upper wall
+tf_uw_x = tf_irlhb_outer_edge_x;
+tf_uw_y = ( trp_blade_t / 2.0 ) + trp_air_gap + ( proc_tol / 2.0 );
+tf_uw_z = tf_irle_z + ( irlb_m_h - irle_m_z ) + ( tf_irlhbc_h / 2.0 );
+
+tf_uw_w = tf_bs_x - ( 2.0 * trp_pivot_r ) - proc_tol - tf_irlhb_outer_edge_x;
+tf_uw_d = tf_mat_t;
+tf_uw_h = tf_bs_h - tf_uw_z;
+
+// thumb frame lower wall
+tf_lw_x = tf_irlhb_outer_edge_x + tf_irlhb_w - ( min_wall / 2.0 );
+tf_lw_y = tf_uw_y;
+tf_lw_z = 0;
+
+tf_lw_w = tf_irlhb_outer_edge_x + tf_uw_w - tf_lw_x;
+tf_lw_d = tf_mat_t;
+tf_lw_h = tf_uw_z + csg_tol;
 

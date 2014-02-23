@@ -52,7 +52,7 @@ module tf_irled_holder(epx, epy, epz) {
           cube([tf_irlhbc_w, tf_irlhbc_d, tf_irlhbc_h]);
       }
       // subtract max-tolerance IR device
-      eye_centered_m_irled(0, 0, csg_utol, -20);
+      eye_centered_m_irled(0, 0, (2.0 * csg_utol), -20);
       // subtract to make lever out of back of sidewall so eye can snap in
       translate([tf_lc_x, tf_lc_y-(csg_tol/2), tf_lc_z+csg_utol])
         cube([tf_lc_w, tf_lc_d+csg_tol, tf_lc_h]);
@@ -73,11 +73,45 @@ module tf_irled_holder(epx, epy, epz) {
   } // end translate
 } // end module tf_irled_holder
 
+// the back wall of the thumb frame
+module tf_backstop() {
+  translate([tf_bs_x, tf_bs_y, tf_bs_z]) {
+    cube([tf_bs_w, tf_bs_d, tf_bs_h]);
+  } // end translate
+} // end module tf_backstop
+
+// the upper wall of the thumb frame
+module tf_uw() {
+  translate([tf_uw_x, tf_uw_y, tf_uw_z]) {
+    cube([tf_uw_w, tf_uw_d, tf_uw_h]);
+  } // end translate
+  translate([tf_uw_x + tf_uw_w - tf_mat_t, 
+             tf_uw_y + tf_mat_t - csg_tol, 
+             tf_uw_z]) {
+    cube([tf_bs_x + tf_bs_w - tf_uw_x - tf_uw_w + tf_mat_t, tf_uw_d, tf_uw_h]);
+  }
+} // end module tf_uw
+
+// the lower wall of the thumb frame
+module tf_lw() {
+  translate([tf_lw_x, tf_lw_y, tf_lw_z]) {
+    cube([tf_lw_w, tf_lw_d, tf_lw_h]);
+  } // end of translate
+} // end of module tf_lw
+
 module tf(x, y, z) {
   translate([x, y, z]) {
-    tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
-    mirror([0,1,0]) {
+    union() {
       tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
-    } // end mirror
-  }
-}
+      tf_uw();
+      tf_lw();
+      mirror([0,1,0]) {
+        tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
+        tf_uw();
+        tf_lw();
+      } // end mirror
+      tf_backstop();
+    } // end union
+  } // end translate
+} // end module tf
+
