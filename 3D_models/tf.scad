@@ -99,6 +99,67 @@ module tf_lw() {
   } // end of translate
 } // end of module tf_lw
 
+// #2 1/4 316 stainless screw #1 phillips drive for attaching tf to PCB
+// done this way to take load off of IRLED leads.
+module tf_attachment_screw(x, y, z) {
+  translate([x, y, z]) {
+    // the head of the screw
+    translate([0, 0, tf_ash_h / 2.0]) {
+      cylinder(r = ( tf_ash_d / 2.0 ), h = tf_ash_h, center=true, $fn=gfn);
+    } // end of head translate
+    // the shaft of the screw
+    translate([0, 0, -tf_ass_h / 2.0]) {
+      cylinder(r = ( tf_ass_od / 2.0 ), h = tf_ass_h + csg_tol, 
+               center=true, $fn=gfn);
+    } // end of shaft translate
+  } // end of screw translate
+} // end of tf_attachment_screw
+
+module tf_mag(x, y, z) {
+  translate([x, y, z]) {
+    translate([proc_tol + ( mag_h / 2.0 ), 
+               0, 
+               -proc_tol/2.0 - mag_d/2.0]) {
+      cube([mag_h + 2.0 * proc_tol, 
+            mag_w + ( 2.0 * proc_tol ), 
+            mag_d + proc_tol], center=true);
+    }
+  } // end translate
+} // end module tf_mag
+
+module tf_bp(x, y, z) {
+  translate([x, y, z]) {
+    difference() {
+      // bottom plate
+      union() {
+        translate([tf_bp_x, tf_bp_y, tf_bp_z]) {
+          cube([tf_bp_w, tf_bp_d, tf_bp_h+csg_utol]);
+        }
+        translate([tf_bp_x + ( mag_h / 2.0 ), 
+                   0,
+                   ( min_wall / 2.0) - clip_mat_t]) {
+          cube([mag_h, 
+                mag_w + ( 2.0 * min_wall ), 
+                min_wall + csg_tol], center=true);
+        }
+      } // end union
+      // void for clip
+      translate([tf_bp_x - csg_tol, ( -trp_blade_t / 2.0 ) - proc_tol, 
+                 -clip_mat_t]) {
+        cube([mag_h * 1.1, trp_blade_t + ( 2.0 * proc_tol), 
+              clip_mat_t + ( 2.0 * csg_tol ) + min_wall]);
+      }
+      // TODO: ensure that the magnet retension lips exceed min_wall
+      // void for magnet
+//      translate([tf_bp_x-csg_tol, -(1.05*mag_h)/2, -clip_mat_t+csg_utol]) 
+//        rotate(a=-90,v=[1,0,0]) scale(v=[1.05, 1.05, 1.05]) magnet(0, 0, 0);
+      
+      tf_mag(tf_bp_x-csg_tol, 0, -clip_mat_t+csg_utol);
+
+    } // end difference
+  }
+}
+
 module tf(x, y, z) {
   translate([x, y, z]) {
     union() {
@@ -111,6 +172,20 @@ module tf(x, y, z) {
         tf_lw();
       } // end mirror
       tf_backstop();
+
+      difference() {
+        tf_bp(0, 0, 0);
+
+        eye_centered_m_irled(tf_irle_x, tf_irle_y, tf_irle_z, -tf_irle_scz);
+        mirror([0, 1, 0]) {
+          eye_centered_m_irled(tf_irle_x, tf_irle_y, tf_irle_z, -tf_irle_scz);
+        }
+      }
+      // temporarily show screws
+      tf_attachment_screw(tf_sp1_x, tf_sp1_y, tf_sp1_z);
+      tf_attachment_screw(tf_sp2_x, tf_sp2_y, tf_sp2_z);
+      tf_attachment_screw(tf_sp3_x, tf_sp3_y, tf_sp3_z);
+
     } // end union
   } // end translate
 } // end module tf

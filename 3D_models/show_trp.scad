@@ -37,8 +37,10 @@ echo("trp_tstop_x_int: ", trp_tstop_x_int);
 echo("trp_angleside_b: ", trp_angleside_b);
 echo("trp_angleside_m: ", trp_angleside_m);
 echo("trp_angleface_angle: ", trp_angleface_angle);
+echo("clip_mat_t: ", clip_mat_t);
+echo("tf_irle_scz: ", tf_irle_scz);
 
-//translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
+rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
 
 //translate([-irle_m_x + tf_irle_x, -irle_m_y-2, -irle_m_z+tf_irle_z]) rotate( a=-90, v=[0,0,1]) Max_LiteOn_P_100_E302(0, 0, 0, 0);
 

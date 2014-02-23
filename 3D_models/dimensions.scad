@@ -1177,3 +1177,38 @@ tf_lw_w = tf_irlhb_outer_edge_x + tf_uw_w - tf_lw_x;
 tf_lw_d = tf_mat_t;
 tf_lw_h = tf_uw_z + csg_tol;
 
+// thumb frame attachment screw dimensions
+// head
+tf_ash_d = 0.167 * in2mm;
+tf_ash_r = tf_ash_d / 2.0;
+tf_ash_h = 0.062 * in2mm;
+// shaft
+tf_ass_od = 0.086 * in2mm;
+tf_ass_h = 0.25 * in2mm;
+
+// thumb frame screw positions - three screws. one central at back, two
+// at either side of front
+tf_sp1_x = tf_bs_x + tf_bs_w + ( tf_ash_r * 1.1 );
+tf_sp1_y = 0;
+tf_sp1_z = 0;
+
+tf_sp2_x = tf_ash_r * 1.1 + tf_uw_x;
+tf_sp2_y = tf_ash_r * 1.1 + ( trp_blade_t / 2.0 ) + trp_air_gap + tf_irlhb_d;
+tf_sp2_z = 0;
+
+tf_sp3_x = tf_sp2_x;
+tf_sp3_y = -tf_sp2_y;
+tf_sp3_z = tf_sp2_z;
+
+// dimensions of tf bottom plate
+tf_bp_w = tf_sp1_x + ( tf_ash_r * 1.1 ) - tf_uw_x;
+tf_bp_d = tf_sp2_y - tf_sp3_y + ( tf_ash_d * 1.1 );
+tf_bp_h = clip_mat_t + mag_d + proc_tol + min_wall;
+tf_bp_x = tf_uw_x;
+tf_bp_y = -tf_bp_d / 2.0;
+tf_bp_z = -tf_bp_h;
+
+// position of solder relief cones:
+tf_irle_scz = tf_irle_z - irle_z + tf_bp_h;
+
+// = trp_pivot_y + trp_irlep_r * sin( trp_irleh_a + trp_irler_a );
