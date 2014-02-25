@@ -1193,7 +1193,7 @@ tf_sp1_y = 0;
 tf_sp1_z = 0;
 
 tf_sp2_x = tf_ash_r * 1.1 + tf_uw_x;
-tf_sp2_y = tf_ash_r * 1.1 + ( trp_blade_t / 2.0 ) + trp_air_gap + tf_irlhb_d;
+tf_sp2_y = tf_ash_r * 1.1 + tf_uw_y + tf_irlhb_d;
 tf_sp2_z = 0;
 
 tf_sp3_x = tf_sp2_x;
@@ -1211,4 +1211,11 @@ tf_bp_z = -tf_bp_h;
 // position of solder relief cones:
 tf_irle_scz = tf_irle_z - irle_z + tf_bp_h;
 
-// = trp_pivot_y + trp_irlep_r * sin( trp_irleh_a + trp_irler_a );
+// side support dimensions
+tf_ss_h = tf_bs_h;
+tf_ss_t = tf_mat_t;
+tf_ss_w = (tf_bp_d / 2.0 ) - ( tf_uw_y + tf_uw_d );
+
+tf_ss_x = tf_uw_x + tf_irlhb_w + tf_ss_t - min_wall / 2.0;
+tf_ss_y = tf_uw_y + tf_uw_d;
+tf_ss_z = 0;

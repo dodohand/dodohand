@@ -38,6 +38,18 @@ module eye_centered_m_irled(x, y, z, sch) {
   } // end translate
 } // end module eye_centered_m_irled
 
+module half_cube(x, y, z) {
+
+  polyhedron(points = [[0,0,0], [0, 0, z], [x, 0, 0], 
+              [0,y,0], [0, y, z], [x, y, 0]], 
+             faces = [[0,1,2], 
+                      [0,3,4], [0,4,1], 
+                      [1,4,5], [1,5,2], 
+                      [2,5,3], [2,3,0],
+                      [3,5,4]],
+             convexity = 1);
+}
+
 module tf_irled_holder(epx, epy, epz) {
   translate([epx, epy, epz]) {
   union() {
@@ -102,6 +114,7 @@ module tf_lw() {
 // #2 1/4 316 stainless screw #1 phillips drive for attaching tf to PCB
 // done this way to take load off of IRLED leads.
 module tf_attachment_screw(x, y, z) {
+ color("silver") {
   translate([x, y, z]) {
     // the head of the screw
     translate([0, 0, tf_ash_h / 2.0]) {
@@ -113,6 +126,7 @@ module tf_attachment_screw(x, y, z) {
                center=true, $fn=gfn);
     } // end of shaft translate
   } // end of screw translate
+ } // end color silver
 } // end of tf_attachment_screw
 
 module tf_mag(x, y, z) {
@@ -160,16 +174,27 @@ module tf_bp(x, y, z) {
   }
 }
 
+// side support gusset of thumb frame
+module tf_ssg() {
+  translate([tf_ss_x, tf_ss_y-csg_tol, tf_ss_z]) {
+    rotate(a=90, v=[0,0,1]) {
+      half_cube(tf_ss_w, tf_ss_t, tf_ss_h);
+    } // end rotate
+  } // end translate
+}
+
 module tf(x, y, z) {
   translate([x, y, z]) {
     union() {
       tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
       tf_uw();
       tf_lw();
+      tf_ssg();
       mirror([0,1,0]) {
         tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
         tf_uw();
         tf_lw();
+        tf_ssg();
       } // end mirror
       tf_backstop();
 
