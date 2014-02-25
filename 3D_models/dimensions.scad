@@ -1219,3 +1219,13 @@ tf_ss_w = (tf_bp_d / 2.0 ) - ( tf_uw_y + tf_uw_d );
 tf_ss_x = tf_uw_x + tf_irlhb_w + tf_ss_t - min_wall / 2.0;
 tf_ss_y = tf_uw_y + tf_uw_d;
 tf_ss_z = 0;
+
+// tf lower low wall dimensions
+tf_llw_x = tf_uw_x;
+tf_llw_y = tf_uw_y;
+tf_llw_z = 0;
+
+tf_llw_w = tf_irlhb_w;
+tf_llw_d = tf_mat_t;
+tf_llw_h = tf_irle_z - irle_z - ( min_wall / 2.0 );
+
