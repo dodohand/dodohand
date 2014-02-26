@@ -904,7 +904,7 @@ ks_m3ms_p_b_y = lh_p_y + (ks_out_r + 4)*sin(ks_m3ms_p_b_a);
 // the diameter of the pivot
 trp_pivot_dia = 2.5;
 // the radius of the pivot cylinder
-trp_pivot_r = trp_pivot_dia/2.0;
+trp_pivot_r = trp_pivot_dia / 2.0;
 
 trp_blade_x = 0.0;
 trp_blade_y = 0.0;
@@ -1236,4 +1236,25 @@ tf_bpc_d = ( tf_bp_d / 2.0 ) - ( tf_ash_r * 1.1 ) + csg_tol;
 tf_bpc_x = tf_bp_x + tf_bp_w + csg_tol;
 tf_bpc_y = ( tf_bp_d / 2.0 ) + csg_tol;
 tf_bpc_z = -tf_bpc_h + csg_tol;
+
+// thumb frame outer upper wall
+tf_ouw_x = tf_uw_x + tf_uw_w - tf_mat_t;
+tf_ouw_y = tf_uw_y + tf_mat_t - csg_tol;
+tf_ouw_z = tf_uw_z;
+
+tf_ouw_w = tf_bs_x + tf_bs_w - tf_uw_x - tf_uw_w + tf_mat_t;
+tf_ouw_d = tf_uw_d;
+tf_ouw_h = tf_uw_h;
+
+// dimensions of the catch which captures the trp in the tf
+tf_catch_w = trp_pivot_dia + proc_tol - ( 2.0 * min_sep );
+tf_catch_h = tf_ouw_z - trp_pivot_dia - proc_tol;
+tf_catch_d = tf_mat_t;
+
+tf_catch_x = tf_ouw_x + tf_mat_t + min_sep;
+tf_catch_y = tf_ouw_y;
+tf_catch_z = tf_ouw_z;
+
+tf_catch_a = atan( tf_catch_d / tf_catch_h );
+
 

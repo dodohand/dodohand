@@ -47,7 +47,5 @@ rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a
 //#eye_centered_m_irled(0, 0, 0, -5);
 
 tf(0, 0, 0);
-
 color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
 
-//translate([-10, -10, -10]) half_cube(6, 2, 12);

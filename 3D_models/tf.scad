@@ -117,6 +117,17 @@ module tf_llw() {
   }
 }
 
+module tf_catch() {
+ translate([tf_catch_x, -tf_catch_y, tf_catch_z])
+  intersection() {
+    rotate(a=tf_catch_a, v=[1,0,0])
+      translate([0, -tf_catch_d, -( tf_catch_h * 3.0 ) / 2.0]) 
+        cube([tf_catch_w, tf_catch_d, (2.0 * tf_catch_h)]); 
+    translate([0, -tf_catch_d, -tf_catch_h])
+      cube([tf_catch_w, 2.0 * tf_catch_d, tf_catch_h + csg_tol]);
+  } // end intersection
+}
+
 // #2 1/4 316 stainless screw #1 phillips drive for attaching tf to PCB
 // done this way to take load off of IRLED leads.
 module tf_attachment_screw(x, y, z) {
@@ -206,11 +217,13 @@ module tf(x, y, z) {
       tf_uw();
       tf_lw();
       tf_ssg();
+      tf_catch();
       mirror([0,1,0]) {
         tf_irled_holder(tf_irle_x, tf_irle_y, tf_irle_z);
         tf_uw();
         tf_lw();
         tf_ssg();
+        tf_catch();
       } // end mirror
       tf_backstop();
 
