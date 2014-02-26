@@ -147,6 +147,14 @@ module tf_mag(x, y, z) {
   } // end translate
 } // end module tf_mag
 
+// clip off the corner of the baseplate 
+module tf_bp_trim() {
+  translate([tf_bpc_x, tf_bpc_y, tf_bpc_z]) 
+    rotate(a=-90, v=[0,1,0]) 
+      rotate(a=-90, v=[0,0,1]) 
+        half_cube(tf_bpc_d, tf_bpc_h, tf_bpc_w);
+}
+
 module tf_bp(x, y, z) {
   translate([x, y, z]) {
     difference() {
@@ -162,6 +170,7 @@ module tf_bp(x, y, z) {
                 mag_w + ( 2.0 * min_wall ), 
                 min_wall + csg_tol], center=true);
         }
+
       } // end union
       // void for clip
       translate([tf_bp_x - csg_tol, ( -trp_blade_t / 2.0 ) - proc_tol, 
@@ -169,13 +178,14 @@ module tf_bp(x, y, z) {
         cube([mag_h * 1.1, trp_blade_t + ( 2.0 * proc_tol), 
               clip_mat_t + ( 2.0 * csg_tol ) + min_wall]);
       }
-      // TODO: ensure that the magnet retension lips exceed min_wall
       // void for magnet
-//      translate([tf_bp_x-csg_tol, -(1.05*mag_h)/2, -clip_mat_t+csg_utol]) 
-//        rotate(a=-90,v=[1,0,0]) scale(v=[1.05, 1.05, 1.05]) magnet(0, 0, 0);
-      
       tf_mag(tf_bp_x-csg_tol, 0, -clip_mat_t+csg_utol);
 
+      // trim off unnecessary corners
+      tf_bp_trim();
+      mirror([0,1,0]) {
+        tf_bp_trim();
+      }
     } // end difference
   }
 }

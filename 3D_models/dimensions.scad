@@ -1229,3 +1229,11 @@ tf_llw_w = tf_irlhb_w;
 tf_llw_d = tf_mat_t;
 tf_llw_h = tf_irle_z - irle_z - ( min_wall / 2.0 );
 
+tf_bpc_w = tf_bp_w - ( tf_bp_x + tf_ss_x ) + csg_tol;
+tf_bpc_h = tf_bp_h + ( 2.0 * csg_tol );
+tf_bpc_d = ( tf_bp_d / 2.0 ) - ( tf_ash_r * 1.1 ) + csg_tol;
+
+tf_bpc_x = tf_bp_x + tf_bp_w + csg_tol;
+tf_bpc_y = ( tf_bp_d / 2.0 ) + csg_tol;
+tf_bpc_z = -tf_bpc_h + csg_tol;
+
