@@ -210,6 +210,12 @@ module tf_ssg() {
   } // end translate
 }
 
+module tf_screws() {
+  tf_attachment_screw(tf_sp1_x, tf_sp1_y, tf_sp1_z);
+  tf_attachment_screw(tf_sp2_x, tf_sp2_y, tf_sp2_z);
+  tf_attachment_screw(tf_sp3_x, tf_sp3_y, tf_sp3_z);
+}
+
 module tf(x, y, z) {
   translate([x, y, z]) {
     union() {
@@ -240,11 +246,9 @@ module tf(x, y, z) {
         mirror([0, 1, 0]) {
           eye_centered_m_irled(tf_irle_x, tf_irle_y, tf_irle_z, -tf_irle_scz);
         }
+        // subtract out holes for screws
+        tf_screws();
       }
-      // temporarily show screws
-      tf_attachment_screw(tf_sp1_x, tf_sp1_y, tf_sp1_z);
-      tf_attachment_screw(tf_sp2_x, tf_sp2_y, tf_sp2_z);
-      tf_attachment_screw(tf_sp3_x, tf_sp3_y, tf_sp3_z);
 
     } // end union
   } // end translate

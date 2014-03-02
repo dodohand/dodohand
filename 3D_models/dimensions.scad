@@ -940,8 +940,8 @@ trp_clcv_z = 0.0;
 
 // constructed in plan view, so material thickness is depth
 trp_blade_d = trp_blade_t;
-trp_blade_w = 12.0;
-trp_blade_h = 15.0;
+trp_blade_w = 16.0;
+trp_blade_h = 12.0;
 // blade gets centered vertically around 0 so all other centers match.
 trp_blade_z = ( -trp_blade_t / 2.0 );
 
@@ -1044,6 +1044,14 @@ trp_spline_t = trp_blade_t;
 trp_spline_x = 0.0;
 trp_spline_y = trp_blade_h;
 trp_spline_z = trp_blade_z;
+
+// maximum lever length to pivot
+trp_max_ll = sqrt( ( trp_spline_h + trp_blade_h ) 
+                   * ( trp_spline_h + trp_blade_h )
+                   + ( trp_blade_w - trp_pivot_r )
+                   * ( trp_blade_w - trp_pivot_r ) );
+
+trp_max_trv = 2 * trp_max_ll * sin ( trp_irler_a / 2.0 );
 
 trp_blade_pointarr = [[0, 0, 0], 
 		      [0, trp_blade_h, 0], 
@@ -1229,7 +1237,7 @@ tf_llw_w = tf_irlhb_w;
 tf_llw_d = tf_mat_t;
 tf_llw_h = tf_irle_z - irle_z - ( min_wall / 2.0 );
 
-tf_bpc_w = tf_bp_w - ( tf_bp_x + tf_ss_x ) + csg_tol;
+tf_bpc_w = tf_bp_w - ( tf_irlhb_w - ( min_wall / 2.0 ) + tf_ss_t ) + csg_tol;
 tf_bpc_h = tf_bp_h + ( 2.0 * csg_tol );
 tf_bpc_d = ( tf_bp_d / 2.0 ) - ( tf_ash_r * 1.1 ) + csg_tol;
 

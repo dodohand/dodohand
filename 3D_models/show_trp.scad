@@ -39,6 +39,11 @@ echo("trp_angleside_m: ", trp_angleside_m);
 echo("trp_angleface_angle: ", trp_angleface_angle);
 echo("clip_mat_t: ", clip_mat_t);
 echo("tf_irle_scz: ", tf_irle_scz);
+echo("tf_bp_w: ", tf_bp_w);
+echo("tf_bp_d: ", tf_bp_d);
+echo("trp_max_trv: ", trp_max_trv);
+echo("trp_irler_a: ", trp_irler_a);
+
 
 rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
 
@@ -47,5 +52,9 @@ rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a
 //#eye_centered_m_irled(0, 0, 0, -5);
 
 tf(0, 0, 0);
+
+
+tf_screws();
+
 color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
 
