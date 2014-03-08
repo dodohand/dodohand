@@ -1041,9 +1041,19 @@ trp_blade_ph_p3_y = trp_pivot_y + trp_pivot_r * sin( trp_tp_ohmega );
 trp_spline_h = 8.0;
 trp_spline_w = 6.0;
 trp_spline_t = trp_blade_t;
-trp_spline_x = 0.0;
+trp_spline_x = trp_blade_x + ( trp_blade_w / 2.0 ) - ( trp_spline_w / 2.0 );
 trp_spline_y = trp_blade_h;
 trp_spline_z = trp_blade_z;
+
+// void to allow keycap to snap onto spline
+trp_sv_w = trp_spline_t;
+trp_sv_h = trp_spline_t + csg_tol;
+trp_sv_d = trp_spline_t;
+
+// trp is constructed in plan view just to confuse. X==X, but z <-> y 
+trp_sv_z = trp_spline_z - ( csg_tol / 2.0 );
+trp_sv_y = trp_spline_y + trp_spline_h - trp_sv_h - trp_spline_t;
+trp_sv_x = trp_spline_x + ( trp_spline_w / 2.0 ) - ( trp_sv_w / 2.0 );
 
 // maximum lever length to pivot
 trp_max_ll = sqrt( ( trp_spline_h + trp_blade_h ) 

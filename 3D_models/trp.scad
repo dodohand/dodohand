@@ -111,6 +111,10 @@ module trp(x, y, z) {
       // cleanup of remainder that clip didn't remove
       translate([-csg_tol/2+clip_mat_t/2, clip_bend_h, 0]) 
         cube([clip_mat_t + csg_tol, 2.0 * clip_bend_h, clip_m_w], center=true);
+
+      // subtract out the void of the keycap lock on the spline
+      translate([trp_sv_x, trp_sv_y, trp_sv_z]) 
+        cube([trp_sv_w, trp_sv_d, trp_sv_h]);
       
     } // end difference
   } // end translate
