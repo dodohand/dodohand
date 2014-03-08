@@ -20,6 +20,7 @@
 */
 
 use <carrier.scad>;
+use <util.scad>;
 
 include <dimensions.scad>;
 
@@ -119,3 +120,36 @@ module trp(x, y, z) {
     } // end difference
   } // end translate
 } // end module trp
+
+
+module keycapbase(x, y, z)
+{
+  translate([x, y, z]) {
+    union() {
+      difference() {
+        // the keycapbase
+        translate([kcb_x, kcb_y, kcb_z]) 
+          cube([kcb_w, kcb_d, kcb_h], center=true  );
+        
+        // the central void in the keycap base
+        translate([kcb_v_x, kcb_v_y, kcb_v_z]) 
+          cube([kcb_v_w, kcb_v_d, kcb_v_h], center=true);
+        // the hole for the locking clip
+        translate([kcb_lch_x, kcb_lch_y, kcb_lch_z]) 
+          cube([kcb_lch_w, kcb_lch_d, kcb_lch_h], center=true);
+      } // end difference
+      // the clip arm
+      translate([kcb_lc_x, kcb_lc_y, kcb_lc_z]) 
+        cube([kcb_lc_w, kcb_lc_d, kcb_lc_h], center=true);
+      // the locking bump
+      translate([kcb_lb_x, kcb_lb_y, kcb_lb_z]) 
+       cube([kcb_lb_w, kcb_lb_d, kcb_lb_h], center=true);
+      // the ramp up to the locking bump
+      translate([kcb_lbr_x, kcb_lbr_y, kcb_lbr_z])
+        rotate(a=180, v=[0,1,0])
+        translate([kcb_lbr_w / 2.0, 0, 0])
+        rotate(a=90, v=[0,0,1])
+        half_cube(kcb_lbr_d, kcb_lbr_w, kcb_lbr_h);
+    } // end union
+  } // end translate
+} // end module keycapbase

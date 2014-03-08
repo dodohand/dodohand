@@ -58,3 +58,6 @@ tf_screws();
 
 color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
 
+
+keycapbase(-10, 0, 0);
+

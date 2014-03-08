@@ -22,8 +22,9 @@
 // This file defines the frame for the 4-per-side thumb switch
 // tf_ (Thumb Frame) is the prefix for these dimensions 
 
-use <carrier.scad>
-use <LiteOn_P_100_E302.scad>
+use <carrier.scad>;
+use <LiteOn_P_100_E302.scad>;
+use <util.scad>;
 
 include <dimensions.scad>;
 
@@ -37,18 +38,6 @@ module eye_centered_m_irled(x, y, z, sch) {
     } // end translate
   } // end translate
 } // end module eye_centered_m_irled
-
-module half_cube(x, y, z) {
-
-  polyhedron(points = [[0,0,0], [0, 0, z], [x, 0, 0], 
-              [0,y,0], [0, y, z], [x, y, 0]], 
-             faces = [[0,1,2], 
-                      [0,3,4], [0,4,1], 
-                      [1,4,5], [1,5,2], 
-                      [2,5,3], [2,3,0],
-                      [3,5,4]],
-             convexity = 1);
-}
 
 module tf_irled_holder(epx, epy, epz) {
   translate([epx, epy, epz]) {
