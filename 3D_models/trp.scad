@@ -36,9 +36,8 @@ module trp(x, y, z) {
       union() {
         // the main part of the blade of the trp
         trp_blade(0, 0, trp_blade_z);
-        //polyhedron(trp_blade_pointarr, trp_blade_facetarr);
         // the spline part of the top of the blade
-        translate([trp_spline_x, trp_spline_y, trp_spline_z]) {
+        translate([trp_spline_x, trp_spline_y-csg_utol, trp_spline_z]) {
           cube([trp_spline_w, trp_spline_h, trp_spline_t]);
         } // end spline translate
         // now add the travel stop
@@ -104,11 +103,12 @@ module trp(x, y, z) {
       } // end difference for corner removal
 
       // subtract out the upper part of the bend for the clip
-      scale([1, 1, clip_m_w/clip_w]) {
+      scale([1, 1, ( clip_m_w / clip_w ) - csg_utol]) {
         translate([clip_mat_t, -clip_mat_t, -clip_w/2]) {
           rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
         } // end tranlate for whole clip
       } // end scale for clip
+
       // cleanup of remainder that clip didn't remove
       translate([-csg_tol/2+clip_mat_t/2, clip_bend_h, 0]) 
         cube([clip_mat_t + csg_tol, 2.0 * clip_bend_h, clip_m_w], center=true);

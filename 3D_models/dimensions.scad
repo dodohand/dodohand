@@ -1340,3 +1340,50 @@ kcb_lbr_x = kcb_lb_x;
 kcb_lbr_y = - ( kcb_v_d / 2.0 ) - csg_tol ;
 kcb_lbr_z = min_wire + kcb_lc_h - kcb_lb_h - csg_tol + csg_utol;
 
+//ERROR: ***** The locking bump isn't in the right spot. correct the
+//position of the locking bump - (it needs to be lower by ???? small amount...)
+
+//
+//
+//  Dimensions for the thumb, down, double-switch assembly
+//  ( module prefix == tdds )
+//
+
+tdds_mat_t = 2;
+
+// the bar which moves inside the tdds
+
+tdds_bar_w = clip_m_w + ( 2 * tdds_mat_t );
+tdds_bar_l = 30;
+tdds_bar_h = clip_E + clip_D - ( 2.0 * clip_mat_t ) + tdds_mat_t;
+tdds_bar_x = 0;
+tdds_bar_y = 0;
+tdds_bar_z = 0;
+
+// the central void in the bar which captures the clips
+
+tdds_cbv_w = clip_m_w;
+tdds_cbv_l = 30 + ( 2.0 * csg_tol );
+tdds_cbv_h = clip_E;
+tdds_cbv_x = tdds_mat_t;
+tdds_cbv_y = -csg_tol;
+tdds_cbv_z = tdds_mat_t;
+
+// the subtractor which leaves the upper end of the tube open to allow overlap
+// for the optical gate.
+
+tdds_sub_w = tdds_cbv_w;
+tdds_sub_l = irlb_m_w + csg_tol;
+tdds_sub_h = tdds_mat_t + ( 2.0 * csg_tol );
+tdds_sub_x = tdds_mat_t;
+tdds_sub_y = -csg_tol;
+tdds_sub_z = tdds_mat_t + tdds_cbv_h - csg_tol;
+
+tdds_sub2_x = tdds_sub_x;
+tdds_sub2_y = tdds_bar_l - tdds_sub_l + csg_tol;
+tdds_sub2_z = tdds_sub_z;
+
+// position of the clips if they should be shown
+tdds_clip_x = clip_w + tdds_mat_t + (( clip_m_w - clip_w ) / 2.0 );
+tdds_clip_y = tdds_sub_l - csg_tol;
+tdds_clip_z = tdds_bar_h;

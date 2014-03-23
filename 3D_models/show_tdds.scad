@@ -19,18 +19,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-module half_cube(x, y, z) {
+use <tdds.scad>;
+use <LiteOn_P_100_E302.scad>;
 
-  polyhedron(points = [[0,0,0], [0, 0, z], [x, 0, 0], 
-              [0,y,0], [0, y, z], [x, y, 0]], 
-             faces = [[0,1,2], 
-                      [0,3,4], [0,4,1], 
-                      [1,4,5], [1,5,2], 
-                      [2,5,3], [2,3,0],
-                      [3,5,4]],
-             convexity = 1);
-}
+include <dimensions.scad>;
 
-module pos_cube(x, y, z, w, l, h) {
-  translate([x, y, z]) cube([w, l, h]);
-}
+tdds(0, 0, 0, 1);
