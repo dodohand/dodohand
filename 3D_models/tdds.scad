@@ -21,10 +21,11 @@
 
 use <carrier.scad>;
 use <util.scad>;
+use <LiteOn_P_100_E302.scad>;
 
 include <dimensions.scad>;
 
-module tdds(x, y, z, sc) {
+module tdds_bar(x, y, z, sc) {
 // sc == show clip
   translate([x, y, z]) {
     difference() {
@@ -52,10 +53,72 @@ module tdds(x, y, z, sc) {
       translate([0, 0, clip_mat_t]) 
         rotate(a=-90, v=[1,0,0]) 
           clip(0, 0, 0);
-
-
-
     }
 
   } // end translate
 }
+
+module tdds_box(x, y, z) {
+  translate(x, y, z) {
+    difference() {
+      union() {
+        difference() {
+          pos_cube(tdds_box_x, tdds_box_y, tdds_box_z,
+                   tdds_box_w, tdds_box_l, tdds_box_h);
+
+          pos_cube(tdds_bh_x, tdds_bh_y, tdds_bh_z,
+                   tdds_bh_w, tdds_bh_l, tdds_bh_h);
+
+          Max_LiteOn_P_100_E302(-irle_m_r - proc_tol, 0, tdds_irl_z, -10);
+
+          translate([tdds_bar_w + proc_tol + irle_m_r, irlb_m_w, tdds_irl_z]) 
+            rotate(a=180, v=[0,0,1]) 
+              Max_LiteOn_P_100_E302(0, 0, 0, -10);
+
+        } // end diff
+
+        // add in the fins which contain the IR beam passage
+        pos_cube(tdds_bar_w/2.0 - min_wall/2.0, -csg_tol-proc_tol, tdds_box_z,
+                 min_wall, irlb_w - proc_tol, tdds_box_h);
+
+        // add in the fins which contain the IR beam passage
+        pos_cube(tdds_bar_w/2.0 - min_wall/2.0, tdds_bh_l+csg_tol-irlb_w, tdds_box_z,
+                 min_wall, irlb_w - proc_tol, tdds_box_h);
+
+      } // end union
+
+      translate([( tdds_box_w / 2.0 ) -tdds_mat_t-proc_tol, 
+                 irle_m_x, irle_m_z + tdds_irl_z]) 
+        rotate(a=-90,v=[0,1,0]) 
+          cylinder(r=irle_m_r, h=tdds_box_w + ( 2.0 * csg_tol ), 
+                   center=true, $fn=gfn);
+
+      translate([( tdds_box_w / 2.0 ) -tdds_mat_t-proc_tol, 
+                 tdds_bar_l - irle_m_x, irle_m_z + tdds_irl_z]) 
+        rotate(a=-90,v=[0,1,0]) 
+          cylinder(r=irle_m_r, h=tdds_box_w + ( 2.0 * csg_tol ), 
+                   center=true, $fn=gfn);
+
+    } // end difference
+
+  } // end translate
+}
+
+module tdds(x, y, z, sc) {
+ 
+  difference() {
+
+    union() {
+      //rotate(a=-tdds_rot_a, v=[1,0,0]) tdds_bar(x, y, z, sc);
+      translate([0, 1.5 * proc_tol, -tdds_rot_h]) rotate(a=tdds_rot_a, v=[1,0,0]) tdds_bar(x, y, z, sc);
+      tdds_box(x, y, z);
+    } // end union
+
+  //pos_cube(-10, 15, -5, 20, 20, 20);
+
+  } // end difference
+
+  Max_LiteOn_P_100_E302(-5, 0, 0, -10);
+
+}
+

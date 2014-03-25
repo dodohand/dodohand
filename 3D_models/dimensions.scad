@@ -1374,10 +1374,10 @@ tdds_cbv_z = tdds_mat_t;
 
 tdds_sub_w = tdds_cbv_w;
 tdds_sub_l = irlb_m_w + csg_tol;
-tdds_sub_h = tdds_mat_t + ( 2.0 * csg_tol );
+tdds_sub_h = tdds_bar_h + ( 2.0 * csg_tol );
 tdds_sub_x = tdds_mat_t;
 tdds_sub_y = -csg_tol;
-tdds_sub_z = tdds_mat_t + tdds_cbv_h - csg_tol;
+tdds_sub_z = -csg_tol;
 
 tdds_sub2_x = tdds_sub_x;
 tdds_sub2_y = tdds_bar_l - tdds_sub_l + csg_tol;
@@ -1387,3 +1387,37 @@ tdds_sub2_z = tdds_sub_z;
 tdds_clip_x = clip_w + tdds_mat_t + (( clip_m_w - clip_w ) / 2.0 );
 tdds_clip_y = tdds_sub_l - csg_tol;
 tdds_clip_z = tdds_bar_h;
+
+// the bar needs to be able to rotate far enough to clear the eye.
+// the center of the eye will be located 2 eye radius from the top of the bar
+// at its resting position.  The bar will need to be able to rotate down 3
+// eye radii at the position of the eye.
+// The rotation will be off of the end of the bar, therefore the radius of
+// rotation is:
+
+tdds_rot_r = tdds_bar_l - irle_x;
+tdds_rot_z = 3.0 * irle_m_r;
+tdds_rot_a = asin( tdds_rot_z / tdds_rot_r );
+tdds_rot_l = sqrt(( tdds_bar_l * tdds_bar_l ) + ( tdds_bar_h * tdds_bar_h ));
+tdds_rot_h = tdds_rot_l * sin( tdds_rot_a );
+
+// the hole in which the bar moves
+tdds_bh_w = tdds_bar_w + ( 2.0 * proc_tol );
+tdds_bh_l = tdds_rot_l + ( 2.0 * proc_tol );
+tdds_bh_h = tdds_bar_h + tdds_rot_h + csg_tol;
+
+// the walls within which the bar moves
+tdds_box_w = tdds_bh_w + ( 2.0 * tdds_mat_t );
+tdds_box_l = tdds_bh_l + ( 2.0 * tdds_mat_t );
+tdds_box_h = tdds_bh_h + tdds_mat_t; // no need for a bottom. The PCB will do.
+
+tdds_box_x = -tdds_mat_t - proc_tol;
+tdds_box_y = -tdds_mat_t - proc_tol;
+tdds_box_z = -tdds_rot_h;
+
+tdds_bh_x = -proc_tol;
+tdds_bh_y = -proc_tol;
+tdds_bh_z = tdds_box_z - csg_tol;
+
+tdds_irle_z = tdds_bar_h - ( 2.0 * irle_m_r );
+tdds_irl_z = tdds_irle_z - irle_m_z;
