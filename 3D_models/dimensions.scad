@@ -1421,3 +1421,47 @@ tdds_bh_z = tdds_box_z - csg_tol;
 
 tdds_irle_z = tdds_bar_h - ( 2.0 * irle_m_r );
 tdds_irl_z = tdds_irle_z - irle_m_z;
+
+// location and size of the window through which the bar is pressed by the key
+tdds_ah_w = tdds_bar_w;
+tdds_ah_l = tdds_bar_w;
+tdds_ah_h = 2 * tdds_mat_t;
+
+tdds_ah_x = - ( tdds_ah_w / 2.0 ) + ( tdds_bar_w / 2.0 );
+tdds_ah_y = - ( tdds_ah_l / 2.0 ) + tdds_clip_y + clip_A + ( tdds_ah_l / 2.0 );
+tdds_ah_z = - ( tdds_ah_h / 2.0 ) + tdds_bar_h + ( tdds_mat_t / 2.0 ) - 2*csg_tol ;
+
+// magnet slide path
+tdds_msp_w = smag_w + proc_tol;
+tdds_msp_l = ( smag_h * 2.0 ) + proc_tol;
+tdds_msp_h = smag_d + proc_tol;
+
+tdds_msp_x = -( tdds_msp_w / 2.0 ) + ( tdds_bh_w / 2.0 ) + tdds_bh_x;
+tdds_msp_y = tdds_clip_y - ( tdds_msp_l / 2.0 );
+tdds_msp_z = tdds_bar_h + min_wall;
+
+// magnet position
+tdds_mag_x = -( smag_w / 2.0 ) + tdds_bar_w / 2.0;
+tdds_mag_y = tdds_clip_y;
+tdds_mag_z = tdds_msp_z;
+
+// clip to magnet slit
+tdds_cms_w = clip_m_w + proc_tol;
+tdds_cms_l = clip_A + clip_mat_t + proc_tol + csg_tol;
+tdds_cms_h = min_wall + ( 2.0 * csg_tol );
+
+tdds_cms_x = -( tdds_cms_w / 2.0 ) + ( tdds_bh_w / 2.0 ) + tdds_bh_x;
+tdds_cms_y = tdds_clip_y - clip_mat_t - proc_tol;
+tdds_cms_z = tdds_bar_h - csg_tol;
+
+// magnet retention bar
+tdds_mrb_w = tdds_msp_w + ( 2.0 * min_wall );
+tdds_mrb_l = min_wire;
+tdds_mrb_h = tdds_msp_h + min_wire;
+
+tdds_mrb_x = -( tdds_mrb_w / 2.0 ) + ( tdds_bar_w / 2.0 );
+tdds_mrb_y = -( tdds_mrb_l / 2.0 ) + tdds_mag_y + ( smag_h / 2.0 );
+tdds_mrb_z = tdds_msp_z ;
+
+// magnet retension bar bump
+tdds_mrbb_r = 2.0 * proc_tol;
