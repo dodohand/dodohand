@@ -1388,6 +1388,8 @@ tdds_clip_x = clip_w + tdds_mat_t + (( clip_m_w - clip_w ) / 2.0 );
 tdds_clip_y = tdds_sub_l - csg_tol;
 tdds_clip_z = tdds_bar_h;
 
+tdds_clip_c_y = -tdds_bar_l/2.0 + tdds_sub_l;
+
 // the bar needs to be able to rotate far enough to clear the eye.
 // the center of the eye will be located 2 eye radius from the top of the bar
 // at its resting position.  The bar will need to be able to rotate down 3
@@ -1404,7 +1406,7 @@ tdds_rot_h = tdds_rot_l * sin( tdds_rot_a );
 // the hole in which the bar moves
 tdds_bh_w = tdds_bar_w + ( 2.0 * proc_tol );
 tdds_bh_l = tdds_rot_l + ( 2.0 * proc_tol );
-tdds_bh_h = tdds_bar_h + tdds_rot_h + csg_tol;
+tdds_bh_h = tdds_bar_h + tdds_rot_h;
 
 // the walls within which the bar moves
 tdds_box_w = tdds_bh_w + ( 2.0 * tdds_mat_t );
@@ -1414,6 +1416,8 @@ tdds_box_h = tdds_bh_h + tdds_mat_t; // no need for a bottom. The PCB will do.
 tdds_box_x = -tdds_mat_t - proc_tol;
 tdds_box_y = -tdds_mat_t - proc_tol;
 tdds_box_z = -tdds_rot_h;
+
+tdds_box_c_z = -tdds_box_h/2.0 + tdds_bar_h + tdds_mat_t;
 
 tdds_bh_x = -proc_tol;
 tdds_bh_y = -proc_tol;
@@ -1436,23 +1440,23 @@ tdds_msp_w = smag_w + proc_tol;
 tdds_msp_l = ( smag_h * 2.0 ) + proc_tol;
 tdds_msp_h = smag_d + proc_tol;
 
-tdds_msp_x = -( tdds_msp_w / 2.0 ) + ( tdds_bh_w / 2.0 ) + tdds_bh_x;
-tdds_msp_y = tdds_clip_y - ( tdds_msp_l / 2.0 );
-tdds_msp_z = tdds_bar_h + min_wall;
+tdds_msp_x = 0;
+tdds_msp_y = tdds_clip_c_y;
+tdds_msp_z = tdds_bar_h + min_wall + ( tdds_msp_h / 2.0 );
 
 // magnet position
 tdds_mag_x = -( smag_w / 2.0 ) + tdds_bar_w / 2.0;
 tdds_mag_y = tdds_clip_y;
-tdds_mag_z = tdds_msp_z;
+tdds_mag_c_z = tdds_msp_z - tdds_msp_h / 2.0 + smag_d / 2.0;
 
 // clip to magnet slit
 tdds_cms_w = clip_m_w + proc_tol;
 tdds_cms_l = clip_A + clip_mat_t + proc_tol + csg_tol;
 tdds_cms_h = min_wall + ( 2.0 * csg_tol );
 
-tdds_cms_x = -( tdds_cms_w / 2.0 ) + ( tdds_bh_w / 2.0 ) + tdds_bh_x;
-tdds_cms_y = tdds_clip_y - clip_mat_t - proc_tol;
-tdds_cms_z = tdds_bar_h - csg_tol;
+tdds_cms_x = 0;
+tdds_cms_y = tdds_clip_c_y - clip_mat_t - proc_tol + ( tdds_cms_l / 2.0 );
+tdds_cms_z = tdds_bar_h - csg_tol + ( tdds_cms_h / 2.0 );
 
 // magnet retention bar
 tdds_mrb_w = tdds_msp_w + ( 2.0 * min_wall );
@@ -1461,7 +1465,17 @@ tdds_mrb_h = tdds_msp_h + min_wire;
 
 tdds_mrb_x = -( tdds_mrb_w / 2.0 ) + ( tdds_bar_w / 2.0 );
 tdds_mrb_y = -( tdds_mrb_l / 2.0 ) + tdds_mag_y + ( smag_h / 2.0 );
-tdds_mrb_z = tdds_msp_z ;
+tdds_mrb_z = tdds_msp_z - ( tdds_msp_h / 2.0 ) + tdds_mrb_h / 2.0;
+tdds_mrb_c_y = tdds_clip_c_y + ( smag_h / 2.0 );
 
 // magnet retension bar bump
 tdds_mrbb_r = 2.0 * proc_tol;
+
+tdds_fin_l = irlb_w - proc_tol;
+
+
+
+
+
+
+

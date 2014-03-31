@@ -34,3 +34,7 @@ module half_cube(x, y, z) {
 module pos_cube(x, y, z, w, l, h) {
   translate([x, y, z]) cube([w, l, h]);
 }
+
+module pos_c_cube(x, y, z, w, l, h) {
+  translate([x, y, z]) cube([w, l, h], center=true);
+}
