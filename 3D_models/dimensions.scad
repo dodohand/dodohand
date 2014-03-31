@@ -1355,7 +1355,7 @@ tdds_mat_t = 2;
 
 tdds_bar_w = clip_m_w + ( 2 * tdds_mat_t );
 tdds_bar_l = 30;
-tdds_bar_h = clip_E + clip_D - ( 2.0 * clip_mat_t ) + tdds_mat_t;
+tdds_bar_h = clip_E + min_wall + tdds_mat_t;
 tdds_bar_x = 0;
 tdds_bar_y = 0;
 tdds_bar_z = 0;
@@ -1388,7 +1388,7 @@ tdds_clip_x = clip_w + tdds_mat_t + (( clip_m_w - clip_w ) / 2.0 );
 tdds_clip_y = tdds_sub_l - csg_tol;
 tdds_clip_z = tdds_bar_h;
 
-tdds_clip_c_y = -tdds_bar_l/2.0 + tdds_sub_l;
+tdds_clip_c_y = -tdds_bar_l/2.0 + irlb_m_w;
 
 // the bar needs to be able to rotate far enough to clear the eye.
 // the center of the eye will be located 2 eye radius from the top of the bar
@@ -1431,9 +1431,9 @@ tdds_ah_w = tdds_bar_w;
 tdds_ah_l = tdds_bar_w;
 tdds_ah_h = 2 * tdds_mat_t;
 
-tdds_ah_x = - ( tdds_ah_w / 2.0 ) + ( tdds_bar_w / 2.0 );
-tdds_ah_y = - ( tdds_ah_l / 2.0 ) + tdds_clip_y + clip_A + ( tdds_ah_l / 2.0 );
-tdds_ah_z = - ( tdds_ah_h / 2.0 ) + tdds_bar_h + ( tdds_mat_t / 2.0 ) - 2*csg_tol ;
+tdds_ah_x = 0;
+tdds_ah_y = ( tdds_ah_l / 2.0 ) - ( tdds_bar_l / 2.0 ) + tdds_sub_l + clip_A;
+tdds_ah_z = tdds_bar_h + ( tdds_mat_t / 2.0 ) ;
 
 // magnet slide path
 tdds_msp_w = smag_w + proc_tol;
@@ -1473,7 +1473,12 @@ tdds_mrbb_r = 2.0 * proc_tol;
 
 tdds_fin_l = irlb_w - proc_tol;
 
-
+tdds_irlh_w = irlb_m_d + ( 2.0 * min_wall );
+tdds_irlh_l = irlb_m_w + ( 2.0 * min_wall );
+tdds_irlh_h = irlb_m_h + min_wall - csg_utol;
+tdds_irlh_x = -( tdds_bh_w / 2.0 ) - irle_m_r - proc_tol - irlb_m_d + min_wall;
+tdds_irlh_y = -( tdds_box_l / 2.0 ) + tdds_mat_t + ( tdds_irlh_l / 2.0 ) - min_wall;
+tdds_irlh_z = ( tdds_irlh_h / 2.0 ) + tdds_irl_z - min_wall;
 
 
 
