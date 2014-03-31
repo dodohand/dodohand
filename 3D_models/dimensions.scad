@@ -1476,7 +1476,7 @@ tdds_fin_l = irlb_w - proc_tol;
 tdds_irlh_w = irlb_m_d + ( 2.0 * min_wall );
 tdds_irlh_l = irlb_m_w + ( 2.0 * min_wall );
 tdds_irlh_h = irlb_m_h + min_wall - csg_utol;
-tdds_irlh_x = -( tdds_bh_w / 2.0 ) - irle_m_r - proc_tol - irlb_m_d + min_wall;
+tdds_irlh_x = -( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r - irlb_m_d - min_wall + ( tdds_irlh_w / 2.0 );
 tdds_irlh_y = -( tdds_box_l / 2.0 ) + tdds_mat_t + ( tdds_irlh_l / 2.0 ) - min_wall;
 tdds_irlh_z = ( tdds_irlh_h / 2.0 ) + tdds_irl_z - min_wall;
 

@@ -76,7 +76,7 @@ module tdds_mag(x, y, z) {
 }
 
 module tdds_irl() {
-  Max_LiteOn_P_100_E302( -( tdds_bh_w / 2.0 ) -irle_m_r - proc_tol, 
+  Max_LiteOn_P_100_E302( -( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r, 
                          -( tdds_box_l / 2.0 ) + tdds_mat_t, 
                          tdds_irl_z, 
                          tdds_bar_h + tdds_mat_t - tdds_box_h - csg_utol);
@@ -116,7 +116,7 @@ module tdds_irbeam() {
 }
 
 module tdds_irlhc() {
-  pos_c_cube( -( min_wall + 2*csg_tol ) / 2.0 + tdds_irlh_x - tdds_irlh_w / 2.0 + min_wall + 1.75*csg_tol, 
+  pos_c_cube( -( min_wall + 2*csg_tol ) / 2.0 + tdds_irlh_x - tdds_irlh_w / 2.0 + min_wall + csg_tol, 
                tdds_irlh_y + ( tdds_irlh_l / 2.0 ) - min_wall - min_sep/2.0,
                tdds_irlh_z + min_wall,
                min_wall + 2*csg_tol,
@@ -129,6 +129,14 @@ module tdds_irlhc() {
                min_wall + 2*csg_tol,
                min_sep,
                tdds_irlh_h);
+}
+
+module tdds_irlrb() {
+  // add in retaining bump to ensure that a nominal IR device is held firm
+  translate([-( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r - irlb_m_d,
+             -tdds_box_l/2.0 + tdds_mat_t + irle_x, 
+             irle_z + tdds_irl_z]) 
+    sphere(r=irltol*1.5, $fn=gfn, center=true);
 }
 
 module tdds_box_c(x, y, z, sm) {
@@ -181,6 +189,13 @@ module tdds_box_c(x, y, z, sm) {
         // add in magnet retension bar
         tdds_mrb();
         mirror([0,1,0]) tdds_mrb();
+
+       // add in retaining bump to ensure that a nominal IR device is held firm
+       tdds_irlrb();
+       mirror([1,0,0]) tdds_irlrb();
+       mirror([0,1,0]) tdds_irlrb();
+       mirror([0,1,0]) mirror([1,0,0]) tdds_irlrb();
+
 
       } // union
 
