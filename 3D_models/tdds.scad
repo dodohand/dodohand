@@ -26,6 +26,8 @@ use <lever.scad>;
 
 include <dimensions.scad>;
 
+/* Thumb Down Double Switch */
+
 module tdds_clip() {
   translate([0, tdds_clip_c_y, tdds_mat_t + clip_D + ( 2.0 * clip_mat_t ) ])
     translate([clip_w/2.0, 0, clip_mat_t]) 
@@ -55,9 +57,9 @@ module tdds_bar_c(x, y, z, sc) {
                  tdds_bar_h/2.0, tdds_sub_w, tdds_sub_l, tdds_sub_h);
       pos_c_cube(0, ( tdds_bar_l / 2.0 ) - ( tdds_sub_l / 2.0 ) + csg_tol, 
                  tdds_bar_h/2.0, tdds_sub_w, tdds_sub_l, tdds_sub_h);
-/*
-ERROR *!*!*! This must be re-enabled. It is expensive (computation) for why??? 
 
+/*
+//ERROR *!*!*! This must be re-enabled. It is expensive (computation) for why???
       scale([clip_m_w/clip_w, 1, 1]) tdds_clip();
       mirror([0,1,0]) scale([clip_m_w/clip_w, 1, 1]) tdds_clip();
 */
@@ -139,6 +141,32 @@ module tdds_irlrb() {
     sphere(r=irltol*1.5, $fn=gfn, center=true);
 }
 
+/* TDDS Key Cap Pivot Support */
+module tdds_kcps() {
+ union() {
+  difference() {
+    pos_c_cube(tdds_kcpsm_x, tdds_kcpsm_y, tdds_kcpsm_z,
+               tdds_kcpsm_w, tdds_kcpsm_l, tdds_kcpsm_h);
+
+    pos_c_cube(tdds_kcps_x, tdds_kcps_y, tdds_kcps_z,
+               tdds_kcps_w + csg_tol, tdds_kcps_l, tdds_kcps_h + csg_tol);
+
+    pos_c_cube(tdds_kcps_x - min_wall - csg_tol, 
+               tdds_kcps_y, 
+               tdds_kcps_z + tdds_kcp_d,
+               tdds_kcps_w, tdds_kcps_l, tdds_kcps_h);
+  } // difference
+
+  // retention bumps for tdds keycap
+  pos_c_half_sphere(tdds_kcps_x, 
+                    tdds_kcps_y + tdds_kcps_l/2.0 + csg_tol, 
+                    tdds_kcps_z + tdds_kcps_h/2.0 - tdds_kcp_r, 
+                    tdds_kcp_r, 
+                    gfn);
+
+ } // union
+}
+
 module tdds_box_c(x, y, z, sm) {
   translate([x,y,z]) {
     difference() {
@@ -160,6 +188,11 @@ module tdds_box_c(x, y, z, sm) {
             mirror([0,1,0]) mirror([1,0,0]) 
               pos_c_cube(tdds_irlh_x, tdds_irlh_y, tdds_irlh_z,
                          tdds_irlh_w, tdds_irlh_l, tdds_irlh_h);
+
+            // add in the slots and stops for the pivot for the keycap
+            tdds_kcps();
+            mirror([1,0,0]) tdds_kcps();
+            
 
           } // innermost union
           pos_c_cube(0, 0, -tdds_bh_h/2.0 + tdds_bar_h,
@@ -219,9 +252,21 @@ module tdds_box_c(x, y, z, sm) {
   } // end translate
 }
 
+/* module TDDS Key Cap (this is the part your thumb will rest upon. */
+module tdds_kc(x, y, z) {
+  translate([x, y, z]) {
+    union() {
+      translate([tdds_kcp_x, tdds_kcp_y, tdds_kcp_z])
+        rotate(a=90, v=[0,1,0])
+          cylinder(r=tdds_kcp_r, h=tdds_kcp_w, center=true, $fn=gfn);
+    }
+  } // translate
+}
+
 module tdds_centered(x, y, z, sc, sm) {
 
   tdds_bar_c(x, y, z, sc);
   tdds_box_c(x, y, z, sm);
+  tdds_kc(x, y, z);
 
 } // end module tdds_centered

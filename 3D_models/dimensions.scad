@@ -1480,7 +1480,28 @@ tdds_irlh_x = -( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r - irlb_m_d - min_wall +
 tdds_irlh_y = -( tdds_box_l / 2.0 ) + tdds_mat_t + ( tdds_irlh_l / 2.0 ) - min_wall;
 tdds_irlh_z = ( tdds_irlh_h / 2.0 ) + tdds_irl_z - min_wall;
 
+// the key cap pivot radius
+tdds_kcp_r = trp_pivot_r;
+tdds_kcp_d = 2.0 * tdds_kcp_r;
 
+tdds_kcp_x = 0;
+tdds_kcp_y = ( tdds_box_l / 2.0 ) + tdds_kcp_r;
+tdds_kcp_z = tdds_bar_h + tdds_mat_t - tdds_kcp_r;
 
+tdds_kcp_w = tdds_box_w - proc_tol - ( 2.0 * min_wall );
 
+// the slot into which the pivots slide
+tdds_kcps_l = tdds_kcp_d + proc_tol;
+tdds_kcps_w = ( tdds_box_w - ( 2.0 * min_wall )) / 3.0;
+// the height of the bottom of the slot
+tdds_kcps_h = tdds_kcp_d + proc_tol + tdds_kcp_d;
+tdds_kcps_z = ( tdds_kcps_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r;
+tdds_kcps_x = ( tdds_kcps_w / 2.0 ) - ( tdds_box_w / 2.0 ) + min_wall;
+tdds_kcps_y = ( tdds_kcps_l / 2.0 ) + ( tdds_box_l / 2.0 );
 
+tdds_kcpsm_w = tdds_kcps_w + min_wall;
+tdds_kcpsm_l = tdds_kcps_l + ( 2.0 * min_wall );
+tdds_kcpsm_h = tdds_kcps_h + ( 2.0 * min_wall ); // double min_wall --> stronger
+tdds_kcpsm_x = ( tdds_kcpsm_w / 2.0 ) - ( tdds_box_w / 2.0 );
+tdds_kcpsm_y = ( tdds_kcpsm_l / 2.0 ) + ( tdds_box_l / 2.0 ) - min_wall;
+tdds_kcpsm_z = ( tdds_kcpsm_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r - ( 2.0 * min_wall );

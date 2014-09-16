@@ -38,3 +38,12 @@ module pos_cube(x, y, z, w, l, h) {
 module pos_c_cube(x, y, z, w, l, h) {
   translate([x, y, z]) cube([w, l, h], center=true);
 }
+
+module pos_c_half_sphere(x, y, z, sr, f) {
+  translate([x, y, z]) {
+    difference() {
+      sphere(r=sr, $fn=f, center=true);
+      translate([-2.*sr, 0, -2*sr]) cube([4*sr, 4*sr, 4*sr]);
+    } // difference
+  } // translate
+}
