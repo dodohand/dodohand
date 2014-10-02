@@ -256,9 +256,13 @@ module tdds_box_c(x, y, z, sm) {
 module tdds_kc(x, y, z) {
   translate([x, y, z]) {
     union() {
+      // this is the keycap pivot: 
       translate([tdds_kcp_x, tdds_kcp_y, tdds_kcp_z])
         rotate(a=90, v=[0,1,0])
           cylinder(r=tdds_kcp_r, h=tdds_kcp_w, center=true, $fn=gfn);
+      // this is the keycap lifting travel stop
+      pos_c_cube( tdds_lts_x, tdds_lts_y, tdds_lts_z, 
+                  tdds_lts_w, tdds_lts_l, tdds_lts_h );
     }
   } // translate
 }

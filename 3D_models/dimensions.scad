@@ -19,6 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// This file defines dimensions for all aspects of all models.
 
 show_mag = 0;
 // angle to show lever rotation
@@ -995,7 +996,7 @@ trp_air_gap = 0.8;
 tf_mat_t = 2.0;
 
 // calculate positions of ir eyes. Thumb Frame (tf) will be done with z as
-// up rather than the way I did the blade. The way I did the blade in making
+// up rather than the way I did the blade. The way I did the blade is making
 // me just a little nuts.
 tf_irle_x = trp_pivot_x - trp_irlep_r * cos( trp_irleh_a + trp_irler_a );
 tf_irle_z = trp_pivot_y + trp_irlep_r * sin( trp_irleh_a + trp_irler_a );
@@ -1505,3 +1506,33 @@ tdds_kcpsm_h = tdds_kcps_h + ( 2.0 * min_wall ); // double min_wall --> stronger
 tdds_kcpsm_x = ( tdds_kcpsm_w / 2.0 ) - ( tdds_box_w / 2.0 );
 tdds_kcpsm_y = ( tdds_kcpsm_l / 2.0 ) + ( tdds_box_l / 2.0 ) - min_wall;
 tdds_kcpsm_z = ( tdds_kcpsm_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r - ( 2.0 * min_wall );
+
+// Thumb Down Double Switch KeyCap parameters
+tdds_kc_t = 3.0;
+
+// Thumb Down Double Switch keycap Lifting Travel Stop
+
+// the vertical travel of the tdds bar is max: tdds_rot_h
+// the end of the keycap will travel slightly farther as it
+// extends past the actuation hole to the end of the tdds box
+// the angle of rotation of the keycap is
+//
+//  hole--------pivot
+//   |tdds_rot_h
+//
+//  aor = asin(tdds_rot_h/dist_hole_pivot)
+//
+tdds_kc_aorl = tdds_kcp_y - tdds_ah_y; // length for aor calc
+tdds_kc_aor = asin( tdds_rot_h / tdds_kc_aorl );
+tdds_kc_rrl = tdds_box_l + tdds_kcp_r; // overall rotation relevent length
+// the vertical travel of the keycap at the box end is:
+tdds_kc_rvdbe = tdds_kc_rrl * sin( tdds_kc_aor ); // rotational vert disp at end
+
+// gap between lts and PCB
+tdds_lts_gap = 2.0;
+tdds_lts_h = tdds_box_h - tdds_lts_gap - tdds_kcp_r;
+tdds_lts_l = tdds_kcpsm_l - min_wall - proc_tol;
+tdds_lts_w = tdds_box_w - ( 2.0 * tdds_kcpsm_w ) - proc_tol; 
+tdds_lts_x = tdds_kcp_x;
+tdds_lts_y = tdds_kcp_y - tdds_kcp_r + ( tdds_lts_l / 2.0 ) + proc_tol;
+tdds_lts_z = tdds_kcp_z - ( tdds_lts_h / 2.0 );
