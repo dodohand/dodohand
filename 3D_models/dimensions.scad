@@ -1500,17 +1500,61 @@ tdds_kcps_z = ( tdds_kcps_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r;
 tdds_kcps_x = ( tdds_kcps_w / 2.0 ) - ( tdds_box_w / 2.0 ) + min_wall;
 tdds_kcps_y = ( tdds_kcps_l / 2.0 ) + ( tdds_box_l / 2.0 );
 
+// upper starting mass to form tall back wall
 tdds_kcpsm_w = tdds_kcps_w + min_wall;
-tdds_kcpsm_l = tdds_kcps_l + ( 2.0 * min_wall );
+tdds_kcpsm_l = tdds_kcps_l + min_wall - csg_tol;
 tdds_kcpsm_h = tdds_kcps_h + ( 2.0 * min_wall ); // double min_wall --> stronger
 tdds_kcpsm_x = ( tdds_kcpsm_w / 2.0 ) - ( tdds_box_w / 2.0 );
-tdds_kcpsm_y = ( tdds_kcpsm_l / 2.0 ) + ( tdds_box_l / 2.0 ) - min_wall;
+tdds_kcpsm_y = ( tdds_kcpsm_l / 2.0 ) + ( tdds_box_l / 2.0 ) + csg_tol;
 tdds_kcpsm_z = ( tdds_kcpsm_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r - ( 2.0 * min_wall );
+// lower starting mass to join with box
+tdds_kcpsm2_w = tdds_kcps_w + min_wall;
+tdds_kcpsm2_l = tdds_kcps_l + ( 2.0 * min_wall );
+tdds_kcpsm2_h = tdds_kcps_h + ( 2.0 * min_wall ) - tdds_kcp_d - proc_tol; // double min_wall --> stronger
+tdds_kcpsm2_x = ( tdds_kcpsm_w / 2.0 ) - ( tdds_box_w / 2.0 );
+tdds_kcpsm2_y = ( tdds_kcpsm_l / 2.0 ) + ( tdds_box_l / 2.0 ) - min_wall;
+tdds_kcpsm2_z = ( tdds_kcpsm2_h / 2.0 ) + tdds_kcp_z - tdds_kcp_r - ( 2.0 * min_wall );
 
 // Thumb Down Double Switch KeyCap parameters
 tdds_kc_t = 3.0;
 
 // Thumb Down Double Switch keycap Lifting Travel Stop
+// this prevents the tdds keycap from swinging away from tdds box
+// if, for example, the keyboard is inverted, or someone pulls the keycap.
+// it can only go up to the center of the pivot so that there is 
+// no intereference with the box.
+
+// gap between lts and PCB
+tdds_lts_gap = 2.0;
+tdds_lts_h = tdds_box_h - tdds_lts_gap - tdds_kcp_r;
+tdds_lts_l = tdds_kcpsm_l - proc_tol;
+tdds_lts_w = tdds_box_w - ( 2.0 * tdds_kcpsm_w ) - proc_tol; 
+tdds_lts_x = tdds_kcp_x;
+tdds_lts_y = tdds_kcp_y - tdds_kcp_r + (( tdds_lts_l + proc_tol ) / 2.0 );
+tdds_lts_z = tdds_kcp_z - ( tdds_lts_h / 2.0 );
+
+// the keycap pivot connector
+tdds_kcpc_h = tdds_kcp_r + proc_tol + tdds_kc_t + csg_tol;
+tdds_kcpc_l = tdds_lts_l - tdds_kcp_r + proc_tol;
+tdds_kcpc_w = tdds_lts_w;
+tdds_kcpc_x = tdds_lts_x;
+tdds_kcpc_y = tdds_lts_y + ( tdds_kcp_r / 2.0 );
+tdds_kcpc_z = tdds_lts_z + ( tdds_lts_h / 2.0 ) + ( tdds_kcpc_h / 2.0 ) - csg_tol;
+
+tdds_kcpc2_h = tdds_kcp_r + proc_tol + csg_tol;
+tdds_kcpc2_w = tdds_kcp_w;
+tdds_kcpc2_l = tdds_kcp_r - proc_tol + csg_tol;
+tdds_kcpc2_x = tdds_kcp_x;
+tdds_kcpc2_y = tdds_kcp_y - tdds_kcp_r + proc_tol + ( (tdds_kcpc2_l -csg_tol) / 2.0 );
+tdds_kcpc2_z = tdds_kcp_z + ( tdds_kcpc2_h / 2.0 );
+
+// the starting mass of the keycap
+tdds_kcsm_h = tdds_kc_t;
+tdds_kcsm_w = 15;
+tdds_kcsm_l = tdds_box_l + 10 + tdds_kcp_r + csg_tol;
+tdds_kcsm_x = tdds_kcpc_x;
+tdds_kcsm_y = tdds_kcpc_y - ( tdds_kcpc_l / 2.0 )- ( tdds_kcsm_l / 2.0 ) + ( csg_tol / 2.0 );
+tdds_kcsm_z = tdds_kcp_z + tdds_kcp_r + proc_tol + ( tdds_kcsm_h / 2.0 );
 
 // the vertical travel of the tdds bar is max: tdds_rot_h
 // the end of the keycap will travel slightly farther as it
@@ -1527,12 +1571,3 @@ tdds_kc_aor = asin( tdds_rot_h / tdds_kc_aorl );
 tdds_kc_rrl = tdds_box_l + tdds_kcp_r; // overall rotation relevent length
 // the vertical travel of the keycap at the box end is:
 tdds_kc_rvdbe = tdds_kc_rrl * sin( tdds_kc_aor ); // rotational vert disp at end
-
-// gap between lts and PCB
-tdds_lts_gap = 2.0;
-tdds_lts_h = tdds_box_h - tdds_lts_gap - tdds_kcp_r;
-tdds_lts_l = tdds_kcpsm_l - min_wall - proc_tol;
-tdds_lts_w = tdds_box_w - ( 2.0 * tdds_kcpsm_w ) - proc_tol; 
-tdds_lts_x = tdds_kcp_x;
-tdds_lts_y = tdds_kcp_y - tdds_kcp_r + ( tdds_lts_l / 2.0 ) + proc_tol;
-tdds_lts_z = tdds_kcp_z - ( tdds_lts_h / 2.0 );

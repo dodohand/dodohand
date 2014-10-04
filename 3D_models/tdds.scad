@@ -145,9 +145,14 @@ module tdds_irlrb() {
 module tdds_kcps() {
  union() {
   difference() {
-    pos_c_cube(tdds_kcpsm_x, tdds_kcpsm_y, tdds_kcpsm_z,
-               tdds_kcpsm_w, tdds_kcpsm_l, tdds_kcpsm_h);
+    union() {
+      pos_c_cube(tdds_kcpsm_x, tdds_kcpsm_y, tdds_kcpsm_z,
+                 tdds_kcpsm_w, tdds_kcpsm_l, tdds_kcpsm_h);
 
+      pos_c_cube(tdds_kcpsm2_x, tdds_kcpsm2_y, tdds_kcpsm2_z,
+                 tdds_kcpsm2_w, tdds_kcpsm2_l, tdds_kcpsm2_h);
+
+    }
     pos_c_cube(tdds_kcps_x, tdds_kcps_y, tdds_kcps_z,
                tdds_kcps_w + csg_tol, tdds_kcps_l, tdds_kcps_h + csg_tol);
 
@@ -160,7 +165,8 @@ module tdds_kcps() {
   // retention bumps for tdds keycap
   pos_c_half_sphere(tdds_kcps_x, 
                     tdds_kcps_y + tdds_kcps_l/2.0 + csg_tol, 
-                    tdds_kcps_z + tdds_kcps_h/2.0 - tdds_kcp_r, 
+                    //tdds_kcps_z + tdds_kcps_h/2.0 - tdds_kcp_r, 
+                    tdds_kcps_z + sqrt((tdds_kcp_r*tdds_kcp_r)/2.0), 
                     tdds_kcp_r, 
                     gfn);
 
@@ -263,6 +269,21 @@ module tdds_kc(x, y, z) {
       // this is the keycap lifting travel stop
       pos_c_cube( tdds_lts_x, tdds_lts_y, tdds_lts_z, 
                   tdds_lts_w, tdds_lts_l, tdds_lts_h );
+
+      // these parts are built in the pressed state, then rotated up:
+      rotate(a=0, v=[1,0,0]) {
+      // this is the keycap pivot connector.
+        pos_c_cube( tdds_kcpc_x, tdds_kcpc_y, tdds_kcpc_z, 
+                    tdds_kcpc_w, tdds_kcpc_l, tdds_kcpc_h );
+
+        pos_c_cube( tdds_kcpc2_x, tdds_kcpc2_y, tdds_kcpc2_z,
+                    tdds_kcpc2_w, tdds_kcpc2_l, tdds_kcpc2_h );
+
+%        pos_c_cube( tdds_kcsm_x, tdds_kcsm_y, tdds_kcsm_z, 
+                    tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
+
+      } // end rotate
+
     }
   } // translate
 }
