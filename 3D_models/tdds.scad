@@ -281,9 +281,44 @@ module tdds_kc(x, y, z) {
 
         pos_c_cube( tdds_kcpc2_x, tdds_kcpc2_y, tdds_kcpc2_z,
                     tdds_kcpc2_w, tdds_kcpc2_l, tdds_kcpc2_h );
+
         difference() {
-          pos_c_cube( tdds_kcsm_x, tdds_kcsm_y, tdds_kcsm_z, 
-                    tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
+          union() {
+            pos_c_cube( tdds_kcsm_x, tdds_kcsm_y, tdds_kcsm_z, 
+                      tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
+
+            // now add radius/extension to right side of keycap
+            intersection() {
+            translate([tdds_kcr1_x, tdds_kcr1_y, tdds_kcr1_z])
+              cylinder(center=true, r=tdds_kc_r, fn=$gfn, h=tdds_kcsm_h);
+              pos_c_cube( tdds_kcsm_x - (tdds_kc_w - tdds_kcsm_w), 
+                          tdds_kcsm_y, tdds_kcsm_z, 
+                          tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
+
+            } // end intersection
+          } // end union
+
+          // knock off the end to continue the radius
+          difference() { // little diff
+            pos_c_cube( tdds_kcsm_x - csg_tol, 
+                        tdds_kcsm_y - ( tdds_kcsm_l / 2.0 ), 
+                        tdds_kcsm_z, 
+                        tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h + csg_tol );
+            translate([tdds_kcr1_x, tdds_kcr1_y, tdds_kcr1_z])
+              cylinder( center=true, r=tdds_kc_r, fn=$gfn, 
+                        h=tdds_kcsm_h + (2.0 * csg_tol));
+          } // end little diff
+
+          // knock off the other side of the end
+          difference() { // little diff #2
+            pos_c_cube( tdds_kcsm_x + csg_tol, 
+                        tdds_kcsm_y - ( tdds_kcsm_l / 2.0 ), 
+                        tdds_kcsm_z, 
+                        tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h + csg_tol );
+            translate([tdds_kcr2_x, tdds_kcr2_y, tdds_kcr2_z])
+              cylinder( center=true, r=tdds_kc_r2, fn=$gfn, 
+                        h=tdds_kcsm_h + (2.0 * csg_tol));           
+          } // end little diff #2
 
           // leave a space for the magnet to clear the keycap
           pos_c_cube( 0, tdds_clip_c_y + ( smag_h / 2.0 ), tdds_mag_c_z,
@@ -311,7 +346,7 @@ module tdds_kc(x, y, z) {
                       tdds_mrb_l + ( 6 * proc_tol ),
                       tdds_mrb_h + ( 6 * proc_tol ));
 
-        }
+        } // end difference for magnet clearances
       } // end rotate
 
     }

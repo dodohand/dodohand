@@ -1571,3 +1571,14 @@ tdds_kc_aor = asin( tdds_rot_h / tdds_kc_aorl );
 tdds_kc_rrl = tdds_box_l + tdds_kcp_r; // overall rotation relevent length
 // the vertical travel of the keycap at the box end is:
 tdds_kc_rvdbe = tdds_kc_rrl * sin( tdds_kc_aor ); // rotational vert disp at end
+
+tdds_kc_w = 20;
+tdds_kc_r = 32; // radius of arc which extends side of keycap
+tdds_kcr1_x = tdds_kcsm_x - ( tdds_kc_w / 2.0 ) + tdds_kc_r;
+tdds_kcr1_y = tdds_ah_y;
+tdds_kcr1_z = tdds_kcsm_z;
+
+tdds_kc_r2 = 55;
+tdds_kcr2_x = tdds_kcsm_x + ( tdds_kcsm_w / 2.0 ) - tdds_kc_r2;
+tdds_kcr2_y = tdds_kcr1_y;
+tdds_kcr2_z = tdds_kcr1_z;
