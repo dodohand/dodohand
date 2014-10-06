@@ -271,17 +271,47 @@ module tdds_kc(x, y, z) {
                   tdds_lts_w, tdds_lts_l, tdds_lts_h );
 
       // these parts are built in the pressed state, then rotated up:
-      rotate(a=0, v=[1,0,0]) {
+      // shift pivot center to origin, then rotate, then shift back into pos:
+      translate([tdds_kcp_x, tdds_kcp_y, tdds_kcp_z]) 
+        rotate(a=-tdds_kc_aor, v=[1,0,0]) 
+          translate([-tdds_kcp_x, -tdds_kcp_y, -tdds_kcp_z]) {
       // this is the keycap pivot connector.
         pos_c_cube( tdds_kcpc_x, tdds_kcpc_y, tdds_kcpc_z, 
                     tdds_kcpc_w, tdds_kcpc_l, tdds_kcpc_h );
 
         pos_c_cube( tdds_kcpc2_x, tdds_kcpc2_y, tdds_kcpc2_z,
                     tdds_kcpc2_w, tdds_kcpc2_l, tdds_kcpc2_h );
-
-%        pos_c_cube( tdds_kcsm_x, tdds_kcsm_y, tdds_kcsm_z, 
+        difference() {
+          pos_c_cube( tdds_kcsm_x, tdds_kcsm_y, tdds_kcsm_z, 
                     tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
 
+          // leave a space for the magnet to clear the keycap
+          pos_c_cube( 0, tdds_clip_c_y + ( smag_h / 2.0 ), tdds_mag_c_z,
+                      smag_w + ( 6 * proc_tol ), 
+                      smag_h + ( 6 * proc_tol ), 
+                      smag_d + ( 6 * proc_tol ));
+
+          // leave a space for the magnet to clear the keycap
+          mirror([0,1,0])
+          pos_c_cube( 0, tdds_clip_c_y + ( smag_h / 2.0 ), tdds_mag_c_z,
+                      smag_w + ( 6 * proc_tol ), 
+                      smag_h + ( 6 * proc_tol ), 
+                      smag_d + ( 6 * proc_tol ));
+
+          // leave a space for the magnet retention bar in the keycap
+          pos_c_cube( 0, tdds_mrb_c_y, tdds_mrb_z,
+                      tdds_mrb_w + ( 6 * proc_tol ), 
+                      tdds_mrb_l + ( 6 * proc_tol ),
+                      tdds_mrb_h + ( 6 * proc_tol ));
+
+          // leave a space for the magnet retention bar in the keycap
+          mirror([0,1,0]) 
+          pos_c_cube( 0, tdds_mrb_c_y, tdds_mrb_z,
+                      tdds_mrb_w + ( 6 * proc_tol ), 
+                      tdds_mrb_l + ( 6 * proc_tol ),
+                      tdds_mrb_h + ( 6 * proc_tol ));
+
+        }
       } // end rotate
 
     }
