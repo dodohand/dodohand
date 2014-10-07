@@ -290,7 +290,7 @@ module tdds_kc(x, y, z) {
             // now add radius/extension to right side of keycap
             intersection() {
             translate([tdds_kcr1_x, tdds_kcr1_y, tdds_kcr1_z])
-              cylinder(center=true, r=tdds_kc_r, fn=$gfn, h=tdds_kcsm_h);
+              cylinder(center=true, r=tdds_kc_r, $fn=gfn, h=tdds_kcsm_h);
               pos_c_cube( tdds_kcsm_x - (tdds_kc_w - tdds_kcsm_w), 
                           tdds_kcsm_y, tdds_kcsm_z, 
                           tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h );
@@ -305,7 +305,7 @@ module tdds_kc(x, y, z) {
                         tdds_kcsm_z, 
                         tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h + csg_tol );
             translate([tdds_kcr1_x, tdds_kcr1_y, tdds_kcr1_z])
-              cylinder( center=true, r=tdds_kc_r, fn=$gfn, 
+              cylinder( center=true, r=tdds_kc_r, $fn=gfn, 
                         h=tdds_kcsm_h + (2.0 * csg_tol));
           } // end little diff
 
@@ -316,7 +316,7 @@ module tdds_kc(x, y, z) {
                         tdds_kcsm_z, 
                         tdds_kcsm_w, tdds_kcsm_l, tdds_kcsm_h + csg_tol );
             translate([tdds_kcr2_x, tdds_kcr2_y, tdds_kcr2_z])
-              cylinder( center=true, r=tdds_kc_r2, fn=$gfn, 
+              cylinder( center=true, r=tdds_kc_r2, $fn=gfn, 
                         h=tdds_kcsm_h + (2.0 * csg_tol));           
           } // end little diff #2
 
@@ -346,10 +346,18 @@ module tdds_kc(x, y, z) {
                       tdds_mrb_l + ( 6 * proc_tol ),
                       tdds_mrb_h + ( 6 * proc_tol ));
 
-        } // end difference for magnet clearances
+        } // end difference for magnet clearances, thumb shape
       } // end rotate
 
-    }
+      // add in the stem which pushes the bar when the keycap is pressed
+      translate([tdds_stem_x, tdds_stem_y, tdds_stem_rz])
+        rotate(a=90, v=[0,1,0]) 
+          cylinder(center=true, $fn=gfn, h=tdds_stem_w, r=tdds_stem_r);
+
+      pos_c_cube( tdds_stem_x, tdds_stem_y, tdds_stem_z,
+                  tdds_stem_w, tdds_stem_l, tdds_stem_h);
+
+    } // end union
   } // translate
 }
 

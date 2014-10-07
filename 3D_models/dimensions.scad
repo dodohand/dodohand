@@ -1573,12 +1573,22 @@ tdds_kc_rrl = tdds_box_l + tdds_kcp_r; // overall rotation relevent length
 tdds_kc_rvdbe = tdds_kc_rrl * sin( tdds_kc_aor ); // rotational vert disp at end
 
 tdds_kc_w = 20;
-tdds_kc_r = 32; // radius of arc which extends side of keycap
+tdds_kc_r = 32; // radius which extends and trims fingerprint side of keycap
 tdds_kcr1_x = tdds_kcsm_x - ( tdds_kc_w / 2.0 ) + tdds_kc_r;
 tdds_kcr1_y = tdds_ah_y;
 tdds_kcr1_z = tdds_kcsm_z;
 
-tdds_kc_r2 = 55;
+tdds_kc_r2 = 55; // radius of arc which trims thumb nail side of keycap
 tdds_kcr2_x = tdds_kcsm_x + ( tdds_kcsm_w / 2.0 ) - tdds_kc_r2;
 tdds_kcr2_y = tdds_kcr1_y;
 tdds_kcr2_z = tdds_kcr1_z;
+
+tdds_stem_r = tdds_kcp_r;
+tdds_stem_l = tdds_kcp_r * 2.0;
+tdds_stem_w = tdds_ah_w - (2.0 * proc_tol);
+tdds_stem_h = tdds_rot_h + tdds_mat_t - tdds_stem_r + tdds_kc_t / 2.0;
+
+tdds_stem_x = tdds_ah_x;
+tdds_stem_y = tdds_ah_y;
+tdds_stem_z = tdds_bar_h + tdds_stem_r + (tdds_stem_h / 2.0 );
+tdds_stem_rz = tdds_bar_h + tdds_stem_r;
