@@ -157,6 +157,29 @@ module chock(x, y, z, ck) {
   }
 }
 
+module chock_tree(x, y, z, tr) {
+  // tr = tree for printing: 1=top, 2=bottom
+  // add in chock which keeps clip2 in position
+  if(1 == tr) {
+    translate([x, y, z]) {
+      union() {
+        cube([clip2_chock_w, clip2_chock_d, clip2_chock_h]);
+        cube([min_wire, min_wire, 2.0 * clip2_chock_h]);
+      }
+    }
+  }
+  if(2 == tr) {
+    translate([x, y, z]) {
+      union() {
+        cube([clip2_chock_w, clip2_chock_d, clip2_chock_h]);
+        translate([0, 0, -clip2_chock_h]) 
+          cube([min_wire, min_wire, 2.0 * clip2_chock_h]);
+      }
+    }
+  }
+}
+
+
 module carrier_group(x, y, z, sk, sc, sm, sh, pr, ck, sl) {
   // sk = show keys
   // sc = show clips (ferrous targets)

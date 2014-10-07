@@ -25,7 +25,8 @@ use <lever.scad>;
 use <carrier.scad>;
 use <LiteOn_P_100_E302.scad>;
 use <5key_assy.scad>;
-use <guards.scad>
+use <guards.scad>;
+use <util.scad>;
 
 include <dimensions.scad>;
 // 4.545        = x
@@ -286,10 +287,16 @@ fcg(lh_r_a, lh_r_x, lh_r_y, 6.5, 0);
 fcg(lh_p_a, lh_p_x, lh_p_y, pinkie_riser, pinkie_riser);
 
 translate([-23, -27, 5]) rotate(a=90, v=[0,0,1]) {
-  chock(0, 0, 0, 1);
-  chock(0, 0, chock_z_psep, 1);
-  chock(0, chock_y_psep, 0, 1);
-  chock(0, chock_y_psep, chock_z_psep, 1);
+  union() {
+  // shapeways started to reject the model because of the size
+  // of these chocks. Need the union to tie them together in
+  // a bit of a tree. This tree will have to be cut apart with
+  // a hobby knife after printing.
+    chock_tree(0, 0, 0, 1);
+    chock_tree(0, 0, chock_z_psep, 2);
+    chock_tree(0, chock_y_psep, 0, 1);
+    chock_tree(0, chock_y_psep, chock_z_psep, 2);      
+  }
 }
 
 /*
