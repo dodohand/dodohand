@@ -23,6 +23,7 @@ use <trp.scad>;
 use <carrier.scad>;
 use <LiteOn_P_100_E302.scad>;
 use <tf.scad>;
+use <util.scad>;
 
 include <dimensions.scad>;
 
@@ -45,6 +46,7 @@ echo("trp_max_trv: ", trp_max_trv);
 echo("trp_irler_a: ", trp_irler_a);
 
 
+
 rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
 
 //translate([-irle_m_x + tf_irle_x, -irle_m_y-2, -irle_m_z+tf_irle_z]) rotate( a=-90, v=[0,0,1]) Max_LiteOn_P_100_E302(0, 0, 0, 0);
@@ -58,6 +60,11 @@ tf_screws();
 
 color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
 
+translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
+ difference() {
+   keycapbase(0, 0, 0);
+   pos_c_cube(-50, 0, 0, 100, 100, 100);
+ }
+}
 
-keycapbase(-10, 0, 0);
 

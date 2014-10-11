@@ -20,8 +20,14 @@
 */
 
 use <tdds.scad>;
+use <util.scad>;
 use <LiteOn_P_100_E302.scad>;
 
 include <dimensions.scad>;
 
-tdds_centered(0, 0, 0, 1, 1);
+difference() {
+  tdds_centered(0, 0, 0, 1, 1);
+
+//  pos_c_cube(-50, 0, 0, 100, 100, 100);
+
+} // end difference

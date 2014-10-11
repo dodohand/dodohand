@@ -38,7 +38,7 @@ module trp(x, y, z) {
         trp_blade(0, 0, trp_blade_z);
         // the spline part of the top of the blade
         translate([trp_spline_x, trp_spline_y-csg_utol, trp_spline_z]) {
-          cube([trp_spline_w, trp_spline_h, trp_spline_t]);
+          cube([trp_spline_w, trp_spline_h+csg_utol, trp_spline_t]);
         } // end spline translate
         // now add the travel stop
         translate([trp_tstop_x, trp_tstop_y, trp_tstop_z]) {
@@ -132,15 +132,15 @@ module keycapbase(x, y, z)
           cube([kcb_w, kcb_d, kcb_h], center=true  );
         
         // the central void in the keycap base
-        translate([kcb_v_x, kcb_v_y, kcb_v_z]) 
-          cube([kcb_v_w, kcb_v_d, kcb_v_h], center=true);
+        translate([kcb_v_x, kcb_v_y, kcb_v_z-(csg_tol/2.0)]) 
+          cube([kcb_v_w, kcb_v_d, kcb_v_h+csg_tol], center=true);
         // the hole for the locking clip
         translate([kcb_lch_x, kcb_lch_y, kcb_lch_z]) 
           cube([kcb_lch_w, kcb_lch_d, kcb_lch_h], center=true);
       } // end difference
       // the clip arm
-      translate([kcb_lc_x, kcb_lc_y, kcb_lc_z]) 
-        cube([kcb_lc_w, kcb_lc_d, kcb_lc_h], center=true);
+      translate([kcb_lc_x, kcb_lc_y, kcb_lc_z-(csg_tol/2.0)]) 
+        cube([kcb_lc_w, kcb_lc_d, kcb_lc_h+csg_tol], center=true);
       // the locking bump
       translate([kcb_lb_x, kcb_lb_y, kcb_lb_z]) 
        cube([kcb_lb_w, kcb_lb_d, kcb_lb_h], center=true);

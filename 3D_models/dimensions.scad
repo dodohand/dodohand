@@ -1056,8 +1056,10 @@ trp_sv_d = trp_spline_t;
 trp_svb_h = trp_spline_t;
 
 // trp is constructed in plan view just to confuse. X==X, but z <-> y 
+// this was a mistake that should be corrected eventually, but which I
+// will presently just suffer through.
 trp_sv_z = trp_spline_z - ( csg_tol / 2.0 );
-trp_sv_y = trp_spline_y + trp_spline_h - trp_sv_h - trp_svb_h;
+trp_sv_y = trp_spline_y + trp_spline_h - trp_sv_d - trp_svb_h;
 trp_sv_x = trp_spline_x + ( trp_spline_w / 2.0 ) - ( trp_sv_w / 2.0 );
 
 
@@ -1288,11 +1290,11 @@ tf_catch_a = atan( tf_catch_d / tf_catch_h );
 // the void in the kcb which the spline fills
 kcb_v_w = trp_spline_w + proc_tol;
 kcb_v_d = trp_spline_t + proc_tol;
-kcb_v_h = trp_spline_h - ( 2.0 * proc_tol ) + csg_tol;
+kcb_v_h = trp_spline_h - ( 2.0 * proc_tol );
 
 kcb_v_x = 0;
 kcb_v_y = 0;
-kcb_v_z = ( kcb_v_h / 2.0 ) - csg_tol;
+kcb_v_z = ( kcb_v_h / 2.0 );
 
 // the outer block/body of the kcb
 kcb_mat_t = tf_mat_t;
@@ -1307,11 +1309,11 @@ kcb_z = ( kcb_h / 2.0 );
 // the lock clip that will hold the cap onto the spline
 kcb_lc_w = trp_sv_w - proc_tol;
 kcb_lc_d = kcb_mat_t;
-kcb_lc_h = kcb_v_h - min_wire - trp_svb_h + csg_tol;
+kcb_lc_h = kcb_v_h - min_wire - trp_svb_h - proc_tol;
 
 kcb_lc_x = 0;
 kcb_lc_y = ( kcb_lc_d / 2.0 ) - ( kcb_v_d / 2.0 ) - kcb_mat_t;
-kcb_lc_z = ( kcb_lc_h / 2.0 ) + min_wire - csg_tol;
+kcb_lc_z = ( kcb_lc_h / 2.0 ) + min_wire;
 
 // the hole that the lock clip will go into:
 kcb_lch_w = kcb_lc_w + ( 2.0 * min_sep );
@@ -1325,11 +1327,11 @@ kcb_lch_z = ( kcb_lch_h / 2.0 ) + min_wire;
 // the locking bump
 kcb_lb_w = kcb_lc_w;
 kcb_lb_d = trp_blade_t / 2.0;
-kcb_lb_h = trp_sv_d / 2.0;
+kcb_lb_h = (trp_sv_d - proc_tol) / 2.0;
 
 kcb_lb_x = kcb_lc_x;
 kcb_lb_y = ( kcb_lb_d / 2.0 ) + kcb_lc_y + ( kcb_lc_d / 2.0 ) - csg_tol;
-kcb_lb_z = ( kcb_lb_h / 2.0 ) + min_wire + kcb_lc_h - kcb_lb_h - csg_tol;
+kcb_lb_z = ( kcb_lb_h / 2.0 ) + min_wire + kcb_lc_h - kcb_lb_h;
 //kcb_lb_z = -2;
 
 // the ramp up to the locking bump
@@ -1339,10 +1341,7 @@ kcb_lbr_h = kcb_lb_h;
 
 kcb_lbr_x = kcb_lb_x;
 kcb_lbr_y = - ( kcb_v_d / 2.0 ) - csg_tol ;
-kcb_lbr_z = min_wire + kcb_lc_h - kcb_lb_h - csg_tol + csg_utol;
-
-//ERROR: ***** The locking bump isn't in the right spot. correct the
-//position of the locking bump - (it needs to be lower by ???? small amount...)
+kcb_lbr_z = min_wire + kcb_lc_h - kcb_lb_h + csg_utol;
 
 //
 //
