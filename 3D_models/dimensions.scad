@@ -26,8 +26,8 @@ show_mag = 0;
 show_lr_angle = 0;
 
 // global face number set here
-//gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
-gfn=25;
+gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
+//gfn=25;
 
 // units are in mm
 
@@ -1591,3 +1591,39 @@ tdds_stem_x = tdds_ah_x;
 tdds_stem_y = tdds_ah_y;
 tdds_stem_z = tdds_bar_h + tdds_stem_r + (tdds_stem_h / 2.0 );
 tdds_stem_rz = tdds_bar_h + tdds_stem_r;
+
+thumb_cap_gap = 3.0;
+thumb_cap_angle = 8; // angle of face which thumb contacts
+thumb_cap_h = 20.0;
+thumb_cap_min_w = 1.5;
+
+// Main Inboard Thumb KeyCap (inboard = fingerprint side)
+mitkc_r = thumb_cap_gap + tdds_kc_r;
+mitkc_l = 35.0;
+mitkc_w = 6.0;
+mitkc_h = thumb_cap_h;
+mitkc_x = -mitkc_w/2.0 - kcb_w/2.0;
+
+// the cylinder which bites into the the mitkc = mitkcc
+mitkcc_bite = mitkc_w - thumb_cap_min_w; // how much bite
+mitkcc_x = mitkc_x - ( mitkc_w / 2.0 ) - mitkc_r + mitkcc_bite;
+
+// Distal Outer Thumb KeyCap
+dotkc_r = tdds_kc_r2 + thumb_cap_gap;
+dotkc_l = 30.0;
+dotkc_w = 6.0;
+dotkc_h = thumb_cap_h;
+dotkc_x = - ( dotkc_w / 2.0 ) - ( kcb_w / 2.0 );
+
+dotkcc_bite = dotkc_w - thumb_cap_min_w;
+dotkcc_x = dotkc_x - ( dotkc_w / 2.0 ) - dotkc_r + dotkcc_bite;
+
+// Proximal Outer Thumb KeyCap
+potkc_l = 20.0;
+potkc_w = 6.0;
+potkc_h = thumb_cap_h;
+potkc_x = - (potkc_w / 2.0 ) - ( kcb_w / 2.0 );
+
+// Proximal Outer Thumb KeyCap Subtractor bite
+potkcs_bite = potkc_w - thumb_cap_min_w;
+potkcs_x = potkc_x - potkc_w + potkcs_bite;

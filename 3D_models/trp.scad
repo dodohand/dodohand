@@ -153,3 +153,45 @@ module keycapbase(x, y, z)
     } // end union
   } // end translate
 } // end module keycapbase
+
+module main_inner_thumb_keycap(x, y, z)
+{
+  translate([x, y, z]) {
+    difference() {
+      pos_c_cube( mitkc_x + csg_tol/2.0, 0, mitkc_h/2.0,
+                  mitkc_w+csg_tol, mitkc_l, mitkc_h );
+      translate([0, 0, mitkc_h])
+      rotate(a=thumb_cap_angle, v=[0,1,0])
+      translate([mitkcc_x, 0, -mitkc_h])
+        cylinder(r=mitkc_r, $fn=gfn, h=4*mitkc_h, center=true);
+    } // end difference
+  } // end translate
+}
+
+module distal_outer_thumb_keycap(x, y, z)
+{
+  translate([x, y, z]) {
+    difference() {
+      pos_c_cube( dotkc_x + csg_tol/2.0, 0, dotkc_h/2.0,
+                  dotkc_w+csg_tol, dotkc_l, dotkc_h );
+      translate([0, 0, dotkc_h])
+      rotate(a=thumb_cap_angle, v=[0,1,0])
+      translate([dotkcc_x, 0, -dotkc_h])
+        cylinder(r=dotkc_r, $fn=gfn, h=4*dotkc_h, center=true);
+    } // end difference
+  } // end translate
+}
+
+module proximal_outer_thumb_keycap(x, y, z)
+{
+  translate([x, y, z]) {
+    difference() {
+      pos_c_cube( potkc_x + csg_tol/2.0, 0, potkc_h/2.0,
+                  potkc_w + csg_tol, potkc_l, potkc_h );
+      translate([0, 0, potkc_h])
+      rotate(a=thumb_cap_angle, v=[0,1,0])
+      pos_c_cube( potkcs_x, 0, -potkc_h,
+                  potkc_w, 2.0 * potkc_l, 2.0 * potkc_h);
+    } // end difference
+  } // end translate
+}

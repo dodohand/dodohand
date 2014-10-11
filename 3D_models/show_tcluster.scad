@@ -43,10 +43,9 @@ echo("tf_bp_d: ", tf_bp_d);
 echo("trp_max_trv: ", trp_max_trv);
 echo("trp_irler_a: ", trp_irler_a);
 
-translate([0, 0, tf_bp_h]) {
+translate([-tf_bp_x, 0, tf_bp_h]) {
 
-  rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
-
+  //rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
 
   rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
 
@@ -57,7 +56,7 @@ translate([0, 0, tf_bp_h]) {
   tf(0, 0, 0);
 
 
-  tf_screws();
+//  tf_screws();
 
   color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
 
@@ -66,6 +65,9 @@ translate([0, 0, tf_bp_h]) {
     keycapbase(0, 0, 0);
 //   pos_c_cube(-50, 0, 0, 100, 100, 100);
 // }
+//	main_inner_thumb_keycap(0, 0, 0);
+//	distal_outer_thumb_keycap(0, 0, 0);
+	proximal_outer_thumb_keycap(0, 0, 0);
   }
 }
 
