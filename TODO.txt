@@ -22,7 +22,7 @@
 
 The TODO list
 
-Circuit/PCB:
+Circuit/PCB (Fingers):
 
 The Easypoint switch is on Col5, but there is no pull-down on the
 finger PCB for Col5, as the intention was to put the Col5 pull-down
@@ -183,15 +183,21 @@ also be a useful resource for a case.  laser-cut cardboard (or plywood/bamboo/ac
 
 Thumb switches
 
+DONE:
 Develop a model for the two-stage thumb switch and keycap.
 
+DONE:
 Develop a model for the 4-count normal thumb switch.
 
-Develop a model for the upper/inboard thumb switch lever.
+Develop a model for the upper/inboard thumb switch keycap.
 
-Develop a model for the main inboard thumb switch lever.
+Develop a model for the main inboard thumb switch keycap.
 
-Develop a model for the distal outboard thumb switch lever.
+Develop a model for the distal outboard thumb switch keycap.
 
-Develop a model for the proximal outboard thumb switch lever.
+Develop a model for the proximal outboard thumb switch keycap.
+
+Finalize the positions of the thumb switches relative to eachother.
+
+Create a two-sided PCB design for the thumb switches.
 

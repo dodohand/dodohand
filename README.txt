@@ -7,7 +7,7 @@ debug tools from PJRC. Please find the hid_listen tool from PJRC
 in order to receive the debug messages from the test DodoHand 
 firmware.
 
-At attempt at some more coherent notes:
+At attempt at some coherent notes:
 
 A Brief History
 
@@ -21,11 +21,18 @@ project - an attempt to resurrect the now-extinct DataHand.
 
 So you want to create a DodoHand
 
-Current status: The finger switch design is usable. The thumb cluster 
-is not yet designed. A case has been designed by Turbinia, but has 
-never been built. There are provisions in hardware for supporting an 
-EasyPoint or another joystick but these have not been implemented in
-software.
+Current status: The finger switch design is usable. The thumb switch
+mechanism designs are complete in their first version, but untested.
+The "keycaps" are not yet finalized for the thumbs, and the thumb
+cluster arrangement is not yet finalized. A case has been designed by
+Turbinia, but has never been built. There are provisions in hardware
+for supporting an EasyPoint or another joystick but these have not
+been implemented in software.
+
+Note:
+
+At this point, only the finger switches are tested in any way, and
+the rest of the document mainly refers to that portion of the project.
 
 The first step is to get all the parts headed your way. There is 
 a BOM.ods (Bill of Materials) in the documentation folder which 
