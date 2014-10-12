@@ -195,3 +195,37 @@ module proximal_outer_thumb_keycap(x, y, z)
     } // end difference
   } // end translate
 }
+
+module upper_inner_thumb_keycap(x, y, z)
+{
+  translate([x, y, z]) {
+   difference() {
+    union() {
+      pos_c_cube( pitkc_x + csg_tol/2.0, 0, pitkc_h / 2.0,
+                  pitkc_w + csg_tol, pitkc_l, pitkc_h );
+      translate([pitkc_x, 0, pitkc_h-tf_mat_t]) {
+      rotate(a=pitkc_u1_a2, v=[0,1,0]) {
+      translate([-pitkc_u1_tx, pitkc_u1_ty, 0]) {
+      intersection() {
+       rotate(a=pitkc_u1_a1, v=[0,0,1]) {
+        union() { // inner
+          cylinder( r = pitkc_u1_r, $fn=gfn, center=true, h=pitkc_w);
+          pos_c_cube( pitkc_u1_l, 0, 0, 
+                      pitkc_u1_l * 2.0, ( 2.0 * pitkc_u1_r ), pitkc_w );
+        } // inner union
+       } // rotate
+      // keep the rotated pitkc_u1 within pitkc_u1_l in length
+      pos_c_cube( 0, 0, 0, 
+                  2.0 * pitkc_u1_l,  2.0 * pitkc_u1_l,  2.0 * pitkc_u1_l );
+
+     } // intersection
+     } // translate
+     } // rotate
+     } // translate
+    } // union
+
+    pos_c_cube( 0, -50 - pitkc_l / 2.0, 0, 100, 100, 100);
+
+   } // difference
+  } // translate
+}

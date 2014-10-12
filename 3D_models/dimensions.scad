@@ -28,6 +28,7 @@ show_lr_angle = 0;
 // global face number set here
 gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
 //gfn=25;
+//gfn=50;
 
 // units are in mm
 
@@ -1627,3 +1628,19 @@ potkc_x = - (potkc_w / 2.0 ) - ( kcb_w / 2.0 );
 // Proximal Outer Thumb KeyCap Subtractor bite
 potkcs_bite = potkc_w - thumb_cap_min_w;
 potkcs_x = potkc_x - potkc_w + potkcs_bite;
+
+// Proximal Inner/Upper Thumb KeyCap
+
+pitkc_u1_r = 5;
+pitkc_u1_a1 = -12; // angle from square to keycap base
+pitkc_u1_a2 = 35; // angle from horizontal
+
+pitkc_w = tf_mat_t;
+pitkc_l = ( 2.0 * pitkc_u1_r ) / cos( pitkc_u1_a1 );
+pitkc_h = mitkc_h + 4 + tf_mat_t;
+pitkc_x = - ( pitkc_w / 2.0 ) - ( kcb_w / 2.0 );
+
+pitkc_u1_l = 13;
+
+pitkc_u1_tx = pitkc_u1_l;
+pitkc_u1_ty = pitkc_u1_l * tan( pitkc_u1_a1 ) + pitkc_u1_r/cos(pitkc_u1_a1);
