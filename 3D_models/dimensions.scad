@@ -1632,7 +1632,7 @@ potkcs_x = potkc_x - potkc_w + potkcs_bite;
 // Proximal Inner/Upper Thumb KeyCap
 
 pitkc_u1_r = 5;
-pitkc_u1_a1 = -12; // angle from square to keycap base
+pitkc_u1_a1 = -25; // angle from square to keycap base
 pitkc_u1_a2 = 35; // angle from horizontal
 
 pitkc_w = tf_mat_t;
@@ -1640,7 +1640,7 @@ pitkc_l = ( 2.0 * pitkc_u1_r ) / cos( pitkc_u1_a1 );
 pitkc_h = mitkc_h + 4 + tf_mat_t;
 pitkc_x = - ( pitkc_w / 2.0 ) - ( kcb_w / 2.0 );
 
-pitkc_u1_l = 13;
+pitkc_u1_l = 14;
 
 pitkc_u1_tx = pitkc_u1_l;
-pitkc_u1_ty = pitkc_u1_l * tan( pitkc_u1_a1 ) + pitkc_u1_r/cos(pitkc_u1_a1);
+pitkc_u1_ty = pitkc_u1_l * abs( tan( pitkc_u1_a1 )) ;//+ pitkc_u1_r/cos(pitkc_u1_a1);

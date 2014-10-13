@@ -224,7 +224,9 @@ module upper_inner_thumb_keycap(x, y, z)
      } // translate
     } // union
 
-    pos_c_cube( 0, -50 - pitkc_l / 2.0, 0, 100, 100, 100);
+//    pos_c_cube( 0, -50 - pitkc_l / 2.0, 0, 100, 100, 100);
+    pos_c_cube( pitkc_x + 10 - tf_mat_t, kcb_d / 2.0 + 10 + csg_utol, 0,
+                20, 20, ( 2.0 * pitkc_h ) - (2.0 * tf_mat_t) );  
 
    } // difference
   } // translate

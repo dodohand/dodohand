@@ -144,11 +144,9 @@ module pits(x, y, z, ang) {
 
 tdds_centered(0, 0, tdds_rot_h, 1, 1);
 
-pots(10, 10, 0, 0);
+pots(9.5, 10, 0, 0);
 dots(8, -16, 0, -14);
 dits(-10, -14, 0, 200);
 pits(-20, 6, 0, 190);
 
-
-//upper_inner_thumb_keycap(0, 0, 0);
 
