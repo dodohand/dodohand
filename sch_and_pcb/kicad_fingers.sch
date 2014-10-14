@@ -1,8 +1,35 @@
 EESchema Schematic File Version 2
 LIBS:power
-LIBS:rf5s
-LIBS:conn
 LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:rf5s
 LIBS:kicad_fingers-cache
 EELAYER 24 0
 EELAYER END
@@ -923,7 +950,7 @@ F 3 "" H 4100 8450 60  0001 C CNN
 	1    4100 8450
 	0    1    1    0   
 $EndComp
-Text Notes 3050 7050 0    60   ~ 0
+Text Notes 3050 7300 0    60   ~ 0
 D4 and D5 brought here \nin case they prove useful.\nNo use is planned. 8-pin \nconnector so it is common.
 Text Label 3900 6900 0    60   ~ 0
 D5
@@ -973,7 +1000,7 @@ F 3 "" H 1700 7200 60  0001 C CNN
 	1    1700 7200
 	1    0    0    -1  
 $EndComp
-Text Notes 1300 8000 0    60   ~ 0
+Text Notes 1400 8200 0    60   ~ 0
 Optional Support for remote \nmounting of indicator LEDs \nto allow LEDs to be mounted \nto case rather than PCB
 Text Label 1000 8750 0    60   ~ 0
 LED_D6_3
@@ -1013,7 +1040,7 @@ Text Notes 1650 10950 0    60   ~ 0
 PTS645VH58-2 LFS
 Text Notes 3250 4400 0    60   ~ 0
 KSA1298
-Text Notes 6350 1100 0    60   ~ 0
+Text Notes 6400 1350 0    60   ~ 0
 The switch matrix for the 20 finger switches.\nThese switches are each composed of an\ninfrared phototransistor paired with an IR\nphotodiode. The beam is blocked in the \nunpressed state - resulting in a low voltage\non the column if the key is not pressed.
 Text Notes 1150 10250 0    60   ~ 0
 Reset button for accessing bootloader\nwhen teensy-mounted switch is not\naccessible. Should be accessible when\nkeyboard is fully assembled.
@@ -1034,7 +1061,7 @@ F 3 "" H 2900 4350 60  0001 C CNN
 $EndComp
 Text Notes 1900 6250 0    60   ~ 0
 Thumb Matrix\nConnector
-Text Notes 11900 5150 0    60   ~ 0
+Text Notes 11900 5550 0    60   ~ 0
 PCA9655E controls\nswitch matrix and \nLEDS of other hand.\nTeensy _or_ this\nare populated.\nnever both.
 Text Notes 12150 800  0    60   ~ 0
 Teensy 2.0 as the keyboard controller\nprovides USB connection and power
@@ -1064,7 +1091,7 @@ Text Notes 13550 6550 0    60   ~ 0
 Solder Bridge to control\nwhether 5v or 3.3v goes\nout to Aux Connector\n
 Text Notes 11950 6650 0    60   ~ 0
 3.3v Linear Regulator to\nsupport EasyPoint
-Text Notes 950  750  0    60   ~ 0
+Text Notes 900  950  0    60   ~ 0
 TRRS connector for \nLeft to Right connection\n(power and I2C)
 Text Notes 1300 2150 0    60   ~ 0
 Aux/Analog Signals\nto support alternative\npointing joystick
@@ -1072,7 +1099,7 @@ Text Notes 3150 8000 0    60   ~ 0
 Indicator LEDs
 Text Notes 1600 4050 0    60   ~ 0
 Easypoint \nConnector
-Text Notes 14150 9550 0    60   ~ 0
+Text Notes 14450 9600 0    60   ~ 0
 Low Voltage I2C \nlines can be \nbridged to 5v I2C\nlines (using B3 \nand B4) if 5v\nsignals needed
 Text Notes 11800 8100 0    60   ~ 0
 Optional I2C level shifter for working with easypoint \nor other 3.3v I2C devices
