@@ -19,21 +19,21 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-use <trp.scad>;
-use <carrier.scad>;
-use <LiteOn_P_100_E302.scad>;
-use <tf.scad>;
 use <tdds.scad>;
 use <util.scad>;
+use <tc.scad>;
 
 include <dimensions.scad>;
 
-echo("trp_tstop_x: ", trp_tstop_x);
-echo("trp_tstop_y: ", trp_tstop_y);
-echo("trp_tstop_z: ", trp_tstop_z);
-echo("trp_tstop_r: ", trp_tstop_r);
-echo("trp_tstop_h: ", trp_tstop_h);
-echo("trp_tstop_x_int: ", trp_tstop_x_int);
+// print out the parameters of hole locations for one thumb switch:
+echo("tf_sp1_x: ", tf_sp1_x);
+echo("tf_sp1_y: ", tf_sp1_y);
+echo("tf_sp2_x: ", tf_sp2_x);
+echo("tf_sp2_y: ", tf_sp2_y);
+echo("tf_sp3_x: ", tf_sp3_x);
+echo("tf_sp3_y: ", tf_sp3_y);
+echo("tf_bp_x: ", tf_bp_x);
+
 echo("trp_angleside_b: ", trp_angleside_b);
 echo("trp_angleside_m: ", trp_angleside_m);
 echo("trp_angleface_angle: ", trp_angleface_angle);
@@ -43,102 +43,6 @@ echo("tf_bp_w: ", tf_bp_w);
 echo("tf_bp_d: ", tf_bp_d);
 echo("trp_max_trv: ", trp_max_trv);
 echo("trp_irler_a: ", trp_irler_a);
-
-module base_ts() {
-  translate([-tf_bp_x, 0, tf_bp_h]) {
-
-    rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
-
-    rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
-
-    //translate([-irle_m_x + tf_irle_x, -irle_m_y-2, -irle_m_z+tf_irle_z]) rotate( a=-90, v=[0,0,1]) Max_LiteOn_P_100_E302(0, 0, 0, 0);
-
-    //#eye_centered_m_irled(0, 0, 0, -5);
-
-    tf(0, 0, 0);
-
-
-    //tf_screws();
-
-    //color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
-
-    translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
-    
-    keycapbase(0, 0, 0);
-    } // translate
-  } // translate
-} // module base_ts
-
-module pots(x, y, z, ang) {
-
-  translate([x, y, z]) {
-    rotate(a=ang, v=[0,0,1]) {
-      union() {
-        base_ts();   
-//	main_inner_thumb_keycap(0, 0, 0);
-//	distal_outer_thumb_keycap(0, 0, 0);
-    translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
-    
-    keycapbase(0, 0, 0);
-        proximal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
-    } // translate
-
-      } // union
-    } // rotate
-  } // outer translate
-} // module
-
-module dots(x, y, z, ang) {
-
-  translate([x, y, z]) {
-    rotate(a=ang, v=[0,0,1]) {
-      union() {
-        base_ts();   
-//	main_inner_thumb_keycap(0, 0, 0);
-    translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
-    
-    keycapbase(0, 0, 0);
-    distal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
-    } // translate
-
-      } // union
-    } // rotate
-  } // outer translate
-} // module
-
-module dits(x, y, z, ang) {
-
-  translate([x, y, z]) {
-    rotate(a=ang, v=[0,0,1]) {
-      union() {
-        base_ts();
-    translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
-    
-    keycapbase(0, 0, 0);
-    main_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
-    } // translate
-
-      } // union
-    } // rotate
-  } // outer translate
-} // module
-
-module pits(x, y, z, ang) {
-
-  translate([x, y, z]) {
-    rotate(a=ang, v=[0,0,1]) {
-      union() {
-        base_ts();
-    translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
-    
-    keycapbase(0, 0, 0);
-    upper_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
-    } // translate
-
-      } // union
-    } // rotate
-  } // outer translate
-} // module
 
 
 
