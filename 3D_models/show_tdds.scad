@@ -31,3 +31,37 @@ difference() {
 //  pos_c_cube(-50, 0, 0, 100, 100, 100);
 
 } // end difference
+
+
+% pos_c_cube( tdds_irll_x, tdds_irll_y1, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( tdds_irll_x, tdds_irll_y2, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( -tdds_irll_x, tdds_irll_y1, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( -tdds_irll_x, tdds_irll_y2, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( tdds_irll_x, -tdds_irll_y1, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( tdds_irll_x, -tdds_irll_y2, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( -tdds_irll_x, -tdds_irll_y1, 0,
+              irll_m_w, irll_m_w, 100);
+
+% pos_c_cube( -tdds_irll_x, -tdds_irll_y2, 0,
+              irll_m_w, irll_m_w, 100);
+
+
+echo("tdds_irll_x: (in) ", tdds_irll_x / in2mm );
+echo("tdds_irll_y1: (in) ", tdds_irll_y1 / in2mm );
+echo("tdds_irll_y2: (in) ", tdds_irll_y2 / in2mm );
+echo("tdds_mat_t: (in) ", tdds_mat_t / in2mm );
+echo("tdds_box_w: (in) ", tdds_box_w / in2mm );
+echo("tdds_box_l: (in) ", tdds_box_l / in2mm );
+

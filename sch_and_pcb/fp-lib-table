@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name DodoHand)(type Legacy)(uri ../component_lib/rf5s4.mod)(options "")(descr ""))
+)

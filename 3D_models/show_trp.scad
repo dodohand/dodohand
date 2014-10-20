@@ -40,8 +40,14 @@ echo("clip_mat_t: ", clip_mat_t);
 echo("tf_irle_scz: ", tf_irle_scz);
 echo("tf_bp_w: ", tf_bp_w);
 echo("tf_bp_d: ", tf_bp_d);
+echo("tf_bpc_d: ", tf_bpc_d);
+echo("tf_bpc_w: ", tf_bpc_w);
 echo("trp_max_trv: ", trp_max_trv);
 echo("trp_irler_a: ", trp_irler_a);
+
+echo("tf_lead1_x: ", tf_lead1_x);
+echo("tf_lead2_x: ", tf_lead2_x);
+echo("tf_lead_y: ", tf_lead_y);
 
 translate([0, 0, tf_bp_h]) {
 
@@ -68,5 +74,13 @@ translate([0, 0, tf_bp_h]) {
 // }
   }
 }
+
+%translate([tf_lead1_x + tf_bp_x, tf_lead_y]) cube([irll_m_w, irll_m_d, 50], center=true);
+%translate([tf_lead2_x + tf_bp_x, tf_lead_y]) cube([irll_m_w, irll_m_d, 50], center=true);
+%translate([tf_lead3_x + tf_bp_x, -tf_lead_y]) cube([irll_m_w, irll_m_d, 50], center=true);
+%translate([tf_lead4_x + tf_bp_x, -tf_lead_y]) cube([irll_m_w, irll_m_d, 50], center=true);
+
+
+
 
 

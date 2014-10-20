@@ -1284,6 +1284,15 @@ tf_catch_z = tf_ouw_z;
 
 tf_catch_a = atan( tf_catch_d / tf_catch_h );
 
+// thumb frame lead positions relative to wide edge of baseplate
+// these are the positions of the centers of the leads:
+tf_lead1_x = tf_irle_x - tf_bp_x - irle_m_x + irlb_m_w/2 - irll_spacing_x/2;
+tf_lead2_x = tf_lead1_x + irll_spacing_x;
+tf_lead3_x = tf_lead1_x;
+tf_lead4_x = tf_lead2_x;
+
+tf_lead_y = tf_irle_y + irll_m_y + ( irll_m_d / 2.0) - irle_m_y;
+
 // dimensions for the base of a keycap which engages the spline
 // KeyCapBase == kcb prefix
 // constructed in normal orientation to avoid stupid trp confusion.
@@ -1480,6 +1489,10 @@ tdds_irlh_h = irlb_m_h + min_wall - csg_utol;
 tdds_irlh_x = -( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r - irlb_m_d - min_wall + ( tdds_irlh_w / 2.0 );
 tdds_irlh_y = -( tdds_box_l / 2.0 ) + tdds_mat_t + ( tdds_irlh_l / 2.0 ) - min_wall;
 tdds_irlh_z = ( tdds_irlh_h / 2.0 ) + tdds_irl_z - min_wall;
+
+tdds_irll_x = -( tdds_bh_w / 2.0 ) - proc_tol - irle_m_r - ( irlb_m_d / 2.0 );
+tdds_irll_y1 = -( tdds_box_l / 2.0 ) + tdds_mat_t + irlcath_m_x + (irll_m_w / 2); 
+tdds_irll_y2 = tdds_irll_y1 + irll_spacing_x;
 
 // the key cap pivot radius
 tdds_kcp_r = trp_pivot_r;

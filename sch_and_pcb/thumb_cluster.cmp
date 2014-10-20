@@ -1,0 +1,241 @@
+Cmp-Mod V01 Created by CvPcb (2013-11-11 BZR 4458)-product date = Sun 19 Oct 2014 10:48:20 PM EDT
+
+BeginCmp
+TimeStamp = /543CA539;
+Reference = J1;
+ValeurCmp = 8PIN_CONN;
+IdModule  = DodoHand:pth_8_hdr;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA54B;
+Reference = J2;
+ValeurCmp = 8PIN_CONN;
+IdModule  = DodoHand:pth_8_hdr;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CC3B1;
+Reference = R101;
+ValeurCmp = 2.49k;
+IdModule  = divers:SM1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CBF93;
+Reference = R102;
+ValeurCmp = 2.49k;
+IdModule  = divers:SM1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CBB39;
+Reference = R103;
+ValeurCmp = 470;
+IdModule  = divers:SM1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA56C;
+Reference = S1;
+ValeurCmp = THUMBSW;
+IdModule  = DodoHand:ThumbSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA57E;
+Reference = S2;
+ValeurCmp = THUMBSW;
+IdModule  = DodoHand:ThumbSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA589;
+Reference = S3;
+ValeurCmp = THUMBSW;
+IdModule  = DodoHand:ThumbSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA594;
+Reference = S4;
+ValeurCmp = THUMBSW;
+IdModule  = DodoHand:ThumbSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /543CA558;
+Reference = S5;
+ValeurCmp = THUMBDDSW;
+IdModule  = DodoHand:TDDS;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427973;
+Reference = SB1;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427967;
+Reference = SB2;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442795B;
+Reference = SB3;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442794F;
+Reference = SB4;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427943;
+Reference = SB5;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427937;
+Reference = SB6;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442796D;
+Reference = SB7;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427961;
+Reference = SB8;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427955;
+Reference = SB9;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427949;
+Reference = SB10;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442793D;
+Reference = SB11;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /54427925;
+Reference = SB12;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD60;
+Reference = SB13;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD44;
+Reference = SB14;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD6C;
+Reference = SB15;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD78;
+Reference = SB16;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BDBE;
+Reference = SB17;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BDCA;
+Reference = SB18;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD5A;
+Reference = SB19;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BCD5;
+Reference = SB20;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD66;
+Reference = SB21;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BD72;
+Reference = SB22;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BDB8;
+Reference = SB23;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+BeginCmp
+TimeStamp = /5442BDC4;
+Reference = SB24;
+ValeurCmp = 2XSSB;
+IdModule  = DodoHand:2xSideSolderSwitch;
+EndCmp
+
+EndListe
