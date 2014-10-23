@@ -46,11 +46,11 @@ echo("trp_irler_a: ", trp_irler_a);
 
 
 
-tdds_centered(0, 0, tdds_rot_h, 1, 1);
-
-pots(9.5, 10, 0, 0);
-dots(8, -16, 0, -14);
-dits(-10, -14, 0, 200);
-pits(-20, 6, 0, 190);
+tdds_centered(0, 0, tdds_rot_h, 0, 0, 0, 0);
+// x, y, z, a, show_cap, show_trp, show_clip
+pots(9.5, 10, 0, 0, 0, 0, 0);
+dots(8, -16, 0, -14, 0, 0, 0);
+dits(-10, -14, 0, 200, 0, 0, 0);
+pits(-20, 6, 0, 190, 0, 0, 0);
 
 

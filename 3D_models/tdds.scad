@@ -58,11 +58,11 @@ module tdds_bar_c(x, y, z, sc) {
       pos_c_cube(0, ( tdds_bar_l / 2.0 ) - ( tdds_sub_l / 2.0 ) + csg_tol, 
                  tdds_bar_h/2.0, tdds_sub_w, tdds_sub_l, tdds_sub_h);
 
-/*
+
 //ERROR *!*!*! This must be re-enabled. It is expensive (computation) for why???
       scale([clip_m_w/clip_w, 1, 1]) tdds_clip();
       mirror([0,1,0]) scale([clip_m_w/clip_w, 1, 1]) tdds_clip();
-*/
+
     } //end difference
 
     if ( 1 == sc ) {
@@ -361,10 +361,10 @@ module tdds_kc(x, y, z) {
   } // translate
 }
 
-module tdds_centered(x, y, z, sc, sm) {
+module tdds_centered(x, y, z, sc, sm, sc, sbar) {
 
-  tdds_bar_c(x, y, z, sc);
+  if( 1 == sbar ) tdds_bar_c(x, y, z, sc);
   tdds_box_c(x, y, z, sm);
-  tdds_kc(x, y, z);
+  if ( 1 == sc ) tdds_kc(x, y, z);
 
 } // end module tdds_centered

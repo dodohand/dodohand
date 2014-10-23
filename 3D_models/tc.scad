@@ -28,12 +28,15 @@ use <util.scad>;
 
 include <dimensions.scad>;
 
-module base_ts() {
+module base_ts(st, sclip) {
   translate([-tf_bp_x, 0, tf_bp_h]) {
 
-    rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
+    if( 1 == st ) rotate(a=90, v=[1,0,0]) trp(0, 0, 0);
 
-    rotate(a=90, v=[1,0,0]) translate([clip_mat_t, -clip_mat_t, -clip_w/2]) rotate(a=-90, v=[0,1,0]) clip(0, 0, 0);
+    if( 1 == sclip ) rotate(a=90, v=[1,0,0]) 
+                      translate([clip_mat_t, -clip_mat_t, -clip_w/2]) 
+                       rotate(a=-90, v=[0,1,0]) 
+                        clip(0, 0, 0);
 
     //translate([-irle_m_x + tf_irle_x, -irle_m_y-2, -irle_m_z+tf_irle_z]) rotate( a=-90, v=[0,0,1]) Max_LiteOn_P_100_E302(0, 0, 0, 0);
 
@@ -48,79 +51,109 @@ module base_ts() {
 
     translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
     
-    keycapbase(0, 0, 0);
+    //keycapbase(0, 0, 0);
     } // translate
   } // translate
 } // module base_ts
 
-module pots(x, y, z, ang) {
+module potskc() {
+ union() {
+  keycapbase(0, 0, 0);
+  proximal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+ }
+}
 
+module pots(x, y, z, ang, sc, st, sclip) {
+  // sc = show cap
+  // st = show trp
   translate([x, y, z]) {
     rotate(a=ang, v=[0,0,1]) {
       union() {
-        base_ts();   
+        base_ts(st, sclip);
         translate([ trp_spline_x + trp_spline_w/2.0, 
                     0, 
                     trp_blade_h + trp_spline_h - kcb_v_h ]) {
       
-          keycapbase(0, 0, 0);
-            
-          proximal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+          if( 1 == sc ) potskc();
+
         } // translate
       } // union
     } // rotate
   } // outer translate
 } // module
 
-module dots(x, y, z, ang) {
+module dotskc() {
+ union() {
+  keycapbase(0, 0, 0);
+  distal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+ }
+}
 
+module dots(x, y, z, ang, sc, st, sclip) {
+  // sc = show cap
+  // st = show trp
   translate([x, y, z]) {
     rotate(a=ang, v=[0,0,1]) {
       union() {
-        base_ts();   
+        base_ts(st, sclip);
         translate([ trp_spline_x + trp_spline_w/2.0, 
                     0, 
                     trp_blade_h + trp_spline_h - kcb_v_h ]) {
     
-          keycapbase(0, 0, 0);
-          
-          distal_outer_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+          if( 1 == sc ) dotskc();
+
         } // translate
       } // union
     } // rotate
   } // outer translate
 } // module
 
-module dits(x, y, z, ang) {
+module ditskc() {
+ union() {
+  keycapbase(0, 0, 0);
+  main_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+ }
+}
 
+module dits(x, y, z, ang, sc, st, sclip) {
+  // sc = show cap
+  // st = show trp
   translate([x, y, z]) {
     rotate(a=ang, v=[0,0,1]) {
       union() {
-        base_ts();
+        base_ts(st, sclip);
         translate([ trp_spline_x + trp_spline_w/2.0, 
                     0, 
                     trp_blade_h + trp_spline_h - kcb_v_h ]) {
     
-          keycapbase(0, 0, 0);
-          main_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+          if( 1 == sc ) ditskc();
+
         } // translate
       } // union
     } // rotate
   } // outer translate
 } // module
 
-module pits(x, y, z, ang) {
+module pitskc() {
+ union() {
+  keycapbase(0, 0, 0);
+  upper_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h); 
+ }
+}
 
+module pits(x, y, z, ang, sc, st, sclip) {
+ // sc = show cap
+ // st = show trp
   translate([x, y, z]) {
     rotate(a=ang, v=[0,0,1]) {
       union() {
-        base_ts();
+        base_ts(st, sclip);
         translate([ trp_spline_x + trp_spline_w/2.0, 
                     0, 
                     trp_blade_h + trp_spline_h - kcb_v_h ]) {
     
-          keycapbase(0, 0, 0);
-          upper_inner_thumb_keycap(-tf_bp_x, 0, tf_bp_h);
+          if( 1 == sc ) pitskc();
+
         } // translate
       } // union
     } // rotate

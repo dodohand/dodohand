@@ -26,8 +26,8 @@ show_mag = 0;
 show_lr_angle = 0;
 
 // global face number set here
-gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
-//gfn=25;
+//gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
+gfn=12;
 //gfn=50;
 
 // units are in mm

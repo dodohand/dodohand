@@ -1,0 +1,19 @@
+A place to capture some notes on development steps, strategies, etc.
+
+1) How to verify that the 3D model matches the PCB layout?
+
+So far, the best approach I've used is no take the drill file output
+of the PCB design tool and translate it into a bunch of cylinders
+in the 3D model. I imported the drill file into OpenOffice Calc,
+converted inches to mm, copied the resulting data into Emacs along
+with a column that I created for drill diameters. I then created 
+an emacs keyboard macro to create something like this for each drill
+of interest (only the mounting holes, component leads:
+
+translate([-24.89454,    9.23036, 0]) 
+  cylinder(center=true, $fn=gfn, h=100, r= 0.762/2.0);
+
+and add the whole set to the 3D model.
+
+When this matches the 3D model, you can be certain that the PCB
+will properly line up with the holes in the switch parts.
