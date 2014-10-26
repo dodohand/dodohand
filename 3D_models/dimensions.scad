@@ -26,8 +26,8 @@ show_mag = 0;
 show_lr_angle = 0;
 
 // global face number set here
-//gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
-gfn=12;
+gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
+//gfn=12;
 //gfn=50;
 
 // units are in mm
@@ -1482,6 +1482,8 @@ tdds_mrb_c_y = tdds_clip_c_y + ( smag_h / 2.0 );
 tdds_mrbb_r = 2.0 * proc_tol;
 
 tdds_fin_l = irlb_w - proc_tol;
+// try to stop shapeways from complaining by slightly exceeding min_wall
+tdds_fin_w = min_wall + 0.1; 
 
 tdds_irlh_w = irlb_m_d + ( 2.0 * min_wall );
 tdds_irlh_l = irlb_m_w + ( 2.0 * min_wall );

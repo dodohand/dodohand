@@ -29,47 +29,46 @@ use <trp.scad>;
 
 include <dimensions.scad>;
 
-
-//tdds_centered(0, 0, tdds_rot_h, 0, 0, 0, 0);
+tdds_centered(0, 0, tdds_rot_h, 0, 0, 0, 0);
 
 // x, y, z, a, show_cap, show_trp, show_clip
 pots(8, (tf_bp_d / 2.0) + min_sep, 0, 0, 0, 0, 0);
-//dots(8, -(tf_bp_d / 2.0) - min_sep, 0, 0, 0, 0, 0);
-//dits(-8, -(tf_bp_d / 2.0) - min_sep, 0, 180, 0, 0, 0);
-pits(-8, (tf_bp_d / 2.0) + min_sep, 0, 180, 0, 0, 0);
+dots(8, -(tf_bp_d / 2.0) - min_sep, 0, 0, 0, 0, 0);
+dits(8, -((3*tf_bp_d) / 2.0) - 3*min_sep, 0, 0, 0, 0, 0);
+pits(8, -((5*tf_bp_d) / 2.0) - 5*min_sep, 0, 0, 0, 0, 0);
 
-//tdds_bar_c(0, 0, 12, 0);
+tdds_bar_c(0, 0, 12, 0);
 
-translate([9,3,4])
-rotate(a=90,v=[0,0, 1]) {
- trp(20, 20, 0);
- translate([20, 40, 5]) mirror([0,1,0]) trp(0, 0, 0);
- trp(20, 20, 10);
+trp(10,1,17);
+mirror([0,1,0]) trp(10,1,17);
+
+translate([0, -2*(tf_bp_d+2*min_sep), 0]) {
+ trp(10,1,17);
+ mirror([0,1,0]) trp(10,1,17);
 }
-translate([9,20,4]) rotate(a=90, v=[0,0,1])
- translate([20, 40, 0]) mirror([0,1,0]) trp(0, 0, 0);
 
+translate([1, -22, 5])
+ rotate(a=65, v=[1,0,0])
+  rotate(a=90, v=[0,0,1])
+   pitskc();
 
-/*
-translate([0, 33, -tf_bp_h - 1.5]) potskc();
-translate([5, 41, -tf_bp_h - 1.5]) rotate(a=180,v=[0,0,1]) pitskc();
-translate([15, 41, -tf_bp_h - 1.5]) dotskc();
-translate([20, 33, -tf_bp_h - 1.5]) rotate(a=180, v=[0,0,1])ditskc();
-*/
+translate([21, 57, 12])
+ rotate(a=90, v=[0,0,1]) 
+  rotate(a=-90, v=[0,1,0]) 
+   rotate(a=180, v=[0,0,1]) 
+    potskc();
 
-translate([22, 22, 11]) 
- rotate(a=-90, v=[0,1,0]) 
-  rotate(a=180, v=[0,0,1]) 
-   potskc();
-
-translate([8, 25, 5]) 
+translate([8, 23, 5]) 
  rotate(a=90, v=[0,0,1]) 
   rotate(a=90, v=[0,1,0]) 
    dotskc();
 
-translate([8, 58, 11]) 
+translate([8, 57, 10.5]) 
  rotate(a=90, v=[0,0,1]) 
   rotate(a=-90, v=[0,1,0]) 
    ditskc();
 
-
+translate([-3, -45, 0])
+rotate(a=180, v=[0,0,1])
+rotate(a=tdds_kc_aor, v=[1,0,0])
+tdds_kc(0, 0, 8);

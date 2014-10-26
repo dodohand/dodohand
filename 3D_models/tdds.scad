@@ -98,7 +98,7 @@ module tdds_mrbb() {
 module tdds_fin() {
   // add in the fins which contain the IR beam passage
   pos_c_cube(0, - ( tdds_bh_l / 2.0 ) + ( tdds_fin_l / 2.0 ) - csg_utol, tdds_box_c_z,
-           min_wall, tdds_fin_l, tdds_box_h);
+           tdds_fin_w, tdds_fin_l, tdds_box_h);
 }
 
 module tdds_magholes() {
