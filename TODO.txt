@@ -31,9 +31,9 @@ an error, as now the Easypoint switch can't be evaluated without
 a kludge of soldering on a resistor somehow, at least until the
 thumb switches are in the mix. Consider changing this.
 
-Find a better layout for the solder-bridges in the reversible finger 
-5-switch footprint - I resorted to 0603 0-Ohm bridges because I couldn't
-get the solder to bridge across easily.
+regack created a better solder bridge layout. This needs to be 
+incorporated into the footprint for the finger 5-switch. It has
+already been incorporated into the thumb PCB.
 
 The drills for the test points are not quite large enough for the chosen
 testpoints. Make the drill hits a few mil larger so that the testpoints fit
@@ -189,15 +189,21 @@ Develop a model for the two-stage thumb switch and keycap.
 DONE:
 Develop a model for the 4-count normal thumb switch.
 
+DONE:
 Develop a model for the upper/inboard thumb switch keycap.
 
+DONE:
 Develop a model for the main inboard thumb switch keycap.
 
+DONE:
 Develop a model for the distal outboard thumb switch keycap.
 
+DONE:
 Develop a model for the proximal outboard thumb switch keycap.
 
+DONE:
 Finalize the positions of the thumb switches relative to eachother.
 
+DONE:
 Create a two-sided PCB design for the thumb switches.
 

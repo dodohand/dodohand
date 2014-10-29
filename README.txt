@@ -23,8 +23,7 @@ So you want to create a DodoHand
 
 Current status: The finger switch design is usable. The thumb switch
 mechanism designs are complete in their first version, but untested.
-The "keycaps" are not yet finalized for the thumbs, and the thumb
-cluster arrangement is not yet finalized. A case has been designed by
+A thumb PCB has been designed and ordered. A case has been designed by
 Turbinia, but has never been built. There are provisions in hardware
 for supporting an EasyPoint or another joystick but these have not
 been implemented in software.
