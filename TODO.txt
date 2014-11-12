@@ -181,6 +181,21 @@ support will be part of a single model to reduce complexity and cost of
 manufacture. 3D-printed ceramic is a potential solution. mkawa's 3D printer may
 also be a useful resource for a case.  laser-cut cardboard (or plywood/bamboo/acrylic/etc) may not be a bad option.
 
+Thumb switch issues:
+
+Thumb side switch keycaps for all side switches are too tall. lower them.
+
+Thumb side switch activation force and return force are too low.
+re-design to use the thicker magnet used for the TDDS.
+
+retention clips broke off upon insertion of TRP. Trimming length of retension
+pins just a shave each stopped this. Trim retension pins just a bit.
+consider re-shaping the retension clips to improve robustness.
+
+TDDS activation force is too high for first stage, too low (at least in 
+comparison) for the second stage. might be solved/improved by lengthening the TDDS.
+
+
 Thumb switches
 
 DONE:
