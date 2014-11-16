@@ -1,0 +1,2 @@
+run "make" in this folder to download all the relevant datasheets using wget.
+run "make clean" to delete all .pdf and .gif files in this directory.
