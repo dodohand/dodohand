@@ -65,13 +65,13 @@ D Afficheur LCD nLignes
 K DEV
 $ENDCMP
 #
-$CMP DOUBLE_SCH_KCOM
-D Double diode Shottky Cathodes communes
+$CMP DOUBLE_SCHOTTKY
+D Double diode Shottky (Serie)
 K DEV DIODE
 $ENDCMP
 #
-$CMP DOUBLE_SCHOTTKY
-D Double diode Shottky (Serie)
+$CMP DOUBLE_SCH_KCOM
+D Double diode Shottky Cathodes communes
 K DEV DIODE
 $ENDCMP
 #
@@ -109,19 +109,19 @@ $CMP LED
 K LED
 $ENDCMP
 #
-$CMP MOS_N
-F transistors/mos/*.*
-$ENDCMP
-#
-$CMP MOS_P
-F transistors/mos/*.*
-$ENDCMP
-#
 $CMP MOSFET_N
 F transistors/mos/*.*
 $ENDCMP
 #
 $CMP MOSFET_P
+F transistors/mos/*.*
+$ENDCMP
+#
+$CMP MOS_N
+F transistors/mos/*.*
+$ENDCMP
+#
+$CMP MOS_P
 F transistors/mos/*.*
 $ENDCMP
 #
@@ -137,6 +137,10 @@ $CMP PNP
 F transistors/bipolar/*.*
 $ENDCMP
 #
+$CMP PNP_KSA1298
+F transistors/bipolar/*.*
+$ENDCMP
+#
 $CMP POT
 D Potentionmetre
 K R
@@ -147,6 +151,15 @@ D Resistance
 K R DEV
 $ENDCMP
 #
+$CMP RF5S
+D Reversible Finger 5-key Switch assembly
+$ENDCMP
+#
+$CMP RR8
+D 8 resistors
+K R DEV
+$ENDCMP
+#
 $CMP R_PACK4
 D 4 resistors Pack
 K R DEV
@@ -154,15 +167,6 @@ $ENDCMP
 #
 $CMP R_PACK8
 D 8 resistors Pack
-K R DEV
-$ENDCMP
-#
-$CMP RF5S
-D Reversible Finger 5-key Switch assembly
-$ENDCMP
-#
-$CMP RR8
-D 8 resistors
 K R DEV
 $ENDCMP
 #
@@ -180,11 +184,6 @@ D Interrupteur simple
 K switch
 $ENDCMP
 #
-$CMP SW_PUSH
-D Push Button
-K Switch
-$ENDCMP
-#
 $CMP SWITCH_INV
 D Switch inverseur
 K switch
@@ -193,6 +192,11 @@ $ENDCMP
 $CMP SWITCH_INV_MSM
 D Switch inverseur M S M
 K switch
+$ENDCMP
+#
+$CMP SW_PUSH
+D Push Button
+K Switch
 $ENDCMP
 #
 $CMP THERMISTOR
