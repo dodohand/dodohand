@@ -167,12 +167,12 @@ void scanrh ( void )
     {
 
       set_LED_0 ( matrix_a [2] [2] );
-      set_LED_1 ( matrix_a [2] [3] );
+      set_LED_1 ( matrix_a [2] [5] );
     }
   else
     {
       set_LED_0 ( matrix_b [2] [2] );
-      set_LED_1 ( matrix_b [2] [3] );
+      set_LED_1 ( matrix_b [2] [5] );
     }
 
   return;
