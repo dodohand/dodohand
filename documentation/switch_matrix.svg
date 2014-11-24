@@ -13,7 +13,7 @@
    height="1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="switch_matrix.svg">
   <defs
      id="defs4" />
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="354.1632"
-     inkscape:cy="896.01689"
+     inkscape:zoom="3.959798"
+     inkscape:cx="496.84388"
+     inkscape:cy="792.76041"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -34,7 +34,8 @@
      inkscape:window-height="903"
      inkscape:window-x="150"
      inkscape:window-y="47"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:object-nodes="true">
     <inkscape:grid
        type="xygrid"
        id="grid2985"
@@ -3160,7 +3161,7 @@
        sodipodi:nodetypes="ccc" />
     <g
        id="g3592"
-       transform="matrix(0,1,1,0,292.63782,-353.88782)">
+       transform="matrix(0,1,-1,0,727.36218,-353.88782)">
       <path
          style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 177.5,57.362183 0,15"
@@ -3174,11 +3175,11 @@
          inkscape:connector-curvature="0"
          transform="translate(406.25,152.5)" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 177.5,68.612183 10,5 -1.25,-3.75 -2.5,5 3.75,-1.25 0,0 0,3.75"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         d="m 593.75,229.86218 0,-3.75 -9.57589,-4.82143 2.07589,3.57143 2.05357,-3.95089 -4.10714,0.37946"
          id="path3009-5-7-1-7-8"
          inkscape:connector-curvature="0"
-         transform="translate(406.25,152.5)" />
+         sodipodi:nodetypes="cccccc" />
       <path
          inkscape:connector-curvature="0"
          id="path3590"
