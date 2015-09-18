@@ -137,12 +137,12 @@ module tf_attachment_screw(x, y, z) {
 
 module tf_mag(x, y, z) {
   translate([x, y, z]) {
-    translate([proc_tol + ( mag_h / 2.0 ), 
+    translate([proc_tol + ( tf_mag_h / 2.0 ), 
                0, 
-               -proc_tol/2.0 - mag_d/2.0]) {
-      cube([mag_h + 2.0 * proc_tol, 
-            mag_w + ( 2.0 * proc_tol ), 
-            mag_d + proc_tol], center=true);
+               -proc_tol/2.0 - tf_mag_d/2.0]) {
+      cube([tf_mag_h + 2.0 * proc_tol, 
+            tf_mag_w + ( 2.0 * proc_tol ), 
+            tf_mag_d + proc_tol], center=true);
     }
   } // end translate
 } // end module tf_mag
@@ -163,11 +163,11 @@ module tf_bp(x, y, z) {
         translate([tf_bp_x, tf_bp_y, tf_bp_z]) {
           cube([tf_bp_w, tf_bp_d, tf_bp_h+csg_utol]);
         }
-        translate([tf_bp_x + ( mag_h / 2.0 ), 
+        translate([tf_bp_x + ( tf_mag_h / 2.0 ), 
                    0,
                    ( min_wall / 2.0) - clip_mat_t]) {
-          cube([mag_h, 
-                mag_w + ( 2.0 * min_wall ), 
+          cube([tf_mag_h, 
+                tf_mag_w + ( 2.0 * min_wall ), 
                 min_wall + csg_tol], center=true);
         }
 
@@ -175,11 +175,13 @@ module tf_bp(x, y, z) {
       // void for clip
       translate([tf_bp_x - csg_tol, ( -trp_blade_t / 2.0 ) - proc_tol, 
                  -clip_mat_t]) {
-        cube([mag_h * 1.1, trp_blade_t + ( 2.0 * proc_tol), 
+        cube([tf_mag_h * 1.1, trp_blade_t + ( 2.0 * proc_tol), 
               clip_mat_t + ( 2.0 * csg_tol ) + min_wall]);
       }
       // void for magnet
-      tf_mag(tf_bp_x-csg_tol, 0, -clip_mat_t+csg_utol);
+      tf_mag(tf_bp_x+min_wall-csg_tol, 0, -clip_mat_t+csg_utol);
+      // void for magnet, extended out bottom of base
+      tf_mag(tf_bp_x+min_wall-csg_tol, 0, -clip_mat_t-csg_utol);
 
       // trim off unnecessary corners
       tf_bp_trim();

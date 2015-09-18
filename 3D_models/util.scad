@@ -19,6 +19,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+module pos_half_cube(x, y, z, w, l, h)
+{
+  translate([x, y, z]) half_cube(w, l, h);
+}
+
 module half_cube(x, y, z) {
 
   polyhedron(points = [[0,0,0], [0, 0, z], [x, 0, 0], 

@@ -1227,10 +1227,15 @@ tf_sp3_x = tf_sp2_x;
 tf_sp3_y = -tf_sp2_y;
 tf_sp3_z = tf_sp2_z;
 
+// dimensions of magnet to use for thumb frame
+tf_mag_d = smag_d;
+tf_mag_w = smag_w;
+tf_mag_h = smag_h;
+
 // dimensions of tf bottom plate
 tf_bp_w = tf_sp1_x + ( tf_ash_r * 1.1 ) - tf_uw_x;
 tf_bp_d = tf_sp2_y - tf_sp3_y + ( tf_ash_d * 1.1 );
-tf_bp_h = clip_mat_t + mag_d + proc_tol + min_wall;
+tf_bp_h = clip_mat_t + tf_mag_d + proc_tol ;
 tf_bp_x = tf_uw_x;
 tf_bp_y = -tf_bp_d / 2.0;
 tf_bp_z = -tf_bp_h;

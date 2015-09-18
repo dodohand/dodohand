@@ -42,12 +42,14 @@ echo("tf_bp_w: ", tf_bp_w);
 echo("tf_bp_d: ", tf_bp_d);
 echo("tf_bpc_d: ", tf_bpc_d);
 echo("tf_bpc_w: ", tf_bpc_w);
+echo("tf_bpc_h: ", tf_bpc_h);
 echo("trp_max_trv: ", trp_max_trv);
 echo("trp_irler_a: ", trp_irler_a);
 
 echo("tf_lead1_x: ", tf_lead1_x);
 echo("tf_lead2_x: ", tf_lead2_x);
 echo("tf_lead_y: ", tf_lead_y);
+
 
 translate([0, 0, tf_bp_h]) {
 
@@ -62,10 +64,9 @@ translate([0, 0, tf_bp_h]) {
 
   tf(0, 0, 0);
 
+  *tf_screws();
 
-  tf_screws();
-
-  color("silver") translate([tf_bp_x, -mag_w/2, -mag_d-clip_mat_t]) cube([mag_h, mag_w, mag_d]);
+  color("silver") translate([tf_bp_x+min_wall, -tf_mag_w/2, -tf_mag_d-clip_mat_t]) cube([tf_mag_h, tf_mag_w, tf_mag_d]);
 
   translate([trp_spline_x + trp_spline_w/2.0, 0, trp_blade_h + trp_spline_h - kcb_v_h]) {
 // difference() {
