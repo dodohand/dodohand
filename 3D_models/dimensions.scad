@@ -1288,6 +1288,7 @@ tf_catch_y = tf_ouw_y;
 tf_catch_z = tf_ouw_z;
 
 tf_catch_a = atan( tf_catch_d / tf_catch_h );
+tf_catch_a2 = atan( ( 0.5 * tf_catch_d ) / tf_catch_h );
 
 // thumb frame lead positions relative to wide edge of baseplate
 // these are the positions of the centers of the leads:

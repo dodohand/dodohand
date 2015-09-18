@@ -112,6 +112,9 @@ module tf_catch() {
     rotate(a=tf_catch_a, v=[1,0,0])
       translate([0, -tf_catch_d, -( tf_catch_h * 3.0 ) / 2.0]) 
         cube([tf_catch_w, tf_catch_d, (2.0 * tf_catch_h)]); 
+    rotate(a=tf_catch_a2, v=[1,0,0])
+      translate([0, -tf_catch_d, -( tf_catch_h * 3.0 ) / 2.0]) 
+        cube([tf_catch_w, tf_catch_d, (2.0 * tf_catch_h)]); 
     translate([0, -tf_catch_d, -tf_catch_h])
       cube([tf_catch_w, 1.5 * tf_catch_d, tf_catch_h + csg_tol]);
   } // end intersection
