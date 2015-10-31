@@ -26,8 +26,8 @@ show_mag = 0;
 show_lr_angle = 0;
 
 // global face number set here
-gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
-//gfn=12;
+//gfn=87; // 87 is the max that fit in the shapeways 64MB size limit.
+gfn=12;
 //gfn=50;
 
 // units are in mm
@@ -1616,7 +1616,7 @@ tdds_stem_rz = tdds_bar_h + tdds_stem_r;
 
 thumb_cap_gap = 3.0;
 thumb_cap_angle = 8; // angle of face which thumb contacts
-thumb_cap_h = 20.0;
+thumb_cap_h = 15.0;
 thumb_cap_min_w = 1.5;
 
 // Main Inboard Thumb KeyCap (inboard = fingerprint side)

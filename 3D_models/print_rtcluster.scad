@@ -48,11 +48,11 @@ translate([0, -2*(tf_bp_d+2*min_sep), 0]) {
 }
 
 translate([1, -22, 5])
- rotate(a=65, v=[1,0,0])
+ rotate(a=60, v=[1,0,0])
   rotate(a=90, v=[0,0,1])
    pitskc();
 
-translate([21, 57, 12])
+translate([21, 52, 12])
  rotate(a=90, v=[0,0,1]) 
   rotate(a=-90, v=[0,1,0]) 
    rotate(a=180, v=[0,0,1]) 
@@ -63,7 +63,7 @@ translate([8, 23, 5])
   rotate(a=90, v=[0,1,0]) 
    dotskc();
 
-translate([8, 57, 10.5]) 
+translate([8, 52, 10.5]) 
  rotate(a=90, v=[0,0,1]) 
   rotate(a=-90, v=[0,1,0]) 
    ditskc();

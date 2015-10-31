@@ -64,7 +64,7 @@ translate([0, 0, tf_bp_h]) {
 
   tf(0, 0, 0);
 
-  *tf_screws();
+  * tf_screws();
 
   color("silver") translate([tf_bp_x+min_wall, -tf_mag_w/2, -tf_mag_d-clip_mat_t]) cube([tf_mag_h, tf_mag_w, tf_mag_d]);
 
